@@ -1,113 +1,10 @@
 
-				
+				<!DOCTYPE html>
 				<html>
 					<head>
-						<meta charset="UTF-8"/>
-						<meta name="viewport" content="width=device-width, initial-scale=1"/>
-						<style>pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
-}
-
-code.hljs {
-  padding: 3px 5px;
-}
-
-/*
-
-Atom One Light by Daniel Gamage
-Original One Light Syntax theme from https://github.com/atom/one-light-syntax
-
-base:    #fafafa
-mono-1:  #383a42
-mono-2:  #686b77
-mono-3:  #a0a1a7
-hue-1:   #0184bb
-hue-2:   #4078f2
-hue-3:   #a626a4
-hue-4:   #50a14f
-hue-5:   #e45649
-hue-5-2: #c91243
-hue-6:   #986801
-hue-6-2: #c18401
-
-*/
-
-.hljs {
-  color: #383a42;
-  background: #fafafa;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #a0a1a7;
-  font-style: italic;
-}
-
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  color: #a626a4;
-}
-
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-  color: #e45649;
-}
-
-.hljs-literal {
-  color: #0184bb;
-}
-
-.hljs-string,
-.hljs-regexp,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta .hljs-string {
-  color: #50a14f;
-}
-
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-  color: #986801;
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link,
-.hljs-meta,
-.hljs-selector-id,
-.hljs-title {
-  color: #4078f2;
-}
-
-.hljs-built_in,
-.hljs-title.class_,
-.hljs-class .hljs-title {
-  color: #c18401;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-link {
-  text-decoration: underline;
-}</style>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1" />
+						<link rel="stylesheet" href="pluginAssets/highlight.js/atom-one-light.css">
 						<title>EXG</title>
 					</head>
 					<body>
@@ -566,19 +463,7 @@ pre.mermaid > svg { white-space: unset; }
 				}
 				.mermaid-export-graph > button:hover {
 					background-color: #CBDAF1 !important;
-				}
-/* For styling the rendered Markdown */
-body {
-	font-size: 10px;
-	color: #32373F;
-	word-wrap: break-word;
-	line-height: 1.6em;
-	background-color: #ffffff;
-	font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
-	padding-bottom: 0px;
-	padding-top: 0px;
-}
-</style><div id="rendered-md"><p><strong>Exchange Registers</strong></p>
+				}</style><div id="rendered-md"><p><strong>Exchange Registers</strong></p>
 <table class="jop-noMdConv"><thead class="jop-noMdConv"><tr class="jop-noMdConv"><th class="jop-noMdConv"></th><th class="jop-noMdConv"></th></tr></thead><tbody class="jop-noMdConv"><tr class="jop-noMdConv"><td class="jop-noMdConv">Source Form</td><td class="jop-noMdConv">EXG R1,R2</td></tr><tr class="jop-noMdConv"><td class="jop-noMdConv">Operation</td><td class="jop-noMdConv">R1 &lt;-&gt; R2&nbsp;</td></tr><tr class="jop-noMdConv"><td class="jop-noMdConv">Condition Codes</td><td class="jop-noMdConv">Not affected (unless one of the registers is the condition code register).</td></tr><tr class="jop-noMdConv"><td class="jop-noMdConv">Description</td><td class="jop-noMdConv"><p class="jop-noMdConv">Exchanges data between two designated registers. Bits 3-0 of the post byte define one register, while bits 7-4 define the other, as follows:&nbsp; &nbsp; &nbsp;</p><table border="1" height="229" style="border-collapse: collapse; width: 51.8749%;" class="jop-noMdConv"><thead class="jop-noMdConv"><tr class="jop-noMdConv"><th scope="col" style="width: 49.9179%;" class="jop-noMdConv">0000 = A:B</th><th scope="col" style="width: 49.9179%;" class="jop-noMdConv">1000 = A</th></tr></thead><tbody class="jop-noMdConv"><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0001 = X</td><td style="width: 49.9179%;" class="jop-noMdConv">1001 = B</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0010 = Y</td><td style="width: 49.9179%;" class="jop-noMdConv">1010 = CCR</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0011 = US</td><td style="width: 49.9179%;" class="jop-noMdConv">1011 = DPR</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0100 = SP</td><td style="width: 49.9179%;" class="jop-noMdConv">1100 = Undefined</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0101 = PC</td><td style="width: 49.9179%;" class="jop-noMdConv">1101 = Undefined</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0110 = Undefined</td><td style="width: 49.9179%;" class="jop-noMdConv">1110 = Undefined</td></tr><tr class="jop-noMdConv"><td style="width: 49.9179%;" class="jop-noMdConv">0111 = Undefined</td><td style="width: 49.9179%;" class="jop-noMdConv">1111 = Undefined</td></tr></tbody></table><p class="jop-noMdConv">Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)</p></td></tr><tr class="jop-noMdConv"><td class="jop-noMdConv">Addressing mode</td><td class="jop-noMdConv">Immediate</td></tr></tbody></table></div></div>
 					</body>
 				</html>

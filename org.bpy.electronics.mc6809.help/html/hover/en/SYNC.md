@@ -1,0 +1,9 @@
+**Synchronize to External Event**
+
+|     |     |
+| --- | --- |
+| Source Form | SYNC |
+| Operation | Stop processing instructions |
+| Condition Codes | Not affected. |
+| Description | When a SYNC instruction is excuted, tlie processor enters a synchronizing state, stops processing instructions, and waits for an interrupt. When an interrupt occurs, the synchronizing state is cleared and processing continues. If the interrupt is enabled, and it lasts three cycles or more, the processor will perform the interrupt routine. If the interrupt is masked or is shorter than three cycles, the processor simply continues to the next instruction. While in the synchronizing state, the address and data buses are in the high impedance state.<br><br>This instruction provides software synchronization with a hardware process. Consider the following example for high-speed acquisition of data:<br><br>FAST       SYNC                          WAIT FOR DATA  <br>                Interrupt!  <br>                LDA         DISC           DATA FROM DISC AND CLEAR INTERRUPT  <br>                STA         .X+              PUT IN BUFFER  <br>                DECB                         COUNT IT, DONE?  <br>                BNE        FAST           GO AGAIN IF NOT.<br><br>The synchronizing state is cleared by any interrupt. Of course, enabled interrupts at this point may destroy the data transfer and, as such, should represent only emergency conditions.<br><br>The same connection used for interrupt-driven I/O service may also be used for high-speed data transfers by setting the interrupt mask and using the SYNC instruction as the above example demonstrates. |
+| Addressing mode | Inherent |
