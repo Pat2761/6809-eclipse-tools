@@ -121,7 +121,7 @@ hue-6-2: #c18401
 		b,strong{font-weight:bolder}small{font-size:80%}img{border-style:none}
 
 		body {
-			font-size: 12px;
+			font-size: 15px;
 			color: #32373F;
 			word-wrap: break-word;
 			line-height: 1.6em;
@@ -325,7 +325,7 @@ hue-6-2: #c18401
 		table td, th {
 			text-align: left;
 			padding: .5em 1em .5em 1em;
-			font-size: 12;
+			font-size: 15;
 			color: #32373F;
 			font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
 		}
@@ -566,7 +566,19 @@ pre.mermaid > svg { white-space: unset; }
 				}
 				.mermaid-export-graph > button:hover {
 					background-color: #CBDAF1 !important;
-				}</style><div id="rendered-md"><p><strong>Arithmetic Shift Left</strong></p>
+				}
+/* For styling the rendered Markdown */
+body {
+	font-size: 10px;
+	color: #32373F;
+	word-wrap: break-word;
+	line-height: 1.6em;
+	background-color: #ffffff;
+	font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+</style><div id="rendered-md"><p><strong>Arithmetic Shift Left</strong></p>
 <div class="joplin-table-wrapper">
 <table>
 <thead>
@@ -586,7 +598,7 @@ pre.mermaid > svg { white-space: unset; }
 </tr>
 <tr>
 <td>Condition Codes</td>
-<td>H - Undefined,  <br class="jop-noMdConv"/>N - Set if the result is negative; cleared otherwise,  <br class="jop-noMdConv"/>Z - Set if the result is zero; cleared otherwise,  <br class="jop-noMdConv"/>V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.  <br class="jop-noMdConv"/>C - Not affected.</td>
+<td>H - Undefined,  <br class="jop-noMdConv"/>N - Set if the result is negative; cleared otherwise,  <br class="jop-noMdConv"/>Z - Set if the result is zero; cleared otherwise,  <br class="jop-noMdConv"/>V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.  <br class="jop-noMdConv"/>C - Loaded with bit seven of the original operand.</td>
 </tr>
 <tr>
 <td>Description</td>

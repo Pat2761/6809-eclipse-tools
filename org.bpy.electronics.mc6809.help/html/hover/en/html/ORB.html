@@ -1,14 +1,117 @@
 
-				<!DOCTYPE html>
+				
 				<html>
 					<head>
-						<meta charset="UTF-8">
-						<meta name="viewport" content="width=device-width, initial-scale=1" />
-						<link rel="stylesheet" href="pluginAssets/highlight.js/atom-one-light.css">
-						<title>LBNE</title>
+						<meta charset="UTF-8"/>
+						<meta name="viewport" content="width=device-width, initial-scale=1"/>
+						<style>pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+code.hljs {
+  padding: 3px 5px;
+}
+
+/*
+
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
+
+*/
+
+.hljs {
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #50a14f;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}</style>
+						<title>ORB</title>
 					</head>
 					<body>
-						<div class="exported-note"><div class="exported-note-title">LBNE</div>
+						<div class="exported-note"><div class="exported-note-title">ORB</div>
 
 <style>
 		/* https://necolas.github.io/normalize.css/ */
@@ -464,7 +567,18 @@ pre.mermaid > svg { white-space: unset; }
 				.mermaid-export-graph > button:hover {
 					background-color: #CBDAF1 !important;
 				}
-/* For styling the rendered Markdown */</style><div id="rendered-md"><p><strong>Branch Not Equal</strong></p>
+/* For styling the rendered Markdown */
+body {
+	font-size: 10px;
+	color: #32373F;
+	word-wrap: break-word;
+	line-height: 1.6em;
+	background-color: #ffffff;
+	font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+</style><div id="rendered-md"><p><strong>Inclusive OR Memory into Register</strong></p>
 <div class="joplin-table-wrapper">
 <table>
 <thead>
@@ -476,28 +590,27 @@ pre.mermaid > svg { white-space: unset; }
 <tbody>
 <tr>
 <td>Source Form</td>
-<td>LBNE dddd</td>
+<td>ORB</td>
 </tr>
 <tr>
 <td>Operation</td>
-<td>TEMP = Ml  <br class="jop-noMdConv"/>IFF  Z = 0  then PC = PC + TEMP</td>
+<td>B = B | M</td>
 </tr>
 <tr>
 <td>Condition Codes</td>
-<td>Not affected.</td>
+<td>H - Not affected.  <br class="jop-noMdConv"/>N - Set if the result is negative; cleared otherwise,  <br class="jop-noMdConv"/>Z - Set if the result is zero; cleared otherwise,  <br class="jop-noMdConv"/>V - Always cleared.  <br class="jop-noMdConv"/>C - Not affected.</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>Tests the state of the Z (zero) bit and causes a branch if it is clear. When used after a subtract or compare operation on any binary values, this instruction will branch if the register is, or would be, notequal to the memory operand.</td>
+<td>Performs an inclusive OR operation between the contents of accumulator B and the contents of memory location M and the result is stored in accumulator B .</td>
 </tr>
 <tr>
 <td>Addressing mode</td>
-<td>Relative</td>
+<td>Immediate  <br class="jop-noMdConv"/>Extended  <br class="jop-noMdConv"/>Direct  <br class="jop-noMdConv"/>Indexed</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p> </p>
 </div></div>
 					</body>
 				</html>
