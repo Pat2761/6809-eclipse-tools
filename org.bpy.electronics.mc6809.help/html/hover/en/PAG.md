@@ -1,0 +1,6 @@
+**Top of page**
+
+|     |     |
+| --- | --- |
+| Source Form | PAG \[&lt;expression&gt;\] |
+| Description | The PAG directive causes a page eject in the output listing and prints a header at the top of the new page<br><br>Note that the 'PAG' option must have been previously selected in order for this directive to take effect. It is possible to assign a new number to the new page by specifying such in the operand field. If no page number is specified, the next consecutive number will be used. No label is allowed and no code is produced. The PAG operator itself will not appear in the listing unless some sort of error is encountered.<br><br>Where the expression is optional. The first page of a listing does not have the header printed on it and is considered to be page 0. The intention here is that all options, title, and subtitle may be setup and followed by a PAG directive to start the assembled listing at the top of page 1 without the option, title, or subtitle instructions being in the way. |

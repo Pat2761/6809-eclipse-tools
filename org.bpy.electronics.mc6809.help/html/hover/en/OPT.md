@@ -1,0 +1,8 @@
+**Assembly option**
+
+|     |     |
+| --- | --- |
+| Source Form | OPT &lt;option 1&gt;,&lt;option 2&gt;,...,&lt;option n&gt; |
+| Description | The OPT or Option directive allows the user to choose from several different assembly options which are available to him. These options are generally related to the format of the output listing and object code. The options which may be set with this command are listed below. There are several options not listed here which may be set from the FLEX command line. See the appropriate section earlier in the manual for these options.<br><br>Note that any number of options may be given on one line if separated by commas. No label is allowed and no spaces may be embedded in the option list. The options are all set during pass one only although the instruction is parsed in pass two as well for error reporting purposes. If contradicting options are specified, the last one appearing takes precedence. If a particular option is not specified, the default case for that option takes effect. The default cases are signified below by an asterisk.<br><br>The allowable options are:<br><br>PAG enable page formatting and numbering  <br>NOP\* disable pagination  <br><br/>CON print conditionally skipped code  <br>NOC\* suppress conditional code printing  <br><br/>MAC\* print macro calling lines  <br>NOM suppress printing of macro calls  <br><br/>EXP print macro expansion lines  <br>NOE\* Suppress macro expansion printing  <br><br/>denotes default option and is not part of option name |
+
+&nbsp;
