@@ -19,7 +19,11 @@ Require-Bundle: org.eclipse.ui,
  org.bpy.electronics.mc6809.assembler.ui;bundle-version="1.0.0",
  org.eclipse.nebula.widgets.grid;bundle-version="1.1.1",
  org.eclipse.core.resources,
- org.eclipse.ui.ide
+ org.eclipse.ui.ide,
+ org.eclipse.jface.text;bundle-version="3.21.0",
+ org.eclipse.ui.editors;bundle-version="3.14.400",
+ org.eclipse.xtext.ui,
+ org.bpy.electronics.mc6809.documents;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.bpy.electronics.mc6809.rcp
 Import-Package: javax.inject,
@@ -27,5 +31,6 @@ Import-Package: javax.inject,
  org.eclipse.ui.ide,
  org.eclipse.ui.wizards.newresource,
  org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.editor,
  org.eclipse.xtext.xbase.lib;version="2.28.0"
 Bundle-ActivationPolicy: lazy

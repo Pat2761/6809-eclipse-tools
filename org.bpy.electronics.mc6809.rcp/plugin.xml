@@ -254,6 +254,14 @@
             </command>
          </menu>
          <menu
+               label="Reports">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+                  label="Generate listing"
+                  style="push">
+            </command>
+         </menu>
+         <menu
                id="org.bpy.electronics.mc6809.rcp.menu.search"
                label="Search">
             <command
@@ -337,6 +345,24 @@
                   style="push">
             </command>
          </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+               label="Generate listing"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?endof=group.find">
+         <command
+               commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+               label="Generate listing"
+               style="push">
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -488,6 +514,10 @@
             id="org.bpy.electronics.mc6809.rcp.command.about"
             name="About">
       </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.reports.listing"
+            name="Generate listing">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -615,6 +645,10 @@
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
             commandId="org.bpy.electronics.mc6809.rcp.command.about">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.GenreateListingHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.reports.listing">
       </handler>
    </extension>
    <extension

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Documents
+Bundle-SymbolicName: org.bpy.electronics.mc6809.documents
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.bpy.electronics.mc6809.documents.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: org.bpy.electronics.mc6809.documents
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.core.resources
+Export-Package: org.bpy.electronics.mc6809.documents.assembly
