@@ -118,5 +118,10 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 	public void setValue(Integer value) {
 		this.value = value;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 	
 }

@@ -120,4 +120,9 @@ public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return values.length*2;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return true;
+	}
 }

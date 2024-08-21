@@ -108,5 +108,10 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 	public int getValue() {
 		return value;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 	
 }

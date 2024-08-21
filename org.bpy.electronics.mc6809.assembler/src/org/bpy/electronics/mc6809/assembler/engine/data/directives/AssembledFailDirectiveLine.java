@@ -64,4 +64,9 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 	public FailDirective getDirective() {
 		return failDirective;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 }

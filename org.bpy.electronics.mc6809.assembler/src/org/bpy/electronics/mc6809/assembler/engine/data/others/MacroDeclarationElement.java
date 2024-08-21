@@ -50,4 +50,9 @@ public class MacroDeclarationElement extends AbstractAssemblyLine {
 		return 0;
 	}
 
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
+
 }

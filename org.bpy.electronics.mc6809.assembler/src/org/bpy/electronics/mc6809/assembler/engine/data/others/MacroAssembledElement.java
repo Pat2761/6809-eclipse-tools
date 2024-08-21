@@ -230,4 +230,9 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return true;
+	}
 }

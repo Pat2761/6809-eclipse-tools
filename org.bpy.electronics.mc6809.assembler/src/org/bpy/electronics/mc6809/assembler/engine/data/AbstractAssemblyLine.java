@@ -34,6 +34,7 @@ public abstract class AbstractAssemblyLine {
 	public abstract int getPcIncrement();
 	public abstract void parsePass1(EObject instruction, int currentPcValue, int lineNumber);
  	public abstract void parsePass2();
+ 	public abstract boolean canDisplayPcAddress();
 
 	public String getComment() {
 		return comment;

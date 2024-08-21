@@ -53,4 +53,9 @@ public class AssembledLabelLine extends AbstractAssemblyLine {
 	public int getPcIncrement() {
 		return 0;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 }

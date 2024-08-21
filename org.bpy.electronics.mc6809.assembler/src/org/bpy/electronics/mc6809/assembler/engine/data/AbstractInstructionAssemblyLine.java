@@ -158,6 +158,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		return cyclesNumber;
 	}
 
+	@Override
+	public boolean canDisplayPcAddress() {
+		return true;
+	}
+	
 	/** 
 	 * Allow to assemble the instruction
 	 */

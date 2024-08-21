@@ -54,6 +54,7 @@
       <plugin id="org.bpy.electronics.mc6809.assembler"/>
       <plugin id="org.bpy.electronics.mc6809.assembler.ide"/>
       <plugin id="org.bpy.electronics.mc6809.assembler.ui"/>
+      <plugin id="org.bpy.electronics.mc6809.documents"/>
       <plugin id="org.bpy.electronics.mc6809.help"/>
       <plugin id="org.bpy.electronics.mc6809.preferences"/>
       <plugin id="org.bpy.electronics.mc6809.rcp"/>

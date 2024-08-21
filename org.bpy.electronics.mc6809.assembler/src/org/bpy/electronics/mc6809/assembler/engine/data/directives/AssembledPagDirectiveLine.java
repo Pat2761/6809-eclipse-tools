@@ -119,4 +119,9 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return 0;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 }

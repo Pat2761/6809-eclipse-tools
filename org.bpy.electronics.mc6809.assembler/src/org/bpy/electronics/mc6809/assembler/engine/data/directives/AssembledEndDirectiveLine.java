@@ -113,4 +113,9 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getTargetAddress() {
 		return targetAddress;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return false;
+	}
 }

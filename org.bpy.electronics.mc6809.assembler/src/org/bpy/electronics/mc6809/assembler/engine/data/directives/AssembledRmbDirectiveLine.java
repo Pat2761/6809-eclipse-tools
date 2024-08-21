@@ -108,4 +108,9 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getNbBytesReserved() {
 		return nbBytesReserved;
 	}
+
+	@Override
+	public boolean canDisplayPcAddress() {
+		return true;
+	}
 }
