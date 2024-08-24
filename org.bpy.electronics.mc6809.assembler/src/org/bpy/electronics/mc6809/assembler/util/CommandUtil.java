@@ -67,7 +67,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
@@ -127,40 +126,40 @@ import org.eclipse.emf.ecore.EReference;
 public class CommandUtil {
 
 	public static String getDirectiveName(Object directive) {
-		if (directive instanceof EquDirective) {
-			return ((EquDirective)directive).getDirective();
-		} else	if (directive instanceof OrgDirective) {
-			return ((OrgDirective)directive).getDirective();
-		} else	if (directive instanceof BszDirective) {
-			return ((BszDirective)directive).getDirective();
-		} else	if (directive instanceof EndDirective) {
-			return ((EndDirective)directive).getDirective();
-		} else	if (directive instanceof FailDirective) {
-			return ((FailDirective)directive).getDirective();
-		} else	if (directive instanceof FillDirective) {
-			return ((FillDirective)directive).getDirective();
-		} else	if (directive instanceof OptDirective) {
-			return ((OptDirective)directive).getDirective();
-		} else	if (directive instanceof PagDirective) {
-			return ((PagDirective)directive).getDirective();
-		} else	if (directive instanceof NamDirective) {
-			return ((NamDirective)directive).getDirective();
-		} else	if (directive instanceof SetDirective) {
-			return ((SetDirective)directive).getDirective();
-		} else	if (directive instanceof SpcDirective) {
-			return ((SpcDirective)directive).getDirective();
-		} else	if (directive instanceof RegDirective) {
-			return ((RegDirective)directive).getDirective();
-		} else	if (directive instanceof FcbDirective) {
-			return ((FcbDirective)directive).getDirective();
-		} else	if (directive instanceof FdbDirective) {
-			return ((FdbDirective)directive).getDirective();
-		} else	if (directive instanceof FccDirective) {
-			return ((FccDirective)directive).getDirective();
-		} else	if (directive instanceof RmbDirective) {
-			return ((RmbDirective)directive).getDirective();
-		} else	if (directive instanceof SetDPDirective) {
-			return ((SetDPDirective)directive).getDirective();
+		if (directive instanceof EquDirective equDirectivce) {
+			return (equDirectivce).getDirective();
+		} else	if (directive instanceof OrgDirective orgDirective) {
+			return orgDirective.getDirective();
+		} else	if (directive instanceof BszDirective bszDirective) {
+			return bszDirective.getDirective();
+		} else	if (directive instanceof EndDirective endDirective) {
+			return endDirective.getDirective();
+		} else	if (directive instanceof FailDirective failDirective) {
+			return failDirective.getDirective();
+		} else	if (directive instanceof FillDirective fillDirective) {
+			return fillDirective.getDirective();
+		} else	if (directive instanceof OptDirective optDirective) {
+			return optDirective.getDirective();
+		} else	if (directive instanceof PagDirective pagDirective) {
+			return pagDirective.getDirective();
+		} else	if (directive instanceof NamDirective namDirective) {
+			return namDirective.getDirective();
+		} else	if (directive instanceof SetDirective setDirective) {
+			return setDirective.getDirective();
+		} else	if (directive instanceof SpcDirective spcDirective) {
+			return spcDirective.getDirective();
+		} else	if (directive instanceof RegDirective regDirective) {
+			return regDirective.getDirective();
+		} else	if (directive instanceof FcbDirective fcbDirective) {
+			return fcbDirective.getDirective();
+		} else	if (directive instanceof FdbDirective fdbDirective) {
+			return fdbDirective.getDirective();
+		} else	if (directive instanceof FccDirective fccDirective) {
+			return fccDirective.getDirective();
+		} else	if (directive instanceof RmbDirective rmbDirective) {
+			return rmbDirective.getDirective();
+		} else	if (directive instanceof SetDPDirective setDirective) {
+			return setDirective.getDirective();
 		} else {
 			// TODO error management
 		}

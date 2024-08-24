@@ -21,6 +21,12 @@
             id="org.bpy.electronics.mc6809.preferences.folding"
             name="Folding">
       </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.ListingPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.listing"
+            name="Listing">
+      </page>
    </extension>
 
 </plugin>

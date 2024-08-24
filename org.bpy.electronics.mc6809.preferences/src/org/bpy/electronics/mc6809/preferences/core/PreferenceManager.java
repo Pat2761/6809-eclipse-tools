@@ -96,6 +96,41 @@ public class PreferenceManager {
 	/** Default value the preference which store the operand starting column */
 	public static final boolean MACRO_FOLDING_A_INIT_DEFAULT_VALUE = true;
 	
+	/** define the orientation preference of the listing */
+	public static final String LISTING_ORIENTATION = "listingOrienation";
+	/** define the number of spaces for the line number information in the listing */
+	public static final String LISTING_LINE_NUMBER_SPACES = "listingLineNumberSpaces";
+	/** define the number of spaces for the address information in the listing */
+	public static final String LISTING_ADDRESS_NUMBER_SPACES = "listingAddressNumberSpaces";
+	/** define the number of spaces for the opcode information in the listing */
+	public static final String LISTING_OPCODE_NUMBER_SPACES = "listingOpcodeNumberSpaces";
+	/** define the number of spaces for the operand information in the listing */
+	public static final String LISTING_OPERAND_NUMBER_SPACES = "listingOperandNumberSpaces";
+	/** define the number of spaces for the label information in the listing */
+	public static final String LISTING_LABEL_NUMBER_SPACES = "listingLabelNumberSpaces";
+	/** define the number of spaces for the instruction information in the listing */
+	public static final String LISTING_INSTRUCTION_NUMBER_SPACES = "listingInstructionNumberSpaces";
+	/** define the number of spaces for the operand instruction information in the listing */
+	public static final String LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES = "listingOperandInstructionNumberSpaces";
+
+	/** define the default orientation preference of the listing */
+	public static final String DEFAULT_LISTING_ORIENTATION = "Portrait";
+	/** define the default number of spaces for the line number information in the listing */
+	public static final int DEFAULT_LISTING_LINE_NUMBER_SPACES = 4;
+	/** define the default number of spaces for the address information in the listing */
+	public static final int DEFAULT_LISTING_ADDRESS_NUMBER_SPACES = 4;
+	/** define the default number of spaces for the opcode information in the listing */
+	public static final int DEFAULT_LISTING_OPCODE_NUMBER_SPACES = 6;
+	/** define the default number of spaces for the operand information in the listing */
+	public static final int DEFAULT_LISTING_OPERAND_NUMBER_SPACES = 6;
+	/** define the default number of spaces for the label information in the listing */
+	public static final int DEFAULT_LISTING_LABEL_NUMBER_SPACES = 6;
+	/** define the default number of spaces for the instruction information in the listing */
+	public static final int DEFAULT_LISTING_INSTRUCTION_NUMBER_SPACES = 5;
+	/** define the default number of spaces for the operand instruction information in the listing */
+	public static final int DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES = 20;
+
+	
 	/** Instance of the preference manager singleton */ 
 	private static PreferenceManager eInstance;
 
@@ -129,6 +164,13 @@ public class PreferenceManager {
 		defaultsValues.put(COMMENT_FOLDING_A_INIT, "" + COMMENT_FOLDING_A_INIT_DEFAULT_VALUE);
 		defaultsValues.put(ENABLE_FOLDING, "" + ENABLE_FOLDING_DEFAULT_VALUE);
 		
+		defaultsValues.put(LISTING_LINE_NUMBER_SPACES,""+DEFAULT_LISTING_LINE_NUMBER_SPACES);
+		defaultsValues.put(LISTING_ADDRESS_NUMBER_SPACES,""+DEFAULT_LISTING_ADDRESS_NUMBER_SPACES);
+		defaultsValues.put(LISTING_OPCODE_NUMBER_SPACES,""+DEFAULT_LISTING_OPCODE_NUMBER_SPACES);
+		defaultsValues.put(LISTING_OPERAND_NUMBER_SPACES,""+DEFAULT_LISTING_OPERAND_NUMBER_SPACES);
+		defaultsValues.put(LISTING_LABEL_NUMBER_SPACES,""+DEFAULT_LISTING_LABEL_NUMBER_SPACES);
+		defaultsValues.put(LISTING_INSTRUCTION_NUMBER_SPACES,""+DEFAULT_LISTING_INSTRUCTION_NUMBER_SPACES);
+		defaultsValues.put(LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES,""+DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES);
 		
 		store = EditorsUI.getPreferenceStore();	
 	}
@@ -145,6 +187,158 @@ public class PreferenceManager {
 		return eInstance;
 	}
 
+	/**
+	 * Get the Listing preference page orientation.
+	 * 
+	 * @return value of the page orientation
+	 */
+	public String getListingPageOrientation() {
+		return preferences.get(LISTING_ORIENTATION, DEFAULT_LISTING_ORIENTATION);
+	}
+
+	/**
+	 * Set the Listing preference page orientation.
+	 * 
+	 * @param orientation page orientation
+	 */
+	public void setListingPageOrientation(String orientation) {
+		preferences.put(LISTING_ORIENTATION, orientation);
+		savePreference();
+	}
+
+	/**
+	 * Get the Listing preference line number size.
+	 * 
+	 * @return value of the line number size
+	 */
+	public int getListingLineNumberSize() {
+		return preferences.getInt(LISTING_LINE_NUMBER_SPACES, DEFAULT_LISTING_LINE_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference line number size.
+	 * 
+	 * @param size line number size
+	 */
+	public void setListingLineNumberSize(int size) {
+		preferences.putInt(LISTING_LINE_NUMBER_SPACES, size);
+		savePreference();
+	}
+
+	/**
+	 * Get the Listing preference address size.
+	 * 
+	 * @return value of the address size
+	 */
+	public int getListingAddressSize() {
+		return preferences.getInt(LISTING_ADDRESS_NUMBER_SPACES, DEFAULT_LISTING_ADDRESS_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference address size.
+	 * 
+	 * @param size address size
+	 */
+	public void setListingAddressSize(int size) {
+		preferences.putInt(LISTING_ADDRESS_NUMBER_SPACES, size);
+		savePreference();
+	}
+
+	/**
+	 * Get the Listing preference opcode size.
+	 * 
+	 * @return value of the opcode size
+	 */
+	public int getListingOpcodeSize() {
+		return preferences.getInt(LISTING_OPCODE_NUMBER_SPACES, DEFAULT_LISTING_OPCODE_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference opcode size.
+	 * 
+	 * @param size opcode size
+	 */
+	public void setListingOpcodeSize(int size) {
+		preferences.putInt(LISTING_OPCODE_NUMBER_SPACES, size);
+		savePreference();
+	}
+
+	/**
+	 * Get the Listing preference operand size.
+	 * 
+	 * @return value of the operand size
+	 */
+	public int getListingOperandSize() {
+		return preferences.getInt(LISTING_OPERAND_NUMBER_SPACES, DEFAULT_LISTING_OPERAND_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference operand size.
+	 * 
+	 * @param size operand size
+	 */
+	public void setListingOperandize(int size) {
+		preferences.putInt(LISTING_OPERAND_NUMBER_SPACES, size);
+		savePreference();
+	}
+
+	/**
+	 * Get the Listing preference label size.
+	 * 
+	 * @return value of the label size
+	 */
+	public int getListingLabelSize() {
+		return preferences.getInt(LISTING_LABEL_NUMBER_SPACES, DEFAULT_LISTING_LABEL_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference label size.
+	 * 
+	 * @param size label size
+	 */
+	public void setListingLabelize(int size) {
+		preferences.putInt(LISTING_LABEL_NUMBER_SPACES, size);
+		savePreference();
+	}
+	
+	/**
+	 * Get the Listing preference instruction size.
+	 * 
+	 * @return value of the instruction size
+	 */
+	public int getListingInstructionSize() {
+		return preferences.getInt(LISTING_INSTRUCTION_NUMBER_SPACES, DEFAULT_LISTING_INSTRUCTION_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference instruction size.
+	 * 
+	 * @param size instruction size
+	 */
+	public void setListingInstructionize(int size) {
+		preferences.putInt(LISTING_INSTRUCTION_NUMBER_SPACES, size);
+		savePreference();
+	}
+	
+	/**
+	 * Get the Listing preference operand instruction size.
+	 * 
+	 * @return value of the operand instruction size
+	 */
+	public int getListingOperandInstructionSize() {
+		return preferences.getInt(LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES, DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES);
+	}
+	
+	/**
+	 * Set the Listing preference operand instruction size.
+	 * 
+	 * @param size value of the operand instruction size
+	 */
+	public void setListingOperandInstructionize(int size) {
+		preferences.putInt(LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES, size);
+		savePreference();
+	}
+	
 	/**
 	 * Get the system tab size.
 	 * 
