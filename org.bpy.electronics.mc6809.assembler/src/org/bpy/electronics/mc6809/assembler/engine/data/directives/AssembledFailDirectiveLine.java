@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -32,6 +33,15 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 	/** Memorize the reference on the directive */
 	private FailDirective failDirective;
 
+	/**
+	 * Constructor of the class.
+	 * 
+	 * @param engine reference on the assembler engine
+	 */
+	public AssembledFailDirectiveLine(AssemblerEngine engine) {
+		super(engine);
+	}
+	
 	@Override
 	public int getPcIncrement() {
 		return 0;
@@ -68,5 +78,10 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return failDirective.getDirective();
 	}
 }

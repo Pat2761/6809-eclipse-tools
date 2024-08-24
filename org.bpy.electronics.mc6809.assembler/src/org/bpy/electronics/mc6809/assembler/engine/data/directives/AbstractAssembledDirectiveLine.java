@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 
 /**
@@ -27,4 +28,19 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
  *
  */
 public abstract class AbstractAssembledDirectiveLine extends AbstractAssemblyLine {
+
+	/**
+	 * Constructor of the class.
+	 * @param engine reference on the assemblerEngine
+	 */
+	protected AbstractAssembledDirectiveLine(AssemblerEngine engine) {
+		super(engine);
+	}
+	
+	/** 
+	 * Return the name of the directive.
+	 * 
+	 * @return name of the directive
+	 */
+	abstract public String getDirectiveName(); 
 }

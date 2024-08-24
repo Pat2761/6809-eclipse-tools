@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -43,8 +44,8 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class.
 	 */
-	public AssembledFillDirectiveLine() {
-		// nothing to do
+	public AssembledFillDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -64,8 +65,8 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 		
 		int nbBytes;
 		try {
-			nbBytes = ExpressionParser.resolveExpression(this.directive.getNumber().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Number());
-			int value = ExpressionParser.resolveExpression(this.directive.getValue().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Value());
+			nbBytes = ExpressionParser.resolveExpression(assemblerEngine, this.directive.getNumber().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Number());
+			int value = ExpressionParser.resolveExpression(assemblerEngine, this.directive.getValue().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Value());
 			if (nbBytes < 0) {
 				nbBytes = 0;
 			}
@@ -122,5 +123,10 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

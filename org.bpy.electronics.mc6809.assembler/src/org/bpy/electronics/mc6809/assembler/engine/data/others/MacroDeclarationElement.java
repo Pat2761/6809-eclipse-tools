@@ -1,6 +1,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.others;
 
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
@@ -10,8 +11,8 @@ public class MacroDeclarationElement extends AbstractAssemblyLine {
 	private String macroComment;
 	private String endComment;
 
-	public MacroDeclarationElement() {
-		super();
+	public MacroDeclarationElement(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	public void parsePass1(EObject macroDefinition, int currentPcValue, int lineNumber) {

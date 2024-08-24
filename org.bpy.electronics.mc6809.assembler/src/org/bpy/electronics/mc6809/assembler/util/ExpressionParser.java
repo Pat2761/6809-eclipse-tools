@@ -46,6 +46,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
@@ -62,6 +63,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
@@ -82,6 +84,7 @@ public class ExpressionParser {
 	
 	private static EReference eReference;
 	private static Object assemblyLine; 
+	private static AssemblerEngine assemblerEngine;
 	
 	/**
 	 * Add a private constructor to hide the implicit public one.
@@ -96,11 +99,14 @@ public class ExpressionParser {
 	 *  Parse the operand of an FDB directive.
 	 *  
 	 *  @param fdbDirective reference on the FDB directive
+	 *  @param engine reference on the assembler engine
+	 *  
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static List<Integer> parse(FdbDirective fdbDirective) throws UnresolvedException {
+	public static List<Integer> parse(AssemblerEngine engine, FdbDirective fdbDirective) throws UnresolvedException {
 		assemblyLine = fdbDirective;
+		assemblerEngine = engine;
 		eReference = AssemblerPackage.eINSTANCE.getFdbDirective_Operand();
 		return parse(fdbDirective.getOperand()); 
 	}
@@ -109,56 +115,41 @@ public class ExpressionParser {
 	 *  Parse the operand of an FCB directive.
 	 *  
 	 *  @param fcbDirective reference on the FCB directive
+	 *  @param engine reference on the assembler engine
+    *
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static List<Integer> parse(FcbDirective fcbDirective) throws UnresolvedException {
+	public static List<Integer> parse(AssemblerEngine engine,FcbDirective fcbDirective) throws UnresolvedException {
 		assemblyLine = fcbDirective;
+		assemblerEngine = engine;
 		eReference = AssemblerPackage.eINSTANCE.getFcbDirective_Operand();
 		return parse(fcbDirective.getOperand()); 
-	}
-
-	private static List<Integer> parse(ListOfExpression operand) throws UnresolvedException {
-		List<Integer> listValues = new ArrayList<>();
-		if (operand != null) {
-			Expression expression = operand.getExpression();
-			if (expression != null) {
-				listValues.add(ExpressionParser.resolveExpression(expression.getOperand()));
-				
-				if (operand.getCommaExpressions() != null) {
-					for (CommaExpression commaExpression : operand.getCommaExpressions()) {
-						if (commaExpression.getExpression() != null) {
-							listValues.add(ExpressionParser.resolveExpression(commaExpression.getExpression().getOperand()));
-						} else {
-							listValues.add(0);
-						}
- 					}
-				}
-			}
-		}
-		return listValues;
 	}
 
 	/** 
 	 * Parse the value of an immediate operand.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param immediatOperand reference on the instruction operand
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
 	 * @param min the minimal value for the this mode
 	 * @param max the maximal value for the this mode
+	 * 
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(ImmediatOperand immediatOperand, EReference instructionReference,EObject instruction, int min, int max) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, ImmediatOperand immediatOperand, EReference instructionReference,EObject instruction, int min, int max) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
+		assemblerEngine = engine;
 		
 		int value = 0;		
 		if (immediatOperand.getOperand() != null && immediatOperand.getOperand().getOperand() != null) {
 			EObject operand = immediatOperand.getOperand().getOperand();
-			value = resolveExpression((Expression)operand);
+			value = resolveExpression(engine, (Expression)operand);
 		}
 		
 		if (value < min) {
@@ -182,6 +173,7 @@ public class ExpressionParser {
 	/** 
 	 * Parse the value of the instruction operand.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param directOperand reference on the instruction operand
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
@@ -190,15 +182,16 @@ public class ExpressionParser {
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(DirectOperand directOperand, EReference instructionReference,EObject instruction) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine,DirectOperand directOperand, EReference instructionReference,EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
+		assemblerEngine = engine;
 		
 		int value = 0;		
 		if (directOperand.getOperand() != null && directOperand.getOperand().getOperand() != null) {
 			EObject operand = directOperand.getOperand().getOperand();
-			value = resolveExpression((Expression)operand);
+			value = resolveExpression(engine, (Expression)operand);
 		}
 		
 		if (value < -128) {
@@ -223,21 +216,23 @@ public class ExpressionParser {
 	/** 
 	 * Parse the value of the instruction operand.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param extendedOperand reference on the instruction operand
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
+		assemblerEngine = engine;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
 			EObject operand = extendedOperand.getOperand().getOperand();
-			value = resolveExpression((Expression)operand);
+			value = resolveExpression(engine, (Expression)operand);
 		}
 		
 		if (value < Short.MIN_VALUE) {
@@ -262,6 +257,7 @@ public class ExpressionParser {
 	/** 
 	 * Parse the value of the instruction operand.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param extendedOperand reference on the instruction operand
 	 * @param instructionReference used in a case of error detection 
 	 * @param labelsPositionObject list of label and their values
@@ -269,18 +265,18 @@ public class ExpressionParser {
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference,
+	public static int parse(AssemblerEngine engine, ExtendedOperand extendedOperand, EReference instructionReference,
 			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
-		
+		assemblerEngine = engine;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
 			EObject operand = extendedOperand.getOperand().getOperand();
 			try {
-				value = resolveExpression((Expression)operand);
+				value = resolveExpression(engine, (Expression)operand);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -312,21 +308,23 @@ public class ExpressionParser {
 	/** 
 	 * Parse the value of the instruction operand.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param extendedOperand reference on the instruction operand
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(ExtendedIndirectOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, ExtendedIndirectOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
+		assemblerEngine = engine;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
 			EObject operand = extendedOperand.getOperand().getOperand();
-			value = resolveExpression((Expression)operand);
+			value = resolveExpression(engine, (Expression)operand);
 		}
 		
 		if (value < Short.MIN_VALUE) {
@@ -351,19 +349,21 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an EQU directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 * @param equDirective reference on the EQU directive
 	 * @param equDirectiveOperand used in a case of error detection 
 	 * @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(EquDirective equDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, EquDirective equDirective) throws UnresolvedException {
 		
 		eReference = AssemblerPackage.eINSTANCE.getEquDirective_Operand();
 		assemblyLine = equDirective;
+		assemblerEngine = engine;
 		
 		if (equDirective.getOperand() != null && equDirective.getOperand().getOperand() != null) {
 			EObject operand = equDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return -1;
 		}
@@ -372,18 +372,20 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an SET directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param setDirective reference on the SET directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(SetDirective setDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, SetDirective setDirective) throws UnresolvedException {
 		
 		eReference = AssemblerPackage.eINSTANCE.getSetDirective_Operand();
 		assemblyLine = setDirective;
+		assemblerEngine = engine;
 
 		if (setDirective.getOperand() != null && setDirective.getOperand().getOperand() != null) {
 			EObject operand = setDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return -1;
 		}
@@ -392,17 +394,19 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an ORG directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param orgDirective reference on the ORG directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(OrgDirective orgDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, OrgDirective orgDirective) throws UnresolvedException {
 		assemblyLine = orgDirective;
 		eReference = AssemblerPackage.eINSTANCE.getOrgDirective_Operand();
+		assemblerEngine = engine;
 
 		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
 			EObject operand = orgDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return 0;
 		}
@@ -411,18 +415,20 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an PAG directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param pagDirective reference on the PAG directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(PagDirective pagDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, PagDirective pagDirective) throws UnresolvedException {
 		
 		assemblyLine = pagDirective;
 		eReference = AssemblerPackage.eINSTANCE.getPagDirective_Operand();
+		assemblerEngine = engine;
 		
 		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
 			EObject operand = pagDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return 1;
 		}
@@ -431,16 +437,19 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an RMB directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param rmbDirective reference on the RMB directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(RmbDirective rmbDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, RmbDirective rmbDirective) throws UnresolvedException {
 		assemblyLine = rmbDirective;
 		eReference = AssemblerPackage.eINSTANCE.getRmbDirective_Operand();
+		assemblerEngine = engine;
+
 		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
 			EObject operand = rmbDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return 0;
 		}
@@ -449,16 +458,19 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an BSZ directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param bszDirective reference on the BSZ directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(BszDirective bszDirective) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, BszDirective bszDirective) throws UnresolvedException {
 		assemblyLine = bszDirective;
 		eReference = AssemblerPackage.eINSTANCE.getBszDirective_Operand();
+		assemblerEngine = engine;
+
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
 			EObject operand = bszDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return 0;
 		}
@@ -467,16 +479,19 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an SETDP directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param directive reference on the SETDP directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int parse(SetDPDirective directive) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, SetDPDirective directive) throws UnresolvedException {
 		assemblyLine = directive;
 		eReference = AssemblerPackage.eINSTANCE.getSetDPDirective_Operand();
+		assemblerEngine = engine;
+
 		if (directive.getOperand() != null && directive.getOperand().getOperand() != null) {
 			EObject operand = directive.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			return resolveExpression(engine, (Expression)operand);
 		} else {
 			return 0;
 		}
@@ -485,30 +500,36 @@ public class ExpressionParser {
 	/**
 	 * resolve an identifier value.
 	 * 
+	 * @param engine reference on the assembler engine
 	 * @param value Reference on an identifier value
 	 * @return Converted value
 	 * 
 	 * @throws UnresolvedException
 	 */
-	public static Integer parseIdentifer(EObject instruction, EReference reference, IdentifierValue value) throws UnresolvedException {
+	public static Integer parseIdentifer(AssemblerEngine engine, EObject instruction, EReference reference, IdentifierValue value) throws UnresolvedException {
 		assemblyLine = instruction;
 		eReference = reference;
+		assemblerEngine = engine;
+
 		return resolveIdentifierValue(value);
 	}
 
 	/** 
 	 *  Parse the space count value of an SPC directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param spcDirective reference on the SPC directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int getSpaceCount(SpcDirective spcDirective) throws UnresolvedException {
+	public static int getSpaceCount(AssemblerEngine engine, SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
 		eReference = AssemblerPackage.eINSTANCE.getSpcDirective_SpaceCount();
+		assemblerEngine = engine;
+
 		Expression spaceCount = spcDirective.getSpaceCount();
 		if (spaceCount != null) {
-			return resolveExpression(spaceCount.getOperand());
+			return resolveExpression(engine, spaceCount.getOperand());
 		} else {
 			return 1;
 		}
@@ -517,16 +538,19 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the keep count value of an SPC directive.
 	 *  
+	 * @param engine reference on the assembler engine
 	 *  @param spcDirective reference on the SPC directive
 	 *  @return value of the operand 
 	 * @throws UnresolvedException 
 	 */
-	public static int getKeepCount(SpcDirective spcDirective) throws UnresolvedException {
+	public static int getKeepCount(AssemblerEngine engine, SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
 		eReference = AssemblerPackage.eINSTANCE.getSpcDirective_KeepCount();
+		assemblerEngine = engine;
+
 		Expression keepCount = spcDirective.getKeepCount();
 		if (keepCount != null) {
-			return resolveExpression(keepCount.getOperand());
+			return resolveExpression(engine, keepCount.getOperand());
 		} else {
 			return 0;
 		}
@@ -535,27 +559,33 @@ public class ExpressionParser {
 	/**
 	 * resolve an expression object 
 	 * 
+	 * @param engine reference on the assembler engine
 	 * @param expression reference on the expression
 	 * @param directive reference on the directive for the error
 	 * @param currentReference reference on the EMF reference for the error
 	 * @return value of the expression
 	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Expression expression, FillDirective directive, EReference currentReference) throws UnresolvedException {
+	public static int resolveExpression(AssemblerEngine engine, Expression expression, FillDirective directive, EReference currentReference) throws UnresolvedException {
 		assemblyLine = directive;
 		eReference = currentReference;
-		return resolveExpression(expression);
+		assemblerEngine = engine;
+
+		return resolveExpression(engine, expression);
 	}
 	
 	/**
 	 * resolve an expression object 
 	 * 
+	 * @param engine reference on the assembler engine
 	 * @param expression reference on the expression
 	 * @return value of the expression
 	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Expression expression) throws UnresolvedException {
+	public static int resolveExpression(AssemblerEngine engine, Expression expression) throws UnresolvedException {
 		
+		assemblerEngine = engine;
+
 		if (expression instanceof Multiplication multiplication) {
 			return resolveExpression(multiplication);
 			
@@ -614,7 +644,9 @@ public class ExpressionParser {
 		}
 	}
 
-	public static int parse(NumericalValue deplacement) throws UnresolvedException {
+	public static int parse(AssemblerEngine engine, NumericalValue deplacement) throws UnresolvedException {
+		assemblerEngine = engine;
+
 		EObject node = deplacement.getValue();
 		if (node instanceof DecimalValue decimalValue) {
 			return resolveDecimalValue(decimalValue);
@@ -665,8 +697,9 @@ public class ExpressionParser {
 	 * @throws UnresolvedException 
 	 */
 	private static int resolveIdentifierValue(IdentifierValue labelValue) throws UnresolvedException {
-		Integer value = EquSetManager.getInstance().getValue(labelValue.getValue());
-		Map<String, AbstractAssemblyLine> labelsPosition = AssemblerEngine.getInstance().getLabelsPositionObject();
+		Model model = CommandUtil.getModel(labelValue);
+		Integer value = assemblerEngine.getEquSetManager().getValue(labelValue.getValue());
+		Map<String, AbstractAssemblyLine> labelsPosition = assemblerEngine.getLabelsPositionObject();
 		
 		if (value != null) {
 			return value.intValue();
@@ -746,10 +779,10 @@ public class ExpressionParser {
 		int right=1;
 		
 		if (multiplication.getLeft() != null) {
-			left = resolveExpression(multiplication.getLeft());
+			left = resolveExpression(assemblerEngine, multiplication.getLeft());
 		}
 		if (multiplication.getRight() != null) {
-			right = resolveExpression(multiplication.getRight());
+			right = resolveExpression(assemblerEngine, multiplication.getRight());
 		}
 		return left*right;
 	}
@@ -766,10 +799,10 @@ public class ExpressionParser {
 		int right=1;
 		
 		if (division.getLeft() != null) {
-			left = resolveExpression(division.getLeft());
+			left = resolveExpression(assemblerEngine, division.getLeft());
 		}
 		if (division.getRight() != null) {
-			right = resolveExpression(division.getRight());
+			right = resolveExpression(assemblerEngine, division.getRight());
 		}
 		if (right == 0) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -794,10 +827,10 @@ public class ExpressionParser {
 		int right=1;
 		
 		if (addition.getLeft() != null) {
-			left = resolveExpression(addition.getLeft());
+			left = resolveExpression(assemblerEngine, addition.getLeft());
 		}
 		if (addition.getRight() != null) {
-			right = resolveExpression(addition.getRight());
+			right = resolveExpression(assemblerEngine, addition.getRight());
 		}
 		return left+right;
 	}
@@ -814,10 +847,10 @@ public class ExpressionParser {
 		int right=0;
 		
 		if (substraction.getLeft() != null) {
-			left = resolveExpression(substraction.getLeft());
+			left = resolveExpression(assemblerEngine, substraction.getLeft());
 		}
 		if (substraction.getRight() != null) {
-			right = resolveExpression(substraction.getRight());
+			right = resolveExpression(assemblerEngine, substraction.getRight());
 		}
 		return left-right;
 	}
@@ -834,10 +867,10 @@ public class ExpressionParser {
 		int right=0;
 		
 		if (modulo.getLeft() != null) {
-			left = resolveExpression(modulo.getLeft());
+			left = resolveExpression(assemblerEngine, modulo.getLeft());
 		}
 		if (modulo.getRight() != null) {
-			right = resolveExpression(modulo.getRight());
+			right = resolveExpression(assemblerEngine, modulo.getRight());
 		}
 		
 		if (right == 0) {
@@ -863,10 +896,10 @@ public class ExpressionParser {
 		int right=0xFFFF;
 		
 		if (and.getLeft() != null) {
-			left = resolveExpression(and.getLeft());
+			left = resolveExpression(assemblerEngine, and.getLeft());
 		}
 		if (and.getRight() != null) {
-			right = resolveExpression(and.getRight());
+			right = resolveExpression(assemblerEngine, and.getRight());
 		}
 		return left&right;
 	}
@@ -883,10 +916,10 @@ public class ExpressionParser {
 		int right=0;
 		
 		if (or.getLeft() != null) {
-			left = resolveExpression(or.getLeft());
+			left = resolveExpression(assemblerEngine, or.getLeft());
 		}
 		if (or.getRight() != null) {
-			right = resolveExpression(or.getRight());
+			right = resolveExpression(assemblerEngine, or.getRight());
 		}
 		return left|right;
 	}
@@ -903,10 +936,10 @@ public class ExpressionParser {
 		int right=0;
 		
 		if (xor.getLeft() != null) {
-			left = resolveExpression(xor.getLeft());
+			left = resolveExpression(assemblerEngine, xor.getLeft());
 		}
 		if (xor.getRight() != null) {
-			right = resolveExpression(xor.getRight());
+			right = resolveExpression(assemblerEngine, xor.getRight());
 		}
 		return left^right;
 	}
@@ -923,7 +956,7 @@ public class ExpressionParser {
 		int notValue = 0;
 		
 		if (not.getValue() != null) {
-			notValue = resolveExpression((Expression)not.getValue());
+			notValue = resolveExpression(assemblerEngine, (Expression)not.getValue());
 			notValue = ~notValue;
 			notValue = notValue & 0xFFFF;
 		}
@@ -942,10 +975,10 @@ public class ExpressionParser {
 		int right=1;
 		
 		if (leftShift.getLeft() != null) {
-			left = resolveExpression(leftShift.getLeft());
+			left = resolveExpression(assemblerEngine, leftShift.getLeft());
 		}
 		if (leftShift.getRight() != null) {
-			right = resolveExpression(leftShift.getRight());
+			right = resolveExpression(assemblerEngine, leftShift.getRight());
 		}
 		return (left<<right)&0xFFFF;
 	}
@@ -962,11 +995,34 @@ public class ExpressionParser {
 		int right=1;
 		
 		if (rightShift.getLeft() != null) {
-			left = resolveExpression(rightShift.getLeft());
+			left = resolveExpression(assemblerEngine, rightShift.getLeft());
 		}
 		if (rightShift.getRight() != null) {
-			right = resolveExpression(rightShift.getRight());
+			right = resolveExpression(assemblerEngine, rightShift.getRight());
 		}
 		return left>>right;
 	}
+
+	private static List<Integer> parse(ListOfExpression operand) throws UnresolvedException {
+		List<Integer> listValues = new ArrayList<>();
+		if (operand != null) {
+			Expression expression = operand.getExpression();
+			if (expression != null) {
+				listValues.add(ExpressionParser.resolveExpression(assemblerEngine, expression.getOperand()));
+				
+				if (operand.getCommaExpressions() != null) {
+					for (CommaExpression commaExpression : operand.getCommaExpressions()) {
+						if (commaExpression.getExpression() != null) {
+							listValues.add(ExpressionParser.resolveExpression(assemblerEngine, commaExpression.getExpression().getOperand()));
+						} else {
+							listValues.add(0);
+						}
+ 					}
+				}
+			}
+		}
+		return listValues;
+	}
+
+
 }

@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -43,8 +44,8 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledEndDirectiveLine() {
-		// nothing to do
+	public AssembledEndDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 		targetAddress = 0;
 		if (directive.getOperand() != null) {
 			try {
-				this.targetAddress = ExpressionParser.parseIdentifer(directive, 
+				this.targetAddress = ExpressionParser.parseIdentifer(assemblerEngine, directive, 
 						AssemblerPackage.eINSTANCE.getEndDirective_Operand(), directive.getOperand());
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -118,4 +119,10 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 	public boolean canDisplayPcAddress() {
 		return false;
 	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
+	}
+
 }

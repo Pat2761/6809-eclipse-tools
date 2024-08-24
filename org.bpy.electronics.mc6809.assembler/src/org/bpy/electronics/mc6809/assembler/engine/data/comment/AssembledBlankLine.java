@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
@@ -28,6 +29,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  */
 public class AssembledBlankLine extends AbstractAssemblyLine {
+
+	/**
+	 * Constructor of the class.
+	 * @param engine reference on the assemblerEngine
+	 */
+	public AssembledBlankLine(AssemblerEngine engine) {
+		super(engine);
+	}
 	
 	@Override
 	public void parsePass1(EObject blankLine, int currentPcValue, int lineNumber) {

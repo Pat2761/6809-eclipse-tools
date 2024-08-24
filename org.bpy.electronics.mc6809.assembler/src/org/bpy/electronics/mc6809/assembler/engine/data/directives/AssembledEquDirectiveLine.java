@@ -19,7 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -43,8 +43,8 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledEquDirectiveLine() {
-		// nothing to do
+	public AssembledEquDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -62,8 +62,9 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(this.directive);
 		
 		try {
-			this.value = ExpressionParser.parse(this.directive);
-			EquSetManager.getInstance().setValue(label, value);
+			this.value = ExpressionParser.parse(assemblerEngine ,this.directive);
+			AssemblerEngine assemblerEngine = getAssemblerEngine(directive);
+			assemblerEngine.getEquSetManager().setValue(label, value);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -122,6 +123,11 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 	
 }

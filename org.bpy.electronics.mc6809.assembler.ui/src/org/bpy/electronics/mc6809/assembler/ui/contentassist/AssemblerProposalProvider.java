@@ -25,10 +25,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.impl.PshuInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PulsInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PuluInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager.EquDefinitionContainer;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.ui.IconManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -50,11 +51,20 @@ import com.google.inject.Inject;
  */
 public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider {
 
+	
+	/** reference to the assembler engine */ 
+	private AssemblerEngine assemblerEngine;
+
+	@Override
+	public void complete_Model(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), false);
+		super.complete_Model(model, ruleCall, context, acceptor);
+	}
+
 	@Override
 	public void completeRelativeMode_Offset(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 
-		AssemblerEngine.getInstance().engine((Model)context.getRootModel());
 		setProposalForLabelDefinitions(model, acceptor, context);
 	}
 	
@@ -62,8 +72,6 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	public void complete_IdentifierValue(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 		
-		AssemblerEngine.getInstance().engine((Model)context.getRootModel());
-
 		if (isUsedByClass(model, Expression.class)) {
 			setProposalForConstantDefintions(model, acceptor, context);
 
@@ -82,7 +90,6 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	@Override
 	public void completeImmediatOperand_Operand(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		AssemblerEngine.getInstance().engine((Model)context.getRootModel());
 		setProposalForConstantDefintions(model.eContainer(), acceptor, context);
 	}
 
@@ -101,7 +108,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param context content assist context
 	 */
 	private void setProposalForRegDirective(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
-		Map<String, List<EquDefinitionContainer>> containers = EquSetManager.getInstance().getEquContainer();
+		Map<String, List<EquDefinitionContainer>> containers = assemblerEngine.getEquSetManager().getEquContainer();
 		for (Entry<String, List<EquDefinitionContainer>> entry : containers.entrySet()) {
 			
 			for (EquDefinitionContainer possibleEntry : entry.getValue()) {
@@ -150,7 +157,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param context content assist context
 	 */
 	private void setProposalForConstantDefintions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
-		Map<String, List<EquDefinitionContainer>> csts = EquSetManager.getInstance().getEquContainer();
+		Map<String, List<EquDefinitionContainer>> csts = assemblerEngine.getEquSetManager().getEquContainer();
 
 		for (Entry<String, List<EquDefinitionContainer>> entry : csts.entrySet()) {
 			
@@ -182,11 +189,11 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @return The valid SET directive
 	 */
 	private EquDefinitionContainer getValidDirective(EObject model, List<EquDefinitionContainer> values) {
-		AbstractAssemblyLine assemblyLine = AssemblerEngine.getInstance().getAssemblyLine(model);
+		AbstractAssemblyLine assemblyLine = assemblerEngine.getAssemblyLine(model);
 		EquDefinitionContainer validDirective = null;
 		if (assemblyLine != null) {
 			for (EquDefinitionContainer value : values) {
-				AbstractAssemblyLine directiveLine = AssemblerEngine.getInstance().getAssemblyLine(value.getDirective());
+				AbstractAssemblyLine directiveLine = assemblerEngine.getAssemblyLine(value.getDirective());
 				if (directiveLine.getLineNumber()< assemblyLine.getLineNumber()) {
 					validDirective = value;
 				}
@@ -201,7 +208,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @return List of labels sorted in alphabetical order
 	 */
 	private List<String> getSortedLabels() {
-		Map<String, AbstractAssemblyLine> labelsPosition = AssemblerEngine.getInstance().getLabelsPositionObject();
+		Map<String, AbstractAssemblyLine> labelsPosition = assemblerEngine.getLabelsPositionObject();
 		List<String> labels = new ArrayList<>();
 		for (Entry<String, AbstractAssemblyLine> entry : labelsPosition.entrySet()) {
 			if (entry.getValue() instanceof AbstractInstructionAssemblyLine) {

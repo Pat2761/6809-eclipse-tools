@@ -189,27 +189,16 @@ public class EquSetManager {
 	/** Collection of EQU, SET and REG */
 	private Map<String, List<EquDefinitionContainer>> equContainer;
 	
-	/** Instance on the singleton */
-	private static EquSetManager eInstance;
+	/** reference on the assembler engine */
+	private AssemblerEngine engine;
 	
 	/**
 	 * Constructor of the class.
 	 * 
 	 */
-	private EquSetManager() {
+	public EquSetManager(AssemblerEngine engine) {
+		this.engine = engine;
 		clear();
-	}
-
-	/** 
-	 * Return the instance of the singleton.
-	 * 
-	 * @return instance of the singleton 
-	 */
-	public static EquSetManager getInstance() {
-		if (eInstance == null) {
-			eInstance = new EquSetManager();
-		}
-		return eInstance;
 	}
 
 	/**
@@ -459,7 +448,7 @@ public class EquSetManager {
 		
 		SetDirective directive = (SetDirective)container.getDirective();
 		try {
-			int value = ExpressionParser.parse(directive);
+			int value = ExpressionParser.parse(engine, directive);
 			container.setValue(value);
 			container.setExpressionResolved(true);
 		} catch (UnresolvedException ex) {
@@ -479,7 +468,7 @@ public class EquSetManager {
 	private void resolveEquValue(EquDefinitionContainer container) {
 		EquDirective directive = (EquDirective)container.getDirective();
 		try {
-			int value = ExpressionParser.parse(directive);
+			int value = ExpressionParser.parse(engine, directive);
 			container.setValue(value);
 			container.setExpressionResolved(true);
 		} catch (UnresolvedException ex) {

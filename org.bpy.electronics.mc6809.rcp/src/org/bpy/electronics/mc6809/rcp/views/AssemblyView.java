@@ -94,8 +94,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledLabelLine;
@@ -296,42 +296,41 @@ public class AssemblyView extends ViewPart {
 				String content = document.get();
 				IParseResult parserResult = parser.parse(new StringReader(content));
 				Model model = (Model) parserResult.getRootASTElement();
-				AssemblerEngine engine = AssemblerEngine.getInstance();
+				AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model, false);
 				engine.engine(model);
+				
+				grid.clearItems();
+				for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
+					
+					if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
+						GridItem item = new GridItem(grid, SWT.NONE);
+						displayInstruction(item, line);
+						
+					} else if (assembledLine instanceof AssembledBlankLine line) {
+						displayBlankLine(line);
+						
+					} else if (assembledLine instanceof AssembledCommentLine line) {
+						displayCommentLine(line);
+
+					} else if (assembledLine instanceof AssembledLabelLine line) {
+						displayLabelLine(line);
+					
+					} else if (assembledLine instanceof AbstractAssembledDirectiveLine line) {
+						displayDirective(line);
+						
+					} else if (assembledLine instanceof MacroDeclarationElement macroDeclaration) {
+						displayMacroDeclaration(macroDeclaration);
+						
+					} else if (assembledLine instanceof MacroAssembledElement macroAssembledElement) {	
+						displayAssembledMacro(macroAssembledElement);
+						
+					} else {
+						logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
+					}
+				}
 				
 			} catch (StringIndexOutOfBoundsException|SWTException e) {
 				logger.log(Level.SEVERE, e.getMessage());
-			}
-		}
-		
-		grid.clearItems();
-		AssemblerEngine engine = AssemblerEngine.getInstance();
-		for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
-			
-			if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
-				GridItem item = new GridItem(grid, SWT.NONE);
-				displayInstruction(item, line);
-				
-			} else if (assembledLine instanceof AssembledBlankLine line) {
-				displayBlankLine(line);
-				
-			} else if (assembledLine instanceof AssembledCommentLine line) {
-				displayCommentLine(line);
-
-			} else if (assembledLine instanceof AssembledLabelLine line) {
-				displayLabelLine(line);
-			
-			} else if (assembledLine instanceof AbstractAssembledDirectiveLine line) {
-				displayDirective(line);
-				
-			} else if (assembledLine instanceof MacroDeclarationElement macroDeclaration) {
-				displayMacroDeclaration(macroDeclaration);
-				
-			} else if (assembledLine instanceof MacroAssembledElement macroAssembledElement) {	
-				displayAssembledMacro(macroAssembledElement);
-				
-			} else {
-				logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
 			}
 		}
  	}	

@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
@@ -39,8 +40,8 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledOptDirectiveLine() {
-		// nothing to do
+	public AssembledOptDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -168,5 +169,10 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

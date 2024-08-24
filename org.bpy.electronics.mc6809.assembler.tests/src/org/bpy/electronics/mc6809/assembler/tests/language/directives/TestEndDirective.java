@@ -23,6 +23,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
@@ -91,7 +92,7 @@ public class TestEndDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(4);
 			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;
@@ -123,7 +124,7 @@ public class TestEndDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(4);
 			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;

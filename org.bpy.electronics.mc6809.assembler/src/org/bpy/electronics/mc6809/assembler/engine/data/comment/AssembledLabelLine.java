@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
@@ -29,6 +30,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  */
 public class AssembledLabelLine extends AbstractAssemblyLine {
+	
+	/**
+	 * Constructor of the class.
+	 * @param engine reference on the assemblerEngine
+	 */
+	public AssembledLabelLine(AssemblerEngine engine) {
+		super(engine);
+	}
 	
 	/**
 	 * Parse a label line.

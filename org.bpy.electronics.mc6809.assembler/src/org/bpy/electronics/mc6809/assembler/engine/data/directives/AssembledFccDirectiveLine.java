@@ -26,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -50,8 +51,8 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledFccDirectiveLine() {
-		// nothing to do
+	public AssembledFccDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -104,7 +105,7 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 			} else if (parameter instanceof Expression expression) {
 				int expressionValue;
 				try {
-					expressionValue = ExpressionParser.resolveExpression(expression.getOperand());
+					expressionValue = ExpressionParser.resolveExpression(assemblerEngine, expression.getOperand());
 					if ((expressionValue&0xFFFFF) != 0) {
 						AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("Overflow error, Data may be lost",
 								AssemblerPackage.eINSTANCE.getFccDirective_Parameters(),
@@ -164,5 +165,10 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

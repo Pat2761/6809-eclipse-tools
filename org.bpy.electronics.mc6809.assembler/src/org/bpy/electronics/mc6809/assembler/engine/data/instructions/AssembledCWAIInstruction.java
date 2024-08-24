@@ -23,7 +23,7 @@ import java.util.EnumMap;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -79,9 +79,11 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledCWAIInstruction() {
-		super();
+	public AssembledCWAIInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -112,7 +114,7 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 	}
 	
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return instruction.getOperand();
 	}
 

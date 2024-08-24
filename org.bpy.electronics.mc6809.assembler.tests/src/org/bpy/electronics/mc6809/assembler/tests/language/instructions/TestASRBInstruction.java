@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.junit.Test;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRBInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 
@@ -195,7 +196,7 @@ public class TestASRBInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			
 			Assert.assertEquals("Check PC after instruction", 0x8001, engine.getCurrentPcValue());
 			

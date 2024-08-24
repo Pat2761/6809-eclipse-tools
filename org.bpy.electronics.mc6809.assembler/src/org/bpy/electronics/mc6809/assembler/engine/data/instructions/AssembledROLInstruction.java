@@ -23,6 +23,7 @@ import java.util.EnumMap;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
@@ -34,7 +35,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -91,9 +91,11 @@ public class AssembledROLInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledROLInstruction() {
-		super();
+	public AssembledROLInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -132,7 +134,7 @@ public class AssembledROLInstruction extends AbstractInstructionAssemblyLine {
 	}
 	
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return instruction.getOperand();
 	}
 

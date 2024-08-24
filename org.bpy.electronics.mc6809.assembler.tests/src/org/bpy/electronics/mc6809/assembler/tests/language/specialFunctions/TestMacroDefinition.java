@@ -4,6 +4,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBNEInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECAInstruction;
@@ -188,7 +189,7 @@ public class TestMacroDefinition {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationTestHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("4 NOP instructions", 0x8004, engine.getCurrentPcValue());
 
 		} catch (Exception e) {
@@ -218,7 +219,7 @@ public class TestMacroDefinition {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationTestHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals(" = x8000 + 1 + (2+1+2) + (2+1+2) +1", 0x800C, engine.getCurrentPcValue());
 
 			// assembled first assembled Macro

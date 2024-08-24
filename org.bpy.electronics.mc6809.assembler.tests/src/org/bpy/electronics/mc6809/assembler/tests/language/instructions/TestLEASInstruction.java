@@ -44,6 +44,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectM
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -498,7 +499,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -532,7 +533,7 @@ public class TestLEASInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -557,7 +558,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -582,7 +583,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -608,7 +609,7 @@ public class TestLEASInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -634,7 +635,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -666,7 +667,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -698,7 +699,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -730,7 +731,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -762,7 +763,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -794,7 +795,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -826,7 +827,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -858,7 +859,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -890,7 +891,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -922,7 +923,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -954,7 +955,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -986,7 +987,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1018,7 +1019,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1050,7 +1051,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1082,7 +1083,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1114,7 +1115,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1146,7 +1147,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1178,7 +1179,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1210,7 +1211,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1242,7 +1243,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1274,7 +1275,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1306,7 +1307,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1338,7 +1339,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1370,7 +1371,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1402,7 +1403,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1434,7 +1435,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1466,7 +1467,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1498,7 +1499,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1530,7 +1531,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1562,7 +1563,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1594,7 +1595,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1626,7 +1627,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1658,7 +1659,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1690,7 +1691,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1722,7 +1723,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1754,7 +1755,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1786,7 +1787,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1818,7 +1819,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1850,7 +1851,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1882,7 +1883,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1938,7 +1939,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -1994,7 +1995,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2051,7 +2052,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2107,7 +2108,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2164,7 +2165,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2221,7 +2222,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2278,7 +2279,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2335,7 +2336,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(3);
@@ -2366,7 +2367,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2399,7 +2400,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2432,7 +2433,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2465,7 +2466,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2498,7 +2499,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2530,7 +2531,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2562,7 +2563,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2594,7 +2595,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2626,7 +2627,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2657,7 +2658,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2688,7 +2689,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2719,7 +2720,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2750,7 +2751,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2781,7 +2782,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2812,7 +2813,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2843,7 +2844,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2874,7 +2875,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2905,7 +2906,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2936,7 +2937,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2967,7 +2968,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -2998,7 +2999,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3029,7 +3030,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3060,7 +3061,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3091,7 +3092,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3122,7 +3123,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3153,7 +3154,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3184,7 +3185,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3215,7 +3216,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3246,7 +3247,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3278,7 +3279,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3310,7 +3311,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3342,7 +3343,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3374,7 +3375,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3406,7 +3407,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3438,7 +3439,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3470,7 +3471,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3502,7 +3503,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3535,7 +3536,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3568,7 +3569,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3601,7 +3602,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3634,7 +3635,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3667,7 +3668,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3700,7 +3701,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3733,7 +3734,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3768,7 +3769,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3803,7 +3804,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3838,7 +3839,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3873,7 +3874,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3908,7 +3909,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3943,7 +3944,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -3978,7 +3979,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4013,7 +4014,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4046,7 +4047,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4079,7 +4080,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4112,7 +4113,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4145,7 +4146,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4178,7 +4179,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4210,7 +4211,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4242,7 +4243,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4274,7 +4275,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4306,7 +4307,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4337,7 +4338,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4368,7 +4369,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4399,7 +4400,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4430,7 +4431,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4461,7 +4462,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4492,7 +4493,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4523,7 +4524,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4554,7 +4555,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4586,7 +4587,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4618,7 +4619,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4650,7 +4651,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4682,7 +4683,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4714,7 +4715,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4746,7 +4747,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4778,7 +4779,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4810,7 +4811,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4842,7 +4843,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4874,7 +4875,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4906,7 +4907,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4938,7 +4939,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -4970,7 +4971,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5002,7 +5003,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5034,7 +5035,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5066,7 +5067,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5099,7 +5100,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5132,7 +5133,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5165,7 +5166,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5198,7 +5199,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5231,7 +5232,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5264,7 +5265,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5297,7 +5298,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5332,7 +5333,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5367,7 +5368,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5402,7 +5403,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5437,7 +5438,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5472,7 +5473,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5507,7 +5508,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5542,7 +5543,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5577,7 +5578,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5609,7 +5610,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5641,7 +5642,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5673,7 +5674,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5705,7 +5706,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5738,7 +5739,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5771,7 +5772,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5804,7 +5805,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5839,7 +5840,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5874,7 +5875,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5907,7 +5908,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5939,7 +5940,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -5971,7 +5972,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6003,7 +6004,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6036,7 +6037,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6069,7 +6070,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6102,7 +6103,7 @@ public class TestLEASInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6137,7 +6138,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
@@ -6172,7 +6173,7 @@ public class TestLEASInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);

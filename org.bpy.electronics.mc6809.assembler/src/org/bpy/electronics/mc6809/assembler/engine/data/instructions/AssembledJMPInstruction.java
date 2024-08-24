@@ -93,9 +93,11 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledJMPInstruction() {
-		super();
+	public AssembledJMPInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -128,11 +130,12 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 
 	@Override
 	public void parsePass2() {
-		computeOperand(AssemblerEngine.getInstance().getLabelsPositionObject());
+		AssemblerEngine engine = getAssemblerEngine(instruction);
+		computeOperand(engine.getLabelsPositionObject());
 	}
 	
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return instruction.getOperand();
 	}
 

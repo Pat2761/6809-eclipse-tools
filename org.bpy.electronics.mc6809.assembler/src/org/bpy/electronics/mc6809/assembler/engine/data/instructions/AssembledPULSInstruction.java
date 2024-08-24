@@ -22,8 +22,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -45,9 +44,11 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledPULSInstruction() {
-		super();
+	public AssembledPULSInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -114,7 +115,8 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 	private void parseIdentiferOperand() {
 		Integer convertedValue = null;
 
-		EObject directive = EquSetManager.getInstance().getInstruction(instruction.getOperand().getValue());
+		AssemblerEngine engine = getAssemblerEngine(instruction);
+		EObject directive = engine.getEquSetManager().getInstruction(instruction.getOperand().getValue());
 		if ((directive != null) && (directive instanceof RegDirective regDirective)) {
 			if (checkUnexpectedRegister(regDirective.getOptions(), Register.S)) {
 				
@@ -128,7 +130,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 		
 		
 		try {
-			convertedValue = ExpressionParser.parseIdentifer(instruction,
+			convertedValue = ExpressionParser.parseIdentifer(assemblerEngine, instruction,
 					AssemblerPackage.eINSTANCE.getPulsInstruction_Operand()
 					,instruction.getOperand());
 		} catch (UnresolvedException e) {
@@ -157,7 +159,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 	}
 
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return null;
 	}
 	

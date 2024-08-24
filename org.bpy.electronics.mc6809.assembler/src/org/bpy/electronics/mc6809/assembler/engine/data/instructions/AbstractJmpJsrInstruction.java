@@ -18,7 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 
 /**
  * Common class for JMP and JSR
@@ -30,9 +30,11 @@ public abstract class AbstractJmpJsrInstruction extends AbstractInstructionAssem
 
 	/**
 	 * Constructor of the class.
+	 * 
+	 * @param engine reference on the assembler engine
 	 */
-	public AbstractJmpJsrInstruction() {
-		super();
+	public AbstractJmpJsrInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	@Override

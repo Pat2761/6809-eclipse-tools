@@ -39,6 +39,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -546,7 +547,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -578,7 +579,7 @@ public class TestSTBInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 
@@ -603,7 +604,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -627,7 +628,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
@@ -652,7 +653,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
@@ -678,7 +679,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -711,7 +712,7 @@ public class TestSTBInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -736,7 +737,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -761,7 +762,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -787,7 +788,7 @@ public class TestSTBInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -813,7 +814,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -847,7 +848,7 @@ public class TestSTBInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -872,7 +873,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
@@ -897,7 +898,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -923,7 +924,7 @@ public class TestSTBInstruction {
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
@@ -949,7 +950,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -981,7 +982,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1013,7 +1014,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1045,7 +1046,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1077,7 +1078,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1109,7 +1110,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1141,7 +1142,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1173,7 +1174,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1205,7 +1206,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1237,7 +1238,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1269,7 +1270,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1301,7 +1302,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1333,7 +1334,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1365,7 +1366,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1397,7 +1398,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1429,7 +1430,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1461,7 +1462,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1493,7 +1494,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1525,7 +1526,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1557,7 +1558,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1589,7 +1590,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1621,7 +1622,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1653,7 +1654,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1685,7 +1686,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1717,7 +1718,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1749,7 +1750,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1781,7 +1782,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1813,7 +1814,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1845,7 +1846,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1877,7 +1878,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1909,7 +1910,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1941,7 +1942,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -1973,7 +1974,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2005,7 +2006,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2037,7 +2038,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2069,7 +2070,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2101,7 +2102,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2133,7 +2134,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2165,7 +2166,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2197,7 +2198,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2253,7 +2254,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2309,7 +2310,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2366,7 +2367,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2422,7 +2423,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2479,7 +2480,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2536,7 +2537,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2593,7 +2594,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2650,7 +2651,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(3);
@@ -2681,7 +2682,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2714,7 +2715,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2747,7 +2748,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2780,7 +2781,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2813,7 +2814,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2845,7 +2846,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2877,7 +2878,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2909,7 +2910,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2941,7 +2942,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -2972,7 +2973,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3003,7 +3004,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3034,7 +3035,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3065,7 +3066,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3096,7 +3097,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3127,7 +3128,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3158,7 +3159,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3189,7 +3190,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3220,7 +3221,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3251,7 +3252,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3282,7 +3283,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3313,7 +3314,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3344,7 +3345,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3375,7 +3376,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3406,7 +3407,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3437,7 +3438,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3468,7 +3469,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3499,7 +3500,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3530,7 +3531,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3561,7 +3562,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3593,7 +3594,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3625,7 +3626,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3657,7 +3658,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3689,7 +3690,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3721,7 +3722,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3753,7 +3754,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3785,7 +3786,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3817,7 +3818,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3850,7 +3851,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3883,7 +3884,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3916,7 +3917,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3949,7 +3950,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -3982,7 +3983,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4015,7 +4016,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4048,7 +4049,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4083,7 +4084,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4118,7 +4119,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4153,7 +4154,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4188,7 +4189,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4223,7 +4224,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4258,7 +4259,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4293,7 +4294,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4328,7 +4329,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4361,7 +4362,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4394,7 +4395,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4427,7 +4428,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4460,7 +4461,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4493,7 +4494,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4525,7 +4526,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4557,7 +4558,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4589,7 +4590,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4621,7 +4622,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4652,7 +4653,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4683,7 +4684,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4714,7 +4715,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4745,7 +4746,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4776,7 +4777,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4807,7 +4808,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4838,7 +4839,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4869,7 +4870,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4901,7 +4902,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4933,7 +4934,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4965,7 +4966,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -4997,7 +4998,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5029,7 +5030,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5061,7 +5062,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5093,7 +5094,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5125,7 +5126,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5157,7 +5158,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5189,7 +5190,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5221,7 +5222,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5253,7 +5254,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5285,7 +5286,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5317,7 +5318,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5349,7 +5350,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5381,7 +5382,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5414,7 +5415,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5447,7 +5448,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5480,7 +5481,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5513,7 +5514,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5546,7 +5547,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5579,7 +5580,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5612,7 +5613,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5647,7 +5648,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5682,7 +5683,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5717,7 +5718,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5752,7 +5753,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5787,7 +5788,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5822,7 +5823,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5857,7 +5858,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5892,7 +5893,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5924,7 +5925,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5956,7 +5957,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -5988,7 +5989,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6020,7 +6021,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6053,7 +6054,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6086,7 +6087,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6119,7 +6120,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6154,7 +6155,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6189,7 +6190,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6222,7 +6223,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6254,7 +6255,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6286,7 +6287,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6318,7 +6319,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6351,7 +6352,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6384,7 +6385,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6417,7 +6418,7 @@ public class TestSTBInstruction {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6452,7 +6453,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);
@@ -6487,7 +6488,7 @@ public class TestSTBInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledSTBInstruction line = (AssembledSTBInstruction) engine.getAssembledLine(2);

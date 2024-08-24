@@ -35,7 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
@@ -88,9 +88,11 @@ public class AssembledLDDInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledLDDInstruction() {
-		super();
+	public AssembledLDDInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -129,7 +131,7 @@ public class AssembledLDDInstruction extends AbstractInstructionAssemblyLine {
 	}
 	
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return instruction.getOperand();
 	}
 

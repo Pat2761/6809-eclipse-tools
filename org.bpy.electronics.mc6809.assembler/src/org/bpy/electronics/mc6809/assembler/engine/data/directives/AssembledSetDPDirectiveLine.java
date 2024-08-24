@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -42,8 +43,8 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledSetDPDirectiveLine() {
-		// nothing to do
+	public AssembledSetDPDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -62,7 +63,7 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 		this.comment = CommandUtil.getComment(this.directive);
 
 		try {
-			value = ExpressionParser.parse(this.directive);
+			value = ExpressionParser.parse(assemblerEngine, this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -113,5 +114,9 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 	public boolean canDisplayPcAddress() {
 		return false;
 	}
-	
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
+	}
 }

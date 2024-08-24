@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -43,8 +44,8 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledOrgDirectiveLine() {
-		// nothing to do
+	public AssembledOrgDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = ((DirectiveLine)directive.eContainer()).getComment();
 		
 		try {
-			value = ExpressionParser.parse(this.directive);
+			value = ExpressionParser.parse(assemblerEngine, this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -113,5 +114,10 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

@@ -26,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHSInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -123,7 +124,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-		AssemblerEngine engine = AssemblerEngine.getInstance();
+		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 		AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(3);
 		
 		Assert.assertEquals("Check PC Counter", 0x8002, engine.getCurrentPcValue());
@@ -159,7 +160,7 @@ public class TestPSHSInstruction {
 				"Can't find RegDir definition"
 			);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(2);
 			
 			Assert.assertEquals("Check PC COunter", 0x8002, engine.getCurrentPcValue());
@@ -254,7 +255,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -283,7 +284,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -312,7 +313,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -341,7 +342,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -370,7 +371,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -399,7 +400,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -428,7 +429,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -457,7 +458,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -490,7 +491,7 @@ public class TestPSHSInstruction {
 				"S register can't be push for a PSHS instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -524,7 +525,7 @@ public class TestPSHSInstruction {
 				"S register can't be push for a PSHS instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(2);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -553,7 +554,7 @@ public class TestPSHSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledPSHSInstruction line = (AssembledPSHSInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());

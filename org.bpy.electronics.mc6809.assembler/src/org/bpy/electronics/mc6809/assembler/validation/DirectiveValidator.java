@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -42,6 +43,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine;
@@ -65,11 +67,17 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	public static final String NAME_ERROR = "nameError";
 	public static final String INCONSISTENCY_ERROR = "inconsistencyError";
 	
+	private AssemblerEngine assemblerEngine;
 	
 	@Override
 	public void register(EValidatorRegistrar registrar) {
 	}
-
+	
+	@Check
+	public void assembleModel(Model model) {
+		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model, true);
+	}
+	
 	/**
 	 * Check labels on the directive line
 	 * 
@@ -181,7 +189,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
 		
-		int equValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(equDirective));
+ 		int equValue = assemblerEngine.getEquSetLabelValue(CommandUtil.getLabel(equDirective));
 		if (equValue > 65535) {
 			error("EQU value can't exceed 65535 (16 bits value)",
 					AssemblerPackage.eINSTANCE.getEquDirective_Operand(),
@@ -203,7 +211,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	@Check
 	public void checkOrgConstraints(OrgDirective orgDirective) {
 		
-		AssembledOrgDirectiveLine assembledLine = (AssembledOrgDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(orgDirective);
+		AssembledOrgDirectiveLine assembledLine = (AssembledOrgDirectiveLine)assemblerEngine.getAssemblyLine(orgDirective);
 		int orgValue = assembledLine.getValue();
 		if (orgValue > 0xFFFF) {
 			error("ORG value maximum value is $FFFF",
@@ -242,7 +250,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 
 		int valueToSet=0;
 			try {
-				valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Value());
+				valueToSet = CommandUtil.getByteToSet(assemblerEngine, fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Value());
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -252,7 +260,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			}
 			int quantity=0;
 			try {
-				quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Number());
+				quantity = CommandUtil.getQuantity(assemblerEngine, fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Number());
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -352,7 +360,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkPagConstraints(PagDirective pagDirective) {
-		AssembledPagDirectiveLine assembledLine = (AssembledPagDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(pagDirective);
+		AssembledPagDirectiveLine assembledLine = (AssembledPagDirectiveLine)assemblerEngine.getAssemblyLine(pagDirective);
 		int pagValue = assembledLine.getValue();
 		if (pagValue < 0) {
 			error("PAG value can't be negative",
@@ -406,7 +414,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkBszConstraints(BszDirective bszDirective) {
-		AssembledBszDirectiveLine assembledLine = (AssembledBszDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(bszDirective);
+		AssembledBszDirectiveLine assembledLine = (AssembledBszDirectiveLine)assemblerEngine.getAssemblyLine(bszDirective);
 		int bszValue = assembledLine.getNbBytes();
 	    if (bszValue < 0) {
 			error("BSZ value can't be negative",
@@ -439,7 +447,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkSetDPConstraints(SetDPDirective setdpDirective) {
-		AssembledSetDPDirectiveLine assembledLine = (AssembledSetDPDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(setdpDirective);
+		AssembledSetDPDirectiveLine assembledLine = (AssembledSetDPDirectiveLine)assemblerEngine.getAssemblyLine(setdpDirective);
 		int setDPValue = assembledLine.getValue();
 	    if (setDPValue < 0) {
 			error("SETDP value can't be negative",
@@ -508,7 +516,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
 
-		int setValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(setDirective));
+		int setValue = assemblerEngine.getEquSetLabelValue(CommandUtil.getLabel(setDirective));
 		if (setValue > 65535) {
 			error("SET value can't exceed 65535 (16 bits value)",
 					AssemblerPackage.eINSTANCE.getSetDirective_Operand(),
@@ -530,7 +538,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkSpcConstraints(SpcDirective spcDirective) {
-		AssembledSpcDirectiveLine assembledLine = (AssembledSpcDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(spcDirective);
+		AssembledSpcDirectiveLine assembledLine = (AssembledSpcDirectiveLine)assemblerEngine.getAssemblyLine(spcDirective);
 		int spcValue = assembledLine.getSpaceCountValue();
 		if (spcValue < 0) {
 			error("SPC space value can't be negative",
@@ -625,7 +633,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	public void checkFcbConstraints(FcbDirective fcbDirective) {
 		
-		AssembledFcbDirectiveLine assembledLine = (AssembledFcbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(fcbDirective);
+		AssembledFcbDirectiveLine assembledLine = (AssembledFcbDirectiveLine)assemblerEngine.getAssemblyLine(fcbDirective);
 		int[] fcbValues = assembledLine.getValues();
 		int location = 1;
 		for (Integer fcbValue : fcbValues) {
@@ -663,7 +671,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	public void checkFdbConstraints(FdbDirective fdbDirective) {
 		
-		AssembledFdbDirectiveLine assembledLine = (AssembledFdbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(fdbDirective);
+		AssembledFdbDirectiveLine assembledLine = (AssembledFdbDirectiveLine)assemblerEngine.getAssemblyLine(fdbDirective);
 		int[] rmbValues = assembledLine.getValues();
 		int location = 1;
 		for (Integer rmbValue : rmbValues) {
@@ -699,7 +707,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 * @param rmbDirective reference on the RMB directive
 	 */
 	public void checkRmdConstraints(RmbDirective rmbDirective) {
-		AssembledRmbDirectiveLine assembledLine = (AssembledRmbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(rmbDirective);
+		AssembledRmbDirectiveLine assembledLine = (AssembledRmbDirectiveLine)assemblerEngine.getAssemblyLine(rmbDirective);
 		int rmbValue = assembledLine.getNbBytesReserved();
 		if (rmbValue > 0xFFFF) {
 			error("RMB value maximum value is $FFFF",

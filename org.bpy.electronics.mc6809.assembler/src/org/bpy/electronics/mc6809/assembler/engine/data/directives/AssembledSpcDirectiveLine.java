@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -44,8 +45,8 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledSpcDirectiveLine() {
-		// nothing to do
+	public AssembledSpcDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public void parsePass2() {
 		try {
-			keepCount = ExpressionParser.getKeepCount(this.directive);
+			keepCount = ExpressionParser.getKeepCount(assemblerEngine, this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -76,7 +77,7 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 
 		try {
-			spaceCount = ExpressionParser.getSpaceCount(this.directive);
+			spaceCount = ExpressionParser.getSpaceCount(assemblerEngine, this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -130,5 +131,10 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

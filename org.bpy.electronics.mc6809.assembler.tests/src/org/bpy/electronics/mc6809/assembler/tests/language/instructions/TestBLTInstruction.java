@@ -24,6 +24,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBLTInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -206,7 +207,7 @@ public class TestBLTInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8005, engine.getCurrentPcValue());
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(4); 
@@ -238,7 +239,7 @@ public class TestBLTInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(2); 
@@ -270,7 +271,7 @@ public class TestBLTInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(2); 
@@ -307,7 +308,7 @@ public class TestBLTInstruction {
 				"Overflow error, you should use long branch"
 			);
 	
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(2); 
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
@@ -338,7 +339,7 @@ public class TestBLTInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(4); 
@@ -375,7 +376,7 @@ public class TestBLTInstruction {
 			);
 	
 	
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBLTInstruction line = (AssembledBLTInstruction)engine.getAssembledLine(4); 

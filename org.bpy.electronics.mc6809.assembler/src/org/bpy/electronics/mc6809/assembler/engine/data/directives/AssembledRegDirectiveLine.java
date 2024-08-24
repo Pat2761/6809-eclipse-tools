@@ -19,7 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
@@ -38,8 +38,8 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledRegDirectiveLine() {
-		// nothing to do
+	public AssembledRegDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -55,8 +55,9 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
-	
-		value = EquSetManager.getInstance().getValue(label);
+
+		AssemblerEngine assemblerEngine = getAssemblerEngine(directive);
+		value = assemblerEngine.getEquSetManager().getValue(label);
 	}
 
 	@Override
@@ -108,5 +109,10 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

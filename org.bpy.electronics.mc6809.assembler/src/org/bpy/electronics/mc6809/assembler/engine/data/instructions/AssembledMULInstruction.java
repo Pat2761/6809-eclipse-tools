@@ -19,7 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
@@ -36,9 +36,11 @@ public class AssembledMULInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledMULInstruction() {
-		super();
+	public AssembledMULInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -85,7 +87,7 @@ public class AssembledMULInstruction extends AbstractInstructionAssemblyLine {
 	}
 
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return null;
 	}
 	

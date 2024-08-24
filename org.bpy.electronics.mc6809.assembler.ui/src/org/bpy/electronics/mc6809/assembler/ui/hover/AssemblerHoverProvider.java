@@ -32,8 +32,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -53,6 +55,9 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerHoverProvider.class.getSimpleName());
 
+	/** Reference on the assembler engine */
+	private AssemblerEngine assemblerEngine;
+
 	@Override
 	protected String getHoverInfoAsHtml(EObject o) {
 		return getString(o);
@@ -67,7 +72,9 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 	 */
 	private String getString(EObject o) {
 
-		if (o.eContainer() instanceof InstructionLine) {
+		if (o instanceof Model model) {
+			assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model, false);
+		} else if (o.eContainer() instanceof InstructionLine) {
 			return getInstructionLineInformation(o);
 		} else if (o.eContainer() instanceof DirectiveLine) {
 			return getDirectiveLineInformation(o);
@@ -91,7 +98,7 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 		builder.append("<b>Relative mode</b><br>\n");
 		
 		IdentifierValue identifierValue = relativeMode.getOffset();
-		AbstractAssemblyLine targetLine = AssemblerEngine.getInstance().getLabelsPositionObject().get(identifierValue.getValue());
+		AbstractAssemblyLine targetLine = assemblerEngine.getLabelsPositionObject().get(identifierValue.getValue());
 		if (targetLine != null) {
 			builder.append("Branch to the address " + String.format("0x%04X <br>\n", targetLine.getPcAddress()));
 		} else {
@@ -112,7 +119,7 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<b>Expression</b><br>\n");
 		try {
-			int value = ExpressionParser.resolveExpression(expression);
+			int value = ExpressionParser.resolveExpression(assemblerEngine, expression);
 			if (isContainedBy(expression, JsrInstruction.class)) {
 				builder.append("Call sub routine at address = " + value);
 			} else if (isContainedBy(expression, JmpInstruction.class)) {

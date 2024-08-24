@@ -24,6 +24,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
@@ -199,8 +200,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
-					DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for SPC directive");
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL,
+					"No label may be set for SPC directive");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -222,8 +223,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "SPC space value can't be negative");
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"SPC space value can't be negative");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -246,8 +247,8 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "0 Space count value is suspicious");
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"0 Space count value is suspicious");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -292,8 +293,8 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "SPC value superior to 9 is suspicious");
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"SPC value superior to 9 is suspicious");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -315,8 +316,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "SPC keep count value can't be negative");
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"SPC keep count value can't be negative");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -339,8 +340,8 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "0 keep count value is suspicious");
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"0 keep count value is suspicious");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -385,8 +386,8 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					DirectiveValidator.INVALID_RANGE, "SPC keep count value superior to 9 is suspicious");
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE,
+					"SPC keep count value superior to 9 is suspicious");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -408,8 +409,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
-					DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for SPC directive");
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL,
+					"No label may be set for SPC directive");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -432,7 +433,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC after SPC instruction", 0x8000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -455,7 +456,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSpcDirectiveLine line = (AssembledSpcDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
 			Assert.assertEquals("Check Keep count", 2, line.getkeepCountValue());
@@ -480,7 +481,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledSpcDirectiveLine line = (AssembledSpcDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
 			Assert.assertEquals("Check Keep count", 0, line.getkeepCountValue());
@@ -498,8 +499,7 @@ public class TestSpcDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	SPC    	10*Deux 		; Toto vaudra $2000\n");
-		strBuilder.append(
-				"										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -507,8 +507,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(),
-					InstructionValidator.EXPRESSION_ERROR, "Can't find Deux definition");
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(), InstructionValidator.EXPRESSION_ERROR,
+					"Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -523,8 +523,7 @@ public class TestSpcDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	SPC    	%01111211 		; Toto vaudra $2000\n");
-		strBuilder.append(
-				"										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -532,8 +531,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getBinaryValue(),
-					AssemblerValidator.INVALID_FIGURE, 111, 8, Severity.ERROR, "2 is invalid in binary value");
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getBinaryValue(), AssemblerValidator.INVALID_FIGURE,
+					111, 8, Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -548,8 +547,7 @@ public class TestSpcDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	SPC    	@128	 		; Toto vaudra $2000\n");
-		strBuilder.append(
-				"										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -557,8 +555,8 @@ public class TestSpcDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getOctalValue(),
-					AssemblerValidator.INVALID_FIGURE, 111, 3, Severity.ERROR, "8 is invalid in octal value");
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getOctalValue(), AssemblerValidator.INVALID_FIGURE,
+					111, 3, Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}

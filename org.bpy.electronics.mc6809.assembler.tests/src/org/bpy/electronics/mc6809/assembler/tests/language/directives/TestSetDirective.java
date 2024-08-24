@@ -36,7 +36,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 
@@ -462,7 +462,8 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			Assert.assertEquals("Check the value",128 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			Assert.assertEquals("Check the value",128 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -483,7 +484,8 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			Assert.assertEquals("Check the value",256 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -504,7 +506,8 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			Assert.assertEquals("Check the value",256 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -527,8 +530,9 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			Assert.assertEquals("Check the value EquVal1",20 ,EquSetManager.getInstance().getValue("EquVal1").intValue());
-			Assert.assertEquals("Check the value EquVal2",40 ,EquSetManager.getInstance().getValue("EquVal2").intValue());
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			Assert.assertEquals("Check the value EquVal1",20 ,engine.getEquSetManager().getValue("EquVal1").intValue());
+			Assert.assertEquals("Check the value EquVal2",40 ,engine.getEquSetManager().getValue("EquVal2").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

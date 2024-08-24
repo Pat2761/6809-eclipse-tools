@@ -33,6 +33,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
@@ -102,7 +103,7 @@ public class TestFillDirective {
 			DirectiveLine directiveLine1 = (DirectiveLine)line1.getLineContent();
 			Assert.assertTrue("Must be an FILL directive line", directiveLine1.getDirective() instanceof FillDirective);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(6);
 			AssembledFillDirectiveLine bszLine = (AssembledFillDirectiveLine)line;

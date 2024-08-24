@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -76,9 +77,10 @@ public class TestRmbDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an RMB directive line", directiveLine.getDirective() instanceof RmbDirective);
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			RmbDirective rmbDirective = (RmbDirective) directiveLine.getDirective();
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(rmbDirective));
-			Assert.assertEquals("Operand must be equals to 12", 12, ExpressionParser.parse(rmbDirective));
+			Assert.assertEquals("Operand must be equals to 12", 12, ExpressionParser.parse(engine, rmbDirective));
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -103,10 +105,11 @@ public class TestRmbDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
-			ExpressionParser.parse(equDirective0);
+			ExpressionParser.parse(engine, equDirective0);
 
 			SourceLine line1 = result.getSourceLines().get(5);
 			Assert.assertTrue("Must be a directive line", line1.getLineContent() instanceof DirectiveLine);
@@ -116,7 +119,7 @@ public class TestRmbDirective {
 
 			RmbDirective rmbDirective = (RmbDirective) directiveLine1.getDirective();
 			Assert.assertEquals("Label must be RmbLabel", "RmbLabel", CommandUtil.getLabel(rmbDirective));
-			Assert.assertEquals("Operand must be equals to $2000", 0x2000, ExpressionParser.parse(rmbDirective));
+			Assert.assertEquals("Operand must be equals to $2000", 0x2000, ExpressionParser.parse(engine, rmbDirective));
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -223,7 +226,7 @@ public class TestRmbDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledRmbDirectiveLine line = (AssembledRmbDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check Label", "Label1", line.getLabel());
 			Assert.assertEquals("Check Comment", "; 32 bytes reserved", line.getComment());

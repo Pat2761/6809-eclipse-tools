@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
@@ -126,10 +127,11 @@ public class TestBszDirective {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
-			ExpressionParser.parse(equDirective0);
+			ExpressionParser.parse(engine, equDirective0);
 			
 			SourceLine line1 = result.getSourceLines().get(5);
 			Assert.assertTrue("Must be a directive line", line1.getLineContent() instanceof DirectiveLine);
@@ -268,7 +270,7 @@ public class TestBszDirective {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 	
-		AssemblerEngine engine = AssemblerEngine.getInstance();
+		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 		Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
 		AbstractAssemblyLine line = engine.getAssembledLine(2);
 		AssembledBszDirectiveLine bszLine = (AssembledBszDirectiveLine) line;

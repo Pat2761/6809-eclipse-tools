@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -42,8 +43,8 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledRmbDirectiveLine() {
-		// nothing to do
+	public AssembledRmbDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -62,7 +63,7 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(this.directive);
 		
 		try {
-			nbBytesReserved = ExpressionParser.parse(this.directive);
+			nbBytesReserved = ExpressionParser.parse(assemblerEngine, this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -112,5 +113,10 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

@@ -24,6 +24,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFccDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -191,7 +192,7 @@ public class TestFccDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledFccDirectiveLine line = (AssembledFccDirectiveLine)engine.getAssembledLine(1);
 			Assert.assertEquals("Check Label","Label1",line.getLabel());
 			Assert.assertEquals("Check Comment","; error message",line.getComment());
@@ -231,7 +232,7 @@ public class TestFccDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledFccDirectiveLine line = (AssembledFccDirectiveLine)engine.getAssembledLine(1);
 			Assert.assertEquals("Check Label","Label1",line.getLabel());
 			Assert.assertEquals("Check Comment","; error message",line.getComment());

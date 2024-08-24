@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
@@ -77,9 +78,10 @@ public class TestOrgDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an ORG directive line", directiveLine.getDirective() instanceof OrgDirective);
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			OrgDirective orgDirective = (OrgDirective) directiveLine.getDirective();
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
-			Assert.assertEquals("Operand must be equals to 8000", 0x8000, ExpressionParser.parse(orgDirective));
+			Assert.assertEquals("Operand must be equals to 8000", 0x8000, ExpressionParser.parse(engine,orgDirective));
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -107,9 +109,11 @@ public class TestOrgDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an ORG directive line", directiveLine.getDirective() instanceof OrgDirective);
 
+
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			OrgDirective orgDirective = (OrgDirective)directiveLine.getDirective();
 		 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));	
-			Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(orgDirective));		
+			Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(engine, orgDirective));		
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -134,10 +138,11 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
-			ExpressionParser.parse(equDirective0);
+			ExpressionParser.parse(engine, equDirective0);
 
 			SourceLine line1 = result.getSourceLines().get(4);
 			Assert.assertTrue("Must be a directive line", line1.getLineContent() instanceof DirectiveLine);
@@ -147,7 +152,7 @@ public class TestOrgDirective {
 
 			OrgDirective orgDirective = (OrgDirective) directiveLine1.getDirective();
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
-			Assert.assertEquals("Operand must be equals to $4000", 0x4000, ExpressionParser.parse(orgDirective));
+			Assert.assertEquals("Operand must be equals to $4000", 0x4000, ExpressionParser.parse(engine, orgDirective));
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -172,10 +177,11 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
-			ExpressionParser.parse(equDirective0);
+			ExpressionParser.parse(engine, equDirective0);
 
 			SourceLine line1 = result.getSourceLines().get(4);
 			Assert.assertTrue("Must be a directive line", line1.getLineContent() instanceof DirectiveLine);
@@ -400,16 +406,15 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-
-			AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;
 
 			Assert.assertEquals("PC must be set to 0", 0, orgDirective.getPcAddress());
 			Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
 
-			Assert.assertEquals("Check current PC position", 0, assemblerEngine.getCurrentPcValue());
+			Assert.assertEquals("Check current PC position", 0, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -428,16 +433,15 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-
-			AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;
 
 			Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
 			Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
 
-			Assert.assertEquals("Check current PC position", 0x8000, assemblerEngine.getCurrentPcValue());
+			Assert.assertEquals("Check current PC position", 0x8000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -459,13 +463,13 @@ public class TestOrgDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label OrgPos is already defined");
 
-			AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-			AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(2);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;
 
-			Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
-			Assert.assertEquals("Line number must be 3", 3, orgDirective.getLineNumber());
+			Assert.assertEquals("PC must be set to 0000", 0x0000, orgDirective.getPcAddress());
+			Assert.assertEquals("Line number must be 3", 2, orgDirective.getLineNumber());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

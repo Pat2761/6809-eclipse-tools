@@ -38,8 +38,8 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 
 	@Check
 	public void prepareValidation(Model model) {
-		AssemblerEngine.getInstance().clear();
-		AssemblerEngine.getInstance().engine(model);
+//		AssemblerEngine.getInstance().clear();
+//		AssemblerEngine.getInstance().engine(model);
 	}
 	
 	@Check

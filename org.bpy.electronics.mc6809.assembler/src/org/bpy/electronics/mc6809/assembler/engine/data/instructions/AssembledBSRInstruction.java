@@ -41,9 +41,11 @@ public class AssembledBSRInstruction extends AbstractRelativeBranchInstruction {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledBSRInstruction() {
-		super();
+	public AssembledBSRInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -70,7 +72,8 @@ public class AssembledBSRInstruction extends AbstractRelativeBranchInstruction {
 		String label = instruction.getOperand().getOffset().getValue();
 		if (label != null) {
 
-			AbstractAssemblyLine targetLine = AssemblerEngine.getInstance().getLabelsPositionObject().get(label);
+			AssemblerEngine engine = getAssemblerEngine(instruction);
+			AbstractAssemblyLine targetLine = engine.getLabelsPositionObject().get(label);
 			if (targetLine != null) {
 				computeOperand(targetLine.getPcAddress(), BYTE_MODE, AssemblerPackage.eINSTANCE.getBsrInstruction_Operand());
 			} else {
@@ -105,7 +108,7 @@ public class AssembledBSRInstruction extends AbstractRelativeBranchInstruction {
 	}
 
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return null;
 	}
 

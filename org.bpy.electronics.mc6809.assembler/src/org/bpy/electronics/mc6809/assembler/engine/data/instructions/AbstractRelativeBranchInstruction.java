@@ -18,7 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
@@ -47,9 +47,11 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 	
 	/**
 	 * Constructor of the class
+	 * 
+	 * @param engine reference on the assembler engine
 	 */
-	protected AbstractRelativeBranchInstruction() {
-		super();
+	protected AbstractRelativeBranchInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**

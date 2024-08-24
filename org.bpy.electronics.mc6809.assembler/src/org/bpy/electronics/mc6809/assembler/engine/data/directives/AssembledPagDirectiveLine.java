@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -42,8 +43,8 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledPagDirectiveLine() {
-		// nothing to do
+	public AssembledPagDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 			value = 0;
 		} else {
 			try {
-				value = ExpressionParser.parse(this.directive);
+				value = ExpressionParser.parse(assemblerEngine, this.directive);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -123,5 +124,10 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return false;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

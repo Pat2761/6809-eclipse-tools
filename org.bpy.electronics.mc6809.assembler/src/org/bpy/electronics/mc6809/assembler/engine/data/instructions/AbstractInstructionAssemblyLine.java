@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.assembler.engine.data;
+package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import java.util.Map;
 
@@ -35,7 +35,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AddressingMode;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -53,7 +54,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  */
 public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLine {
-	
+
 	/** OPcode of the instruction */
 	protected int[] opcodeBytes;
 	/** Operand value of the instruction */ 
@@ -99,9 +100,12 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	public abstract void setCyclesNumber(AddressingMode mode);
 	
 	/**
-	 * Constructor of the class.
+	 * Constructor of the class.*
+	 * 
+	 * @param reference on the assembler engine
 	 */
-	protected AbstractInstructionAssemblyLine() {
+	protected AbstractInstructionAssemblyLine(AssemblerEngine engine) {
+		super(engine);
 		opcodeBytes = new int[0];
 		operandBytes = new int[0];
 	}
@@ -111,7 +115,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	 * 
 	 * @return reference on the instruction operand
 	 */
-	public abstract Object getInstructionOperand();
+	public abstract EObject getInstructionOperand();
 	
 	@Override
 	public int getPcIncrement() {
@@ -225,6 +229,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 				
 			case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
 				operandBytes = new int[1];
+				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_MODE:
 				operandBytes = new int[1];
@@ -272,7 +277,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		int offset;
 		if (deplacement != null) { 
 			try {
-				offset = ExpressionParser.parse(deplacement);
+				offset = ExpressionParser.parse(assemblerEngine, deplacement);
 				offset = offset-(pcAddress+opcodeBytes.length+2);
 			} catch (UnresolvedException e) {
 				offset = 2;
@@ -291,7 +296,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	private int getSizeOfOperandWithConstantMove(NumericalValue deplacement, boolean indirect) {
 		if (deplacement != null) { 
 			try {
-				int offset = ExpressionParser.parse(deplacement);
+				int offset = ExpressionParser.parse(assemblerEngine, deplacement);
 				if (offset == 0) {
 					return 1;
 				} else if (offset>-17 && offset<16) {
@@ -318,7 +323,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
 		int value;
 		try {
-			value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max);
+			value = ExpressionParser.parse(assemblerEngine, immediatOperand, eReference, instruction, min, max);
 			if (max <256) {
 				operandBytes = new int[] {(value&0xFF)};
 			} else if ( max<65536) {
@@ -338,7 +343,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	protected void setDirectOperand(EObject instruction, DirectOperand directOperand, EReference eReference) {
 		int value;
 		try {
-			value = ExpressionParser.parse(directOperand, eReference, instruction);
+			value = ExpressionParser.parse(assemblerEngine, directOperand, eReference, instruction);
 			operandBytes = new int[] {value};
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -352,7 +357,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
 		int value;
 		try {
-			value = ExpressionParser.parse(extendedOperand, eReference, instruction);
+			value = ExpressionParser.parse(assemblerEngine, extendedOperand, eReference, instruction);
 			operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -364,7 +369,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,Map<String, AbstractAssemblyLine> labelsPositionObject, EReference eReference) {
-		int value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
+		int value = ExpressionParser.parse(assemblerEngine, extendedOperand, eReference, labelsPositionObject, instruction);
 		operandBytes[0] = (value&0xFF00)>>8;
 		operandBytes[1] = value&0xFF; 
 	}
@@ -486,7 +491,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
-				offset = ExpressionParser.parse(deplacement);
+				offset = ExpressionParser.parse(assemblerEngine, deplacement);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -638,7 +643,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
-				offset = ExpressionParser.parse(deplacement);
+				offset = ExpressionParser.parse(assemblerEngine, deplacement);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -755,7 +760,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
-				offset = ExpressionParser.parse(deplacement);
+				offset = ExpressionParser.parse(assemblerEngine, deplacement);
 				offset = offset-(pcAddress+opcodeBytes.length+operandBytes.length);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -794,7 +799,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
-				offset = ExpressionParser.parse(deplacement);
+				offset = ExpressionParser.parse(assemblerEngine, deplacement);
 				offset = offset-(pcAddress+opcodeBytes.length+operandBytes.length);
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -847,7 +852,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	protected void setExtendedIndirectOperand(EObject instruction, ExtendedIndirectOperand operand, EReference eReference) {
 		int value;
 		try {
-			value = ExpressionParser.parse(operand, eReference, instruction);
+			value = ExpressionParser.parse(assemblerEngine, operand, eReference, instruction);
 			operandBytes = new int[] {value/256, value%256};
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -859,9 +864,10 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected String getOperand(EObject operand) {
-		if (operand instanceof ImmediatOperand) {
-			return "immediat";
+		if (operand!= null) {
+			return ""; //serializer.serialize(operand);
+		} else {
+			return "";
 		}
-		return "";
 	}
 }

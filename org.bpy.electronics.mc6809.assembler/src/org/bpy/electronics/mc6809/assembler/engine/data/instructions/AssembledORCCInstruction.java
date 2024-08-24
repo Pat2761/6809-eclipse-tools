@@ -21,9 +21,9 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 import java.util.EnumMap;
 
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -80,9 +80,11 @@ public class AssembledORCCInstruction extends AbstractInstructionAssemblyLine {
 	
 	/**
 	 * Constructor of the class.
+    *
+	 * @param engine reference on the assembler engine.
 	 */
-	public AssembledORCCInstruction() {
-		super();
+	public AssembledORCCInstruction(AssemblerEngine engine) {
+		super(engine);
 	}
 	
 	/**
@@ -109,7 +111,7 @@ public class AssembledORCCInstruction extends AbstractInstructionAssemblyLine {
 	}
 	
 	@Override
-	public Object getInstructionOperand() {
+	public EObject getInstructionOperand() {
 		return instruction.getOperand();
 	}
 

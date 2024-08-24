@@ -45,6 +45,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -69,9 +70,11 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 
 	/**
 	 * Constructor of the class.
+	 * 
+	 * @param engine reference on the assembler engine
 	 */
-	public MacroAssembledElement() {
-		super();
+	public MacroAssembledElement(AssemblerEngine engine) {
+		super(engine);
 		assemblyLines = new ArrayList<>();
 		instructionLines = new ArrayList<>();
 		internalLabels = new HashMap<>();

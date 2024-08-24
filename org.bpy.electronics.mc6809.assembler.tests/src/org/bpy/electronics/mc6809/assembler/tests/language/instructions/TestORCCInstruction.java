@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORCCInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -101,7 +102,7 @@ public class TestORCCInstruction {
 				"Direct mode is not valid for the ORCC instruction"
 			);
 			
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);;
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -133,7 +134,7 @@ public class TestORCCInstruction {
 				"Extended mode is not valid for the ORCC instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);;
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -166,7 +167,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -199,7 +200,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -232,7 +233,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -265,7 +266,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -298,7 +299,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -331,7 +332,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -364,7 +365,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -397,7 +398,7 @@ public class TestORCCInstruction {
 				"Indexed mode is not valid for the ORCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -453,7 +454,7 @@ public class TestORCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 		
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.getCurrentPcValue());
 				
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(3);
@@ -487,7 +488,7 @@ public class TestORCCInstruction {
 				InstructionValidator.OVERFLOW_ERROR,	
 				"The value -129 is below the possible limit, data may be lost"
 			);
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -512,7 +513,7 @@ public class TestORCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);;
 		} catch (Exception e) {
@@ -537,7 +538,7 @@ public class TestORCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);;
 		} catch (Exception e) {
@@ -564,7 +565,7 @@ public class TestORCCInstruction {
 				InstructionValidator.OVERFLOW_ERROR,	
 				"The value 256 is greater than the possible limit, data may be lost"
 			);
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledORCCInstruction line = (AssembledORCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);;
 		} catch (Exception e) {

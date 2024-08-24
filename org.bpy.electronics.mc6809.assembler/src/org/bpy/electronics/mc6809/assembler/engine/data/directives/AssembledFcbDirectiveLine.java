@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -44,8 +45,8 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledFcbDirectiveLine() {
-		// nothing to do
+	public AssembledFcbDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 		List<Integer> listValues;
 		
 		try {
-			listValues = ExpressionParser.parse(this.directive);
+			listValues = ExpressionParser.parse(assemblerEngine, this.directive);
 			for (int i=0; i<listValues.size(); i++) {
 				values[i] = listValues.get(i);	
 			}
@@ -123,5 +124,10 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

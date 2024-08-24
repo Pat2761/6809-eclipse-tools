@@ -67,6 +67,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
@@ -76,6 +77,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
@@ -110,8 +112,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -2086,14 +2090,14 @@ public class CommandUtil {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
-	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
+	public static int getByteToSet(AssemblerEngine engine, FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
 		Expression value = fillDirective.getValue().getOperand();
-		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
+		return ExpressionParser.resolveExpression(engine, value, fillDirective, currentReference);
 	}
 
-	public static int getQuantity(FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
+	public static int getQuantity(AssemblerEngine engine,FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
 		Expression value = fillDirective.getNumber().getOperand();
-		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
+		return ExpressionParser.resolveExpression(engine, value, fillDirective, currentReference);
 	}
 
 	/*
@@ -2173,6 +2177,16 @@ public class CommandUtil {
 			}	
 		}
 		return value;
+	}
+
+	public static Model getModel(EObject eObject) {
+		if (eObject == null) {
+			return null;
+		} else  if (eObject instanceof Model model) {
+			return model;
+		} else {
+			return getModel(eObject.eContainer());
+		}
 	}
 
 

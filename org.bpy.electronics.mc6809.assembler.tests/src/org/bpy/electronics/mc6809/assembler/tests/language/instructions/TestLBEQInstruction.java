@@ -24,6 +24,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLBEQInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -208,7 +209,7 @@ public class TestLBEQInstruction {
 				"You can use a short branch"
 			);
 		
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(4);
@@ -242,7 +243,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(4);
@@ -280,7 +281,7 @@ public class TestLBEQInstruction {
 				"You can use a short branch"
 			);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(2);
@@ -314,7 +315,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8085, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(2);
@@ -348,7 +349,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(2);
@@ -384,7 +385,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
@@ -417,7 +418,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(4);
@@ -451,7 +452,7 @@ public class TestLBEQInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine=AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBEQInstruction line = (AssembledLBEQInstruction)engine.getAssembledLine(4);

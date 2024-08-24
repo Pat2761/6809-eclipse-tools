@@ -36,7 +36,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
 
 @RunWith(XtextRunner.class)
@@ -187,7 +187,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			Assert.assertEquals("Check PC Address", 0xC000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -277,7 +277,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledRegDirectiveLine line = (AssembledRegDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check REG value", 0x14, engine.getEquSetLabelValue(line.getLabel()).intValue());
 		} catch (Exception e) {
@@ -310,7 +310,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerEngine.getInstance();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
 			AssembledRegDirectiveLine regLineCC = (AssembledRegDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check value CC", 1, regLineCC.getValue());
 			AssembledRegDirectiveLine regLineA = (AssembledRegDirectiveLine) engine.getAssembledLine(2);
@@ -331,7 +331,7 @@ public class TestRegDirective {
 			Assert.assertEquals("Check value S", 64, regLineS.getValue());
 			AssembledRegDirectiveLine regLinePC = (AssembledRegDirectiveLine) engine.getAssembledLine(10);
 			Assert.assertEquals("Check value PC", 128, regLinePC.getValue());
-			Assert.assertEquals("Check memorization", 128, EquSetManager.getInstance().getValue("L_PC").intValue());
+			Assert.assertEquals("Check memorization", 128,engine.getEquSetManager().getValue("L_PC").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

@@ -1,7 +1,6 @@
 package org.bpy.electronics.mc6809.assembler.tests.language.bugs;
 
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;

@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -40,11 +41,12 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 	private int[] values;	
 	/** Integer value defined the number of byte */ 
 	private int nbBytes;	
+
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledBszDirectiveLine() {
-		// nothing to do
+	public AssembledBszDirectiveLine(AssemblerEngine engine) {
+		super(engine);
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(this.directive);
 		
 		try {
-			nbBytes = ExpressionParser.parse(this.directive);
+			nbBytes = ExpressionParser.parse(assemblerEngine, this.directive);
 			if (nbBytes<0) {
 				values = new int[0];
 			} else {
@@ -131,5 +133,10 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public boolean canDisplayPcAddress() {
 		return true;
+	}
+
+	@Override
+	public String getDirectiveName() {
+		return directive.getDirective();
 	}
 }

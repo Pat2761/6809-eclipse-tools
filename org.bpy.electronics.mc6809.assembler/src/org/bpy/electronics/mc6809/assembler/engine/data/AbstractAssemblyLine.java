@@ -18,12 +18,21 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
+import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.xbase.lib.Extension;
+
+import com.google.inject.Inject;
 
 public abstract class AbstractAssemblyLine {
+	
+//	@Inject @Extension 
+//	protected ISerializer serializer;
 	
 	protected int lineNumber;
 	protected int pcAddress;
@@ -31,11 +40,19 @@ public abstract class AbstractAssemblyLine {
 	protected String label;
 	protected String comment;
 
+	protected AssemblerEngine assemblerEngine;
+
 	public abstract int getPcIncrement();
 	public abstract void parsePass1(EObject instruction, int currentPcValue, int lineNumber);
  	public abstract void parsePass2();
  	public abstract boolean canDisplayPcAddress();
 
+ 	protected AbstractAssemblyLine(AssemblerEngine assemblerEngine) {
+//		com.google.inject.Injector injector = new AssemblerStandaloneSetup().createInjectorAndDoEMFRegistration();
+//		injector.injectMembers(this);
+		this.assemblerEngine = assemblerEngine;
+ 	}
+ 	
 	public String getComment() {
 		return comment;
 	}
@@ -95,4 +112,13 @@ public abstract class AbstractAssemblyLine {
 		return false;
 	}
 
+	/**
+	 * Get a reference an the assembler engine of a model.
+	 * 
+	 * @param eObject reference on object defined in the model
+	 * @return reference an the assembler engine of a model.
+	 */
+	protected AssemblerEngine getAssemblerEngine(EObject eObject) {
+		return assemblerEngine;
+	}
 }

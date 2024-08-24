@@ -5,15 +5,24 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AbstractAssembledDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.part.PageSite;
+import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.xbase.lib.Extension;
 
 import com.google.common.base.Strings;
+import com.google.inject.Inject;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -29,17 +38,20 @@ public class ListingPdfBuilder {
 	private Document document;
 	private PdfWriter writer;
 
+	public ListingPdfBuilder () {
+	}
+	
 	public void build(File pdfFile, Model model) {
 		document = new Document();
 		document.setPageSize(PageSize.A4);
-		document.setMargins(36, 72, 108, 180);
+		document.setMargins(36, 36, 50, 50);
 		document.setMarginMirroring(true);
 		
 		try {
 		   writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
 			document.open();
-			AssemblerEngine.getInstance().engine(model);
-			fillDocument();
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model, false);
+			fillDocument(engine);
 			document.close();
 		} catch (FileNotFoundException | DocumentException e) {
 			// TODO Auto-generated catch block
@@ -47,8 +59,8 @@ public class ListingPdfBuilder {
 		}
 	}
 
-	private void fillDocument() throws DocumentException {
-		List<AbstractAssemblyLine> assembledLines = AssemblerEngine.getInstance().getAssembledLine();
+	private void fillDocument(AssemblerEngine engine) throws DocumentException {
+		List<AbstractAssemblyLine> assembledLines = engine.getAssembledLine();
 
 		Font documentFont = new Font(FontFamily.COURIER, 10);
 //		PdfContentByte canvas = writer.getDirectContentUnder(); 
@@ -77,13 +89,37 @@ public class ListingPdfBuilder {
 	}
 
 	private void setInstructionOperand(AbstractAssemblyLine sourceLine, StringBuilder strBuilder) {
-		// TODO Auto-generated method stub
+		StringBuilder localBuilder = new StringBuilder(); 
+		if (sourceLine instanceof AbstractInstructionAssemblyLine instructionAssemblyLine) {
+			String operand = instructionAssemblyLine.getOperandString();
+			System.out.println(operand);
+			localBuilder.append(operand);
+		} else if (sourceLine instanceof AbstractAssembledDirectiveLine directiveline) {
+//			localBuilder.append(directiveline.getDirectiveName());
+		} else if (sourceLine instanceof MacroDeclarationElement) {
+			// TODO
+		} else if (sourceLine instanceof MacroAssembledElement) {
+		// TODO
+		}
 		
+		fillWithMisisingSpace(localBuilder, 21);
+		strBuilder.append(localBuilder.toString());
 	}
 
 	private void setInstruction(AbstractAssemblyLine sourceLine, StringBuilder strBuilder) {
-		// TODO Auto-generated method stub
+		StringBuilder localBuilder = new StringBuilder(); 
+		if (sourceLine instanceof AbstractInstructionAssemblyLine instructionAssemblyLine) {
+			localBuilder.append(instructionAssemblyLine.getInstructionName());
+		} else if (sourceLine instanceof AbstractAssembledDirectiveLine directiveline) {
+			localBuilder.append(directiveline.getDirectiveName());
+		} else if (sourceLine instanceof MacroDeclarationElement) {
+			// TODO
+		} else if (sourceLine instanceof MacroAssembledElement) {
+		// TODO
+		}
 		
+		fillWithMisisingSpace(localBuilder, 7);
+		strBuilder.append(localBuilder.toString());
 	}
 
 	private void setLabel(AbstractAssemblyLine sourceLine, StringBuilder strBuilder) {
@@ -140,7 +176,20 @@ public class ListingPdfBuilder {
 	}
 
 	private void setLineNumber(AbstractAssemblyLine sourceLine, StringBuilder strBuilder) {
-		strBuilder.append(String.format("%04d  ", sourceLine.getLineNumber()));
+		StringBuilder localBuilder = new StringBuilder(); 
+		localBuilder.append(String.format("%04d", sourceLine.getLineNumber()));
+		fillWithMisisingSpace(localBuilder, 5);
+		strBuilder.append(localBuilder.toString());
 	}
+	
+	private void fillWithMisisingSpace(StringBuilder localBuilder, int neededLength) {
+		if (localBuilder.length() < neededLength) {
+			localBuilder.append(Strings.repeat(" ", neededLength-localBuilder.length()));
+		} else {
+			localBuilder.append(" ");
+		}
+	}
+
+
 }
 	
