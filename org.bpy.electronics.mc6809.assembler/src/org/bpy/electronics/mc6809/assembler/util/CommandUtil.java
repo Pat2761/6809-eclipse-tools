@@ -18,6 +18,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,6 +114,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AbstractAssembledDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -2188,5 +2191,25 @@ public class CommandUtil {
 		}
 	}
 
-
+	/**
+	 * Retrieve and return the operand object of an instruction.
+	 * 
+	 * @param instruction reference on the instruction line.
+	 * @return reference on the operand, <b>null</b> if not found
+	 */
+	public static EObject getOperand(InstructionLine instruction) {
+		Class<? extends EObject> instructionClass = instruction.getInstruction().getClass();
+		try {
+			Method getOperandMethod = instructionClass.getDeclaredMethod("getOperand");
+			if (getOperandMethod != null) {
+				Object operand = getOperandMethod.invoke(instruction.getInstruction());
+				if (operand != null) {
+					return (EObject) operand;
+				}
+			}
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			// Nothing to do here
+		}
+		return null;
+	}
 }

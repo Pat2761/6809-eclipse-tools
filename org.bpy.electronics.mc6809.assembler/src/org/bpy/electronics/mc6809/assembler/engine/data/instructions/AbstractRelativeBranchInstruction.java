@@ -83,6 +83,7 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 				opcodeBytes[0] = 0x3F;
 				operandBytes[0] = 0xFF;
 			} else {
+				System.out.println("BPY");
 				operandBytes[0] = offset & 0xFF;
 			}
 			

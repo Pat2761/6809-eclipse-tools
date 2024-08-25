@@ -8,9 +8,10 @@ Bundle-ClassPath: lib/itextpdf.jar,
  .
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.bpy.electronics.mc6809.assembler.ui,
  org.eclipse.xtext.ui,
- org.bpy.electronics.mc6809.assembler;bundle-version="1.0.0"
+ org.bpy.electronics.mc6809.assembler.ui,
+ org.bpy.electronics.mc6809.assembler;bundle-version="1.0.0",
+ org.bpy.electronics.mc6809.preferences;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.bpy.electronics.mc6809.documents
 Bundle-ActivationPolicy: lazy

@@ -235,7 +235,6 @@ public class AssemblerEngine {
 	 * @param model reference on the EMF model of the AS9 file
 	 */
 	public void engine(Model model) {
-		//System.out.println("BPY - parse model");
 		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
 		clear();
@@ -425,7 +424,13 @@ public class AssemblerEngine {
 		lineNumber = 1;
 
 		for (AbstractAssemblyLine assemblyLine : assemblyLines)  {
-			assemblyLine.parsePass2();
+			if (assemblyLine instanceof MacroAssembledElement macroAssembled) {
+				for (AbstractAssemblyLine macroAssembledLine : macroAssembled.getAssemblyLines()) {
+					macroAssembledLine.parsePass2();
+				}
+			} else {
+				assemblyLine.parsePass2();
+			}
 		}
 	}
 

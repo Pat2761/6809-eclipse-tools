@@ -109,7 +109,7 @@ public class AssembledBHSInstruction extends AbstractRelativeBranchInstruction {
 
 	@Override
 	public EObject getInstructionOperand() {
-		return null;
+		return instruction.getOperand();
 	}
 
 	@Override

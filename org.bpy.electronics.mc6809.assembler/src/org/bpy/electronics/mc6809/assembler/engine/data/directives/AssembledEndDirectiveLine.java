@@ -117,7 +117,7 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public boolean canDisplayPcAddress() {
-		return false;
+		return true;
 	}
 
 	@Override

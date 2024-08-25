@@ -57,6 +57,9 @@ public class ListingPreferencePage extends PreferencePage implements IWorkbenchP
 		cboOrientation.setItems(new String[] {"Landscape", "Portrait"});
 		cboOrientation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
+		Label lblNewLabel = new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		
 		Group grpDefineNumbersOf = new Group(container, SWT.SHADOW_ETCHED_IN);
 		grpDefineNumbersOf.setText("define numbers of space for each column");
 		grpDefineNumbersOf.setLayout(new GridLayout(2, false));
