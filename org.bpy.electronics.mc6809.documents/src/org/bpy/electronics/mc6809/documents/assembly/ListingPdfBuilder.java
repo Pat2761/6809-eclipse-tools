@@ -28,7 +28,6 @@ import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
-import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
@@ -96,8 +95,6 @@ public class ListingPdfBuilder {
 
 	/** reference on the IText document */
 	private Document document;
-	/** reference on the IText writer */
-	private PdfWriter writer;
 
 	/** Reference on the XTEXT serializer */
 	@Inject
@@ -127,11 +124,14 @@ public class ListingPdfBuilder {
 		} else {
 			document.setPageSize(PageSize.A4);
 		}
-		document.setMargins(36, 36, 50, 50);
+		document.setMargins(36, 36, 60, 60);
 		document.setMarginMirroring(true);
 
 		try {
-			writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+			ListingHeader header = new ListingHeader();
+			header.setHeader(pdfFile.getName());
+			writer.setPageEvent(header);
 			document.open();
 			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model, false);
 			fillDocument(engine);
@@ -145,8 +145,6 @@ public class ListingPdfBuilder {
 		List<AbstractAssemblyLine> assembledLines = engine.getAssembledLine();
 
 		documentFont = new Font(FontFamily.COURIER, 8);
-//		PdfContentByte canvas = writer.getDirectContentUnder(); 
-//		canvas.setFontAndSize(documentFont.getBaseFont(), 12);
 
 		for (AbstractAssemblyLine sourceLine : assembledLines) {
 			writeSourceLine(sourceLine);
@@ -209,6 +207,13 @@ public class ListingPdfBuilder {
 		}
 	}
 
+	/**
+	 * Serialize and format the operand of the directive.
+	 * 	  
+	 * @param directive reference on the directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String getOperand(AbstractAssembledDirectiveLine directiveLine) {
 		if (directiveLine instanceof AssembledBszDirectiveLine line) {
 			return setInstructionOperand(line.getDirective().getOperand());
@@ -248,6 +253,13 @@ public class ListingPdfBuilder {
 		return null;
 	}
 
+	/**
+	 * Serialize and format the operand of the FCB directive.
+	 * 	  
+	 * @param directive reference on the FCB directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setFcbOperand(FcbDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		if (directive.getOperand() != null) {
@@ -258,6 +270,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the FCC directive.
+	 * 	  
+	 * @param directive reference on the FCC directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setFccOperand(FccDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		for (EObject parameter : directive.getParameters()) {
@@ -271,6 +290,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the FDB directive.
+	 * 	  
+	 * @param directive reference on the FDB directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setFdbOperand(FdbDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append(serializer.serialize(directive.getOperand()).replace(" ", ""));
@@ -278,6 +304,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the FILL directive.
+	 * 	  
+	 * @param directive reference on the FILL directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setFillOperand(FillDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append(serializer.serialize(directive.getValue()).replace(" ", ""));
@@ -288,6 +321,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the OPT directive.
+	 * 	  
+	 * @param directive reference on the OPT directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setOptOperand(OptDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		for (AssemblyOption option : directive.getOptions()) {
@@ -300,6 +340,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the REG directive.
+	 * 	  
+	 * @param directive reference on the REG directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setRegOperand(RegDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		for (Register register : directive.getOptions()) {
@@ -313,6 +360,13 @@ public class ListingPdfBuilder {
 		return strBuilder.toString();
 	}
 
+	/**
+	 * Serialize and format the operand of the SPC directive.
+	 * 	  
+	 * @param directive reference on the SPC directive
+	 * 
+	 * @return A serialized String of the operand
+	 */
 	private String setSpcOperand(SpcDirective directive) {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append(serializer.serialize(directive.getSpaceCount()).replace(" ", ""));
