@@ -11,38 +11,30 @@ import java.util.Map.Entry;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.JmpInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl;
-import org.bpy.electronics.mc6809.assembler.assembler.impl.ModelImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PshuInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PulsInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.assembler.impl.PuluInstructionImpl;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager.EquDefinitionContainer;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AbstractAssembledDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.ui.IconManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.serializer.ISerializer;
-import org.eclipse.xtext.ui.editor.contentassist.AbstractContentProposalProvider;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
-import org.eclipse.xtext.xbase.lib.Extension;
 
-import com.google.inject.Inject;
 
 /**
  * See
@@ -52,32 +44,26 @@ import com.google.inject.Inject;
 public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider {
 
 	
-	/** reference to the assembler engine */ 
-	private AssemblerEngine assemblerEngine;
-
-	@Override
-	public void complete_Model(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), false);
-		super.complete_Model(model, ruleCall, context, acceptor);
-	}
-
 	@Override
 	public void completeRelativeMode_Offset(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 
-		setProposalForLabelDefinitions(model, acceptor, context);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		setProposalForLabelDefinitions(assemblerEngine, model, acceptor, context);
 	}
 	
 	@Override
 	public void complete_IdentifierValue(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
+
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
 		
 		if (isUsedByClass(model, Expression.class)) {
 			setProposalForConstantDefintions(model, acceptor, context);
 
 		} else if ((isUsedByClass(model, JmpInstructionImpl.class)) || 
 				     (isUsedByClass(model, JsrInstructionImpl.class))) {
-			setProposalForLabelDefinitions(model, acceptor, context);
+			setProposalForLabelDefinitions(assemblerEngine, model, acceptor, context);
 	
 		} else if ((isUsedByClass(model, PshsInstructionImpl.class)) ||
 				     (isUsedByClass(model, PshuInstructionImpl.class)) ||
@@ -93,21 +79,15 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 		setProposalForConstantDefintions(model.eContainer(), acceptor, context);
 	}
 
-	@Override
-	public void completeIdentifierValue_Value(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
-		super.completeIdentifierValue_Value(model, assignment, context, acceptor);
-	}
-
 	/**
 	 * Create content assist for labels linked the registers.
 	 * 
-	 * @param model reference on the selected element
+	 * @param regDirective reference on the selected element
 	 * @param acceptor Content assist acceptor
 	 * @param context content assist context
 	 */
-	private void setProposalForRegDirective(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+	private void setProposalForRegDirective(EObject regDirective, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
 		Map<String, List<EquDefinitionContainer>> containers = assemblerEngine.getEquSetManager().getEquContainer();
 		for (Entry<String, List<EquDefinitionContainer>> entry : containers.entrySet()) {
 			
@@ -136,12 +116,13 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	/**
 	 * Create content assist for labels
 	 * 
+	 * @param assemblerEngine reference on the assemblerEngine
 	 * @param model reference on the selected element
 	 * @param acceptor Content assist acceptor
 	 * @param context content assist context
 	 */
-	private void setProposalForLabelDefinitions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
-		List<String> labels = getSortedLabels();
+	private void setProposalForLabelDefinitions(AssemblerEngine assemblerEngine, EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		List<String> labels = getSortedLabels(assemblerEngine);
 		for (String label : labels) {
 			acceptor.accept(
 					createCompletionProposal(label,
@@ -157,6 +138,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param context content assist context
 	 */
 	private void setProposalForConstantDefintions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
 		Map<String, List<EquDefinitionContainer>> csts = assemblerEngine.getEquSetManager().getEquContainer();
 
 		for (Entry<String, List<EquDefinitionContainer>> entry : csts.entrySet()) {
@@ -171,7 +153,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 						createCompletionProposal(label,msg , IconManager.getInstance().getIcon(IconManager.CONSTANT_ICON), context));
 			
 			} else if (entry.getValue().get(0).getDirective() instanceof SetDirective) {
-				EquDefinitionContainer validDirective = getValidDirective(model, entry.getValue());
+				EquDefinitionContainer validDirective = getValidDirective(assemblerEngine, model, entry.getValue());
 				if (validDirective != null) {
 					msg = "SET " + label + " " + validDirective.getValue();
 					acceptor.accept(
@@ -188,7 +170,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param values List of possible SET
 	 * @return The valid SET directive
 	 */
-	private EquDefinitionContainer getValidDirective(EObject model, List<EquDefinitionContainer> values) {
+	private EquDefinitionContainer getValidDirective(AssemblerEngine assemblerEngine, EObject model, List<EquDefinitionContainer> values) {
 		AbstractAssemblyLine assemblyLine = assemblerEngine.getAssemblyLine(model);
 		EquDefinitionContainer validDirective = null;
 		if (assemblyLine != null) {
@@ -205,13 +187,14 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	/**
 	 * Return the list of labels sorted in alphabetical order.
 	 * 
+	 * @param assemblerEngine reference on the assembler engine
 	 * @return List of labels sorted in alphabetical order
 	 */
-	private List<String> getSortedLabels() {
+	private List<String> getSortedLabels(AssemblerEngine assemblerEngine) {
 		Map<String, AbstractAssemblyLine> labelsPosition = assemblerEngine.getLabelsPositionObject();
 		List<String> labels = new ArrayList<>();
 		for (Entry<String, AbstractAssemblyLine> entry : labelsPosition.entrySet()) {
-			if (entry.getValue() instanceof AbstractInstructionAssemblyLine) {
+			if (!(entry.getValue() instanceof AbstractAssembledDirectiveLine)) {
 				labels.add(entry.getKey());
 			}
 		}
@@ -237,26 +220,6 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 			}
 		} else {
 			return false;
-		}
-	}
-
-	/**
-	 * Check if the current object is used by the class defined in parameter.
-	 * 
-	 * @param eObject reference on the object to test
-	 * @param classz Class to test
-	 * 
-	 * @return <b>true</b> is the object is used by the class, <b>false</b> otherwise
-	 */
-	private EObject getParentClass(EObject eObject, Class<?> classz) {
-		if (eObject != null) {
-			if (eObject.getClass().equals(classz)) {
-				return eObject;
-			} else {
-				return getParentClass(eObject.eContainer(),classz);
-			}
-		} else {
-			return null;
 		}
 	}
 }
