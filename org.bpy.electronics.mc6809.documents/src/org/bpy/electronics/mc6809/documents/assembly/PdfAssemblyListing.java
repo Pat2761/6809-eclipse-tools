@@ -64,7 +64,7 @@ public class PdfAssemblyListing {
 	 */
 	public void buildAssemblyFile(IFile fileToDo) {
 		IFolder folder = getOrCreateDocumentFolder(fileToDo);
-		File pdfFile = new File(folder.getLocation().toOSString(), fileToDo.getName() + ".pdf");
+		File pdfFile = new File(folder.getLocation().toOSString(), fileToDo.getName().replace(".as9", "") + ".pdf");
 
 		XtextResourceSet resourceSet = (XtextResourceSet) injector.getInstance(XtextResourceSetProvider.class).get(fileToDo.getProject());
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);

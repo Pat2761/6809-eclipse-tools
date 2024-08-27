@@ -256,7 +256,7 @@
          <menu
                label="Reports">
             <command
-                  commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+                  commandId="org.bpy.electronics.mc6809.rcp.reports.listingmenu"
                   label="Generate listing"
                   style="push">
             </command>
@@ -348,18 +348,30 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
          <command
-               commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+               commandId="org.bpy.electronics.mc6809.rcp.reports.popuplisting"
                label="Generate listing"
                style="push">
+            <visibleWhen>
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <reference
+                           definitionId="org.bpy.electronics.mc6809.rcp.assemblerFile">
+                     </reference>
+                  </iterate>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
             locationURI="popup:#TextEditorContext?endof=group.find">
          <command
-               commandId="org.bpy.electronics.mc6809.rcp.reports.listing"
+               commandId="org.bpy.electronics.mc6809.rcp.reports.popuplisting"
                label="Generate listing"
                style="push">
          </command>
@@ -515,7 +527,11 @@
             name="About">
       </command>
       <command
-            id="org.bpy.electronics.mc6809.rcp.reports.listing"
+            id="org.bpy.electronics.mc6809.rcp.reports.popuplisting"
+            name="Generate listing">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.reports.listingmenu"
             name="Generate listing">
       </command>
    </extension>
@@ -647,8 +663,12 @@
             commandId="org.bpy.electronics.mc6809.rcp.command.about">
       </handler>
       <handler
-            class="org.bpy.electronics.mc6809.rcp.handlers.GenreateListingHandler"
-            commandId="org.bpy.electronics.mc6809.rcp.reports.listing">
+            class="org.bpy.electronics.mc6809.rcp.handlers.GenreateListingHandlerMenu"
+            commandId="org.bpy.electronics.mc6809.rcp.reports.listingmenu">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.GenreateListingHandlerPopup"
+            commandId="org.bpy.electronics.mc6809.rcp.reports.popuplisting">
       </handler>
    </extension>
    <extension
@@ -702,6 +722,29 @@
             id="org.bpy.electronics.mc6809.rcp.project.image"
             natureId="org.bpy.electronics.mc6809.assemblerNature">
       </image>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.bpy.electronics.mc6809.rcp.testers.GenerateListingTester"
+            id="org.bpy.electronics.mc6809.rcp.pdflisting"
+            namespace="org.bpy.electronics.mc6809"
+            properties="isAssemblerFile"
+            type="org.eclipse.core.resources.IFile">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.bpy.electronics.mc6809.rcp.assemblerFile">
+         <adapt
+               type="org.eclipse.core.resources.IFile">
+            <test
+                  property="org.bpy.electronics.mc6809.isAssemblerFile"
+                  value="as9">
+            </test>
+         </adapt>
+      </definition>
    </extension>
 
 </plugin>
