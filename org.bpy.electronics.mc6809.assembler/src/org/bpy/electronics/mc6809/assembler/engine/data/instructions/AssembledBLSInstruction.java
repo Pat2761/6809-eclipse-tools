@@ -80,6 +80,7 @@ public class AssembledBLSInstruction extends AbstractRelativeBranchInstruction {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
 						AssemblerPackage.eINSTANCE.getBlsInstruction_Operand(), InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+				engine.addMissingLabel(label);
 			}
 		}
 	}

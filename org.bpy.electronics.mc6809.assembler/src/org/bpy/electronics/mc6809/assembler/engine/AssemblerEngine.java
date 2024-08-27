@@ -174,6 +174,8 @@ public class AssemblerEngine {
 	/** reference to the equ set manager */ 
 	private EquSetManager equSetManager;
 	
+	/** Lis of the missing labels */
+	private List<String> missingLabels;
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
 	/** Contains the collection of macro definition */
@@ -208,6 +210,7 @@ public class AssemblerEngine {
 		assembledLinesMap = new HashMap<>();
 		macroDefinitions = new HashMap<>();
 		macroCallsCounter =new HashMap<>();
+		missingLabels = new ArrayList<>();
 	}
 
 	public List<AbstractAssemblyLine> getAssembledLine() {
@@ -2790,5 +2793,25 @@ public class AssemblerEngine {
 	 */
 	public EquSetManager getEquSetManager() {
 		return equSetManager;
+	}
+
+	/**
+	 * Add a missing label in the collection of missing labels.
+	 * 
+	 * @param missingLabel missing label name
+	 */
+	public void addMissingLabel(String missingLabel) {
+		if (!missingLabels.contains(missingLabel)) {
+			missingLabels.add(missingLabel);
+		}
+	}
+
+	/**
+	 * Get the collection of missing labels
+	 * 
+	 * @return collection of missing labels
+	 */
+	public List<String> getMissingLabels() {
+		return missingLabels;
 	}
 }

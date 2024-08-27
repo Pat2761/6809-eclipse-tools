@@ -696,8 +696,7 @@ public class ExpressionParser {
 	 * @return decimal value of the binary expression
 	 * @throws UnresolvedException 
 	 */
-	private static int resolveIdentifierValue(IdentifierValue labelValue) throws UnresolvedException {
-		Model model = CommandUtil.getModel(labelValue);
+	private static int resolveIdentifierValue(IdentifierValue labelValue) {
 		Integer value = assemblerEngine.getEquSetManager().getValue(labelValue.getValue());
 		Map<String, AbstractAssemblyLine> labelsPosition = assemblerEngine.getLabelsPositionObject();
 		
@@ -712,6 +711,7 @@ public class ExpressionParser {
 							eReference, 
 							InstructionValidator.EXPRESSION_ERROR);
 					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+					assemblerEngine.addMissingLabel(labelValue.getValue());
 				} else {
 					return targetAssemblyLine.getPcAddress();
 				}

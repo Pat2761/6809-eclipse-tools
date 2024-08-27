@@ -26,7 +26,6 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager.EquDefinitionContainer;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AbstractAssembledDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.ui.IconManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -70,6 +69,19 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 					  (isUsedByClass(model, PulsInstructionImpl.class)) ||
 					  (isUsedByClass(model, PuluInstructionImpl.class))) {
 			setProposalForRegDirective(model, acceptor, context);				
+		}
+	}
+
+	@Override
+	public void completeLabel_Name(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		List<String> labels = assemblerEngine.getMissingLabels();
+		Collections.sort(labels);
+
+		for (String label : labels) {
+			acceptor.accept(
+					createCompletionProposal(label,label , IconManager.getInstance().getIcon(IconManager.CONSTANT_ICON), context));
 		}
 	}
 

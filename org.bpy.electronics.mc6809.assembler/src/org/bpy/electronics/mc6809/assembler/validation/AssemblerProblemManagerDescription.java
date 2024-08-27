@@ -7,6 +7,7 @@ class AssemblerProblemManagerDescription {
 	private String message;
 	private EStructuralFeature feature;
 	private String issueData;
+	
 	public String getMessage() {
 		return message;
 	}

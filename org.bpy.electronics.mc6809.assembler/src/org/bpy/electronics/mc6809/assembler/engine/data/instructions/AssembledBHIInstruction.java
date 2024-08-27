@@ -80,6 +80,7 @@ public class AssembledBHIInstruction extends AbstractRelativeBranchInstruction {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
 						AssemblerPackage.eINSTANCE.getBhiInstruction_Operand(), InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+				engine.addMissingLabel(label);
 			}
 		}
 	}

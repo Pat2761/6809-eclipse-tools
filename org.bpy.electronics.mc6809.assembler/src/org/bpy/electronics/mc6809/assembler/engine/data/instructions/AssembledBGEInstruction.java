@@ -80,6 +80,7 @@ public class AssembledBGEInstruction extends AbstractRelativeBranchInstruction {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
 						AssemblerPackage.eINSTANCE.getBgeInstruction_Operand(), InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+				engine.addMissingLabel(label);
 			}
 		}
 	}
