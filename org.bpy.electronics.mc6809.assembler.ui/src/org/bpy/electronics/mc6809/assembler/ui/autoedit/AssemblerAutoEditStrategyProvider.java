@@ -45,6 +45,7 @@ import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.autoedit.DefaultAutoEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import com.google.common.base.Strings;
@@ -67,52 +68,50 @@ public class AssemblerAutoEditStrategyProvider extends DefaultAutoEditStrategyPr
 
 	@Override
 	protected void configureIndentationEditStrategy(IEditStrategyAcceptor acceptor) {
+
+		IAutoEditStrategy strategy2 = this::customizedTabulationBehavior;
+		acceptor.accept(strategy2, IDocument.DEFAULT_CONTENT_TYPE);
+	}
+
+	private void customizedTabulationBehavior(IDocument document, DocumentCommand command) {
 		int instructionPosition = PreferenceManager.getInstance().getInstructionPosition();
 		int operandPosition = PreferenceManager.getInstance().getOperandPosition();
 		int commentPosition = PreferenceManager.getInstance().getCommentPosition();
 
-		IAutoEditStrategy strategy = new IAutoEditStrategy() {
+		try {
+			if ("\t".equals(command.text)) {
+				int lineNumber = document.getLineOfOffset(command.offset);
+				int lineStart = document.getLineOffset(lineNumber);
 
-			@Override
-			public void customizeDocumentCommand(IDocument document, DocumentCommand command) {
-				try {
-					if ("\t".equals(command.text)) {
-						int lineNumber = document.getLineOfOffset(command.offset);
-						int lineStart = document.getLineOffset(lineNumber);
+				int commandOffset = computeCursorPosition(document, lineStart, command.offset);
+				if (commandOffset < instructionPosition - 1) {
+					command.text = computeInstructionPositionSpace(document, command);
 
-						int commandOffset = computeCursorPosition(document, lineStart, command.offset);
-						if (commandOffset < instructionPosition - 1) {
-							command.text = computeInstructionPositionSpace(document, command);
-
-						} else if (commandOffset < operandPosition - 1) {
-							getGrammarElement(document, command.offset);
-							if (isInherent) {
-								command.text = computeCommentPositionSpace(document, command);
-							} else {
-								command.text = computeOperandPositionSpace(document, command);
-							}
-
-						} else if (commandOffset <= commentPosition - 1) {
-							command.text = computeCommentPositionSpace(document, command);
-						}
+				} else if (commandOffset < operandPosition - 1) {
+					getGrammarElement(document, command.offset);
+					if (isInherent) {
+						command.text = computeCommentPositionSpace(document, command);
+					} else {
+						command.text = computeOperandPositionSpace(document, command);
 					}
-				} catch (Exception e) {
-					logger.log(Level.SEVERE, e.getMessage());
+
+				} else if (commandOffset <= commentPosition - 1) {
+					command.text = computeCommentPositionSpace(document, command);
 				}
 			}
-		};
-
-		acceptor.accept(strategy, IDocument.DEFAULT_CONTENT_TYPE);
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
 	}
 
 	/**
 	 * Compute if it is an inherent instruction.
 	 * 
 	 * @param document reference on the assembler document
-	 * @param length Position pf the cursor
+	 * @param length   Position pf the cursor
 	 * 
-	 * @return <b>true</b> inherent instruction, <b>false</b> otherwise 
- 	 */
+	 * @return <b>true</b> inherent instruction, <b>false</b> otherwise
+	 */
 	private boolean getGrammarElement(IDocument document, int length) {
 
 		((IXtextDocument) document).readOnly(new IUnitOfWork<String, XtextResource>() {
@@ -131,7 +130,8 @@ public class AssemblerAutoEditStrategyProvider extends DefaultAutoEditStrategyPr
 			 */
 			private void checkIfInherentInstruction(EObject instructionLine) {
 				if (instructionLine != null) {
-					EObject instruction	 = ((InstructionLine)instructionLine).getInstruction();
+					EObject instruction = ((InstructionLine) instructionLine).getInstruction();
+					System.out.println("BPY:" + instruction.getClass().getSimpleName());
 					if ((instruction instanceof AbxInstruction) || (instruction instanceof DaaInstruction)
 							|| (instruction instanceof MulInstruction) || (instruction instanceof NopInstruction)
 							|| (instruction instanceof RtiInstruction) || (instruction instanceof RtsInstruction)

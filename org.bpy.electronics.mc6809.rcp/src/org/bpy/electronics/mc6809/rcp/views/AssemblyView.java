@@ -19,7 +19,8 @@
 package org.bpy.electronics.mc6809.rcp.views;
 
 import java.io.StringReader;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -144,6 +145,9 @@ import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 import com.google.inject.Inject;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.GridData;
 
 /**
  * Display the result of the assembly file in a Nebula grid.
@@ -187,6 +191,10 @@ public class AssemblyView extends ViewPart {
 	private CaretListener caretListener;
 	/** reference on the grid */
 	private Grid grid;
+
+	private TimerTask timerTask;
+
+	private Timer timer;
 	
 	/**
 	 * Constructor of the class.
@@ -195,47 +203,63 @@ public class AssemblyView extends ViewPart {
 	public AssemblyView() {
 		com.google.inject.Injector injector = new AssemblerStandaloneSetup().createInjectorAndDoEMFRegistration();
 		injector.injectMembers(this);
+		
+		timerTask = new TimerTask() {
+			
+			@Override
+			public void run() {
+				updateDisplay();
+			}
+		};
 	}
 
 	@Override
 	public void createPartControl(Composite parent) {
-
-	    grid = new Grid(parent,SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-	    grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.NORMAL));
-	    grid.setHeaderVisible(true);
 	    
-	    GridColumn column = new GridColumn(grid,SWT.NONE | SWT.TOGGLE);
-	    column.setText("N°");
-	    column.setWidth(45);
-	    column.setTree(true);
-	    GridColumn column2 = new GridColumn(grid,SWT.NONE);
-	    column2.setText("Addr");
-	    column2.setWidth(70);
-	    GridColumn column3 = new GridColumn(grid,SWT.NONE);
-	    column3.setText("Code");
-	    column3.setWidth(100);
-	    GridColumn column4 = new GridColumn(grid,SWT.NONE);
-	    column4.setText("Label");
-	    column4.setWidth(100);
+	    Composite composite = new Composite(parent, SWT.NONE);
+	    	    composite.setLayout(new GridLayout(1, false));
 	    
-	    GridColumn column5 = new GridColumn(grid,SWT.NONE);
-	    column5.setText("Instruction");
-	    column5.setWidth(100);
-	    GridColumn column6 = new GridColumn(grid,SWT.NONE);
-	    column6.setText("Operand");
-	    column6.setWidth(150);
-	    GridColumn column7 = new GridColumn(grid,SWT.NONE);
-	    column7.setText("Comment");
-	    column7.setWidth(400);
+	    	    grid = new Grid(composite,SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+	    	    grid.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+	    	    grid.setVisibleLinesColumnPack(true);
+	    	    grid.setSelectionEnabled(false);
+	    	    grid.setAutoHeight(true);
+	    	    grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.NORMAL));
+	    	    grid.setHeaderVisible(true);
+	    	    
+	    	    GridColumn column = new GridColumn(grid,SWT.NONE | SWT.TOGGLE);
+	    	    column.setText("N°");
+	    	    column.setWidth(45);
+	    	    column.setTree(true);
+	    	    GridColumn column2 = new GridColumn(grid,SWT.NONE);
+	    	    column2.setText("Addr");
+	    	    column2.setWidth(70);
+	    	    GridColumn column3 = new GridColumn(grid,SWT.NONE);
+	    	    column3.setText("Code");
+	    	    column3.setWidth(100);
+	    	    GridColumn column4 = new GridColumn(grid,SWT.NONE);
+	    	    column4.setText("Label");
+	    	    column4.setWidth(100);
+	    	    
+	    	    GridColumn column5 = new GridColumn(grid,SWT.NONE);
+	    	    column5.setText("Instruction");
+	    	    column5.setWidth(100);
+	    	    GridColumn column6 = new GridColumn(grid,SWT.NONE);
+	    	    column6.setText("Operand");
+	    	    column6.setWidth(150);
+	    	    GridColumn column7 = new GridColumn(grid,SWT.NONE);
+	    	    column7.setText("Comment");
+	    	    column7.setWidth(500);
 	    
 	    initializeListener();
+	    
 	}
 	
 	/** 
 	 * Initialize the listener needed by this view. 
 	 */
 	private void initializeListener() {
-		caretListener = event -> updateDisplay();
+		caretListener = event -> ManageUpdateDisplay();
 		
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(new IPartListener() {
 
@@ -282,6 +306,14 @@ public class AssemblyView extends ViewPart {
 		});
 	}
 
+	private void ManageUpdateDisplay() {
+		if (timer != null) {
+			timer.cancel();
+		}
+		timer = new Timer(true);
+		timer.scheduleAtFixedRate(timerTask, 0, 5000);
+	}
+
 	/**
 	 * Update the display when the content editor change.
 	 */
@@ -299,7 +331,11 @@ public class AssemblyView extends ViewPart {
 				AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model, false);
 				engine.engine(model);
 				
-				grid.clearItems();
+				while (grid.getItemCount() > 0) {
+					grid.getItems()[0].dispose();
+				}
+
+				grid.clearAll(true);
 				for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
 					
 					if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
@@ -333,6 +369,7 @@ public class AssemblyView extends ViewPart {
 				logger.log(Level.SEVERE, e.getMessage());
 			}
 		}
+		
  	}	
 
 	/**

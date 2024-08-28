@@ -4,6 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.ui.contentassist;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -135,11 +136,24 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 */
 	private void setProposalForLabelDefinitions(AssemblerEngine assemblerEngine, EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
 		List<String> labels = getSortedLabels(assemblerEngine);
+		labels.addAll(getMissingLabels(assemblerEngine));
+		Collections.sort(labels);
 		for (String label : labels) {
 			acceptor.accept(
 					createCompletionProposal(label,
 							"Branch to " + label , null, context));
 		}
+	}
+
+	/**
+	 * get the list of missing labels.
+	 * 
+	 * @param assemblerEngine reference on the assembler engine
+	 * @return List of missing labels
+	 */
+	private List<String> getMissingLabels(AssemblerEngine assemblerEngine) {
+		List<String> labels = assemblerEngine.getMissingLabels();
+		return labels;
 	}
 
 	/**

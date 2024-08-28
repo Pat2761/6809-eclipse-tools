@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.rcp.builder.AssemblerProjectNature;
+import org.bpy.electronics.mc6809.rcp.utils.AssemblerResourceVisitor;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -59,24 +60,6 @@ public class AssemblerFileSelector extends Dialog {
 
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerFileSelector.class.getSimpleName());
-
-	/** 
-	 * 
-	 * Visitor for find all assembly files.
-	 * 
-	 * @author Patrick BRIAND
-	 *
-	 */
-	public class AssemblerResourceVisitor implements IResourceVisitor {
-
-		@Override
-		public boolean visit(IResource resource) throws CoreException {
-			if ((resource instanceof IFile resourceFile) && (resourceFile.getName().toLowerCase().endsWith(".as9"))) {
-				assemblyFiles.add(resourceFile);
-			}
-			return true;
-		}
-	}
 
 	/** Widget for select the project */
 	private Combo projectSelector;
@@ -257,7 +240,7 @@ public class AssemblerFileSelector extends Dialog {
 
 				try {
 					assemblyFiles = new ArrayList<>();
-					project.accept(new AssemblerResourceVisitor());
+					project.accept(new AssemblerResourceVisitor(assemblyFiles));
 
 					String projectPath = project.getLocation().toString();
 					fileSelector.removeAll();
