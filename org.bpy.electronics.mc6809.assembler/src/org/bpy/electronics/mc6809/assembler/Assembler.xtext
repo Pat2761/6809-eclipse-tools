@@ -602,8 +602,7 @@ PuluInstruction:
 	instruction = 'PULU'
 	wsOperand=WS  
 	( 
-		  '#' (operand = IdentifierValue)
-		|  ( registers+=Register (',' registers+=Register)*)
+		operand = (PushPullIdentiferValue | ListOfRegisters)
 	)
 ;
 
@@ -622,8 +621,7 @@ PulsInstruction:
 	instruction = 'PULS'
 	wsOperand=WS  
 	( 
-		  '#' (operand = IdentifierValue)
-		|  ( registers+=Register (',' registers+=Register)*)
+		operand = (PushPullIdentiferValue | ListOfRegisters)
 	)
 ;
 
@@ -642,8 +640,7 @@ PshuInstruction:
 	instruction = 'PSHU'
 	wsOperand=WS  
 	( 
-		  '#' (operand = IdentifierValue)
-		|  ( registers+=Register (',' registers+=Register)*)
+		operand = (PushPullIdentiferValue | ListOfRegisters)
 	)
 ;
 
@@ -662,11 +659,17 @@ PshsInstruction:
 	instruction = 'PSHS'
 	wsOperand=WS  
 	( 
-		  '#' (operand = IdentifierValue)
-		|  ( registers+=Register (',' registers+=Register)*)
+		operand = (PushPullIdentiferValue | ListOfRegisters)
 	)
 ;
 
+PushPullIdentiferValue:
+	'#' identifier = IdentifierValue
+;
+
+ListOfRegisters:
+	registers+=Register (',' registers+=Register)*
+;
 /*
  * ORCC
  * s

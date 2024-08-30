@@ -368,7 +368,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -397,7 +397,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -426,7 +426,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -455,7 +455,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -484,7 +484,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -513,7 +513,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -542,7 +542,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -571,7 +571,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -600,7 +600,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine line = engine.getAssembledLine(1);
 
 			AssembledOptDirectiveLine optLine = (AssembledOptDirectiveLine) line;
@@ -630,7 +630,7 @@ public class TestOptDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC after OPT instruction", 0x4000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);

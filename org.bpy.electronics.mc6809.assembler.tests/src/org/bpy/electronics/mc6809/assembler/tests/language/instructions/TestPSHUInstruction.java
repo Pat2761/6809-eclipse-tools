@@ -123,7 +123,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 		AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(3);
 		
 		Assert.assertEquals("Check PC Counter", 0x8002, engine.getCurrentPcValue());
@@ -159,7 +159,7 @@ public class TestPSHUInstruction {
 				"Can't find RegDir definition"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(2);
 			
 			Assert.assertEquals("Check PC COunter", 0x8002, engine.getCurrentPcValue());
@@ -254,7 +254,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -283,7 +283,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -312,7 +312,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -341,7 +341,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -370,7 +370,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -399,7 +399,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -428,7 +428,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -461,7 +461,7 @@ public class TestPSHUInstruction {
 					"U register can't be push for a PSHU instruction"
 				);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -490,7 +490,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -520,7 +520,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(2);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
@@ -549,7 +549,7 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(1);
 			
 			Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());

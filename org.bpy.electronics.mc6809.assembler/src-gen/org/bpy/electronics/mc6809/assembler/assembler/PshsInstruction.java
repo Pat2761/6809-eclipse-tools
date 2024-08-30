@@ -3,8 +3,6 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getOperand <em>Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getRegisters <em>Registers</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getPshsInstruction()
@@ -77,12 +74,12 @@ public interface PshsInstruction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
-   * @see #setOperand(IdentifierValue)
+   * @see #setOperand(EObject)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getPshsInstruction_Operand()
    * @model containment="true"
    * @generated
    */
-  IdentifierValue getOperand();
+  EObject getOperand();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getOperand <em>Operand</em>}' containment reference.
@@ -92,20 +89,6 @@ public interface PshsInstruction extends EObject
    * @see #getOperand()
    * @generated
    */
-  void setOperand(IdentifierValue value);
-
-  /**
-   * Returns the value of the '<em><b>Registers</b></em>' attribute list.
-   * The list contents are of type {@link org.bpy.electronics.mc6809.assembler.assembler.Register}.
-   * The literals are from the enumeration {@link org.bpy.electronics.mc6809.assembler.assembler.Register}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Registers</em>' attribute list.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getPshsInstruction_Registers()
-   * @model unique="false"
-   * @generated
-   */
-  EList<Register> getRegisters();
+  void setOperand(EObject value);
 
 } // PshsInstruction

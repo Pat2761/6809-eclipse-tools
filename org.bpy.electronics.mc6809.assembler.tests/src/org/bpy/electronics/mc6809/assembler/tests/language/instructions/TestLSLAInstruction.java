@@ -204,7 +204,7 @@ public class TestLSLAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
 			AssembledLSLAInstruction line = (AssembledLSLAInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);

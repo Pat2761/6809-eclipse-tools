@@ -3,25 +3,18 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
-import java.util.Collection;
-
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +27,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl#getOperand <em>Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl#getRegisters <em>Registers</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,17 +81,7 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected IdentifierValue operand;
-
-  /**
-   * The cached value of the '{@link #getRegisters() <em>Registers</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRegisters()
-   * @generated
-   * @ordered
-   */
-  protected EList<Register> registers;
+  protected EObject operand;
 
   /**
    * <!-- begin-user-doc -->
@@ -178,7 +160,7 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public IdentifierValue getOperand()
+  public EObject getOperand()
   {
     return operand;
   }
@@ -188,9 +170,9 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(IdentifierValue newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(EObject newOperand, NotificationChain msgs)
   {
-    IdentifierValue oldOperand = operand;
+    EObject oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
@@ -206,7 +188,7 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setOperand(IdentifierValue newOperand)
+  public void setOperand(EObject newOperand)
   {
     if (newOperand != operand)
     {
@@ -220,21 +202,6 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.PSHS_INSTRUCTION__OPERAND, newOperand, newOperand));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<Register> getRegisters()
-  {
-    if (registers == null)
-    {
-      registers = new EDataTypeEList<Register>(Register.class, this, AssemblerPackage.PSHS_INSTRUCTION__REGISTERS);
-    }
-    return registers;
   }
 
   /**
@@ -269,8 +236,6 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
         return getWsOperand();
       case AssemblerPackage.PSHS_INSTRUCTION__OPERAND:
         return getOperand();
-      case AssemblerPackage.PSHS_INSTRUCTION__REGISTERS:
-        return getRegisters();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -280,7 +245,6 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -293,11 +257,7 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
         setWsOperand((String)newValue);
         return;
       case AssemblerPackage.PSHS_INSTRUCTION__OPERAND:
-        setOperand((IdentifierValue)newValue);
-        return;
-      case AssemblerPackage.PSHS_INSTRUCTION__REGISTERS:
-        getRegisters().clear();
-        getRegisters().addAll((Collection<? extends Register>)newValue);
+        setOperand((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -320,10 +280,7 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
         setWsOperand(WS_OPERAND_EDEFAULT);
         return;
       case AssemblerPackage.PSHS_INSTRUCTION__OPERAND:
-        setOperand((IdentifierValue)null);
-        return;
-      case AssemblerPackage.PSHS_INSTRUCTION__REGISTERS:
-        getRegisters().clear();
+        setOperand((EObject)null);
         return;
     }
     super.eUnset(featureID);
@@ -345,8 +302,6 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
         return WS_OPERAND_EDEFAULT == null ? wsOperand != null : !WS_OPERAND_EDEFAULT.equals(wsOperand);
       case AssemblerPackage.PSHS_INSTRUCTION__OPERAND:
         return operand != null;
-      case AssemblerPackage.PSHS_INSTRUCTION__REGISTERS:
-        return registers != null && !registers.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -366,8 +321,6 @@ public class PshsInstructionImpl extends MinimalEObjectImpl.Container implements
     result.append(instruction);
     result.append(", wsOperand: ");
     result.append(wsOperand);
-    result.append(", registers: ");
-    result.append(registers);
     result.append(')');
     return result.toString();
   }

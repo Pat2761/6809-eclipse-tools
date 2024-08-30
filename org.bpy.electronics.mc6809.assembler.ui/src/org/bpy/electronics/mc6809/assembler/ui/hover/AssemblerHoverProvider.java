@@ -73,7 +73,7 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 	private String getString(EObject o) {
 
 		if (o instanceof Model model) {
-			assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model, false);
+			assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model);
 		} else if (o.eContainer() instanceof InstructionLine) {
 			return getInstructionLineInformation(o);
 		} else if (o.eContainer() instanceof DirectiveLine) {

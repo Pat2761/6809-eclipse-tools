@@ -187,7 +187,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC Address", 0xC000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -277,7 +277,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledRegDirectiveLine line = (AssembledRegDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check REG value", 0x14, engine.getEquSetLabelValue(line.getLabel()).intValue());
 		} catch (Exception e) {
@@ -310,7 +310,7 @@ public class TestRegDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledRegDirectiveLine regLineCC = (AssembledRegDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check value CC", 1, regLineCC.getValue());
 			AssembledRegDirectiveLine regLineA = (AssembledRegDirectiveLine) engine.getAssembledLine(2);

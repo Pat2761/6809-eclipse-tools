@@ -126,8 +126,8 @@ public class TestBszDirective {
 			Assert.assertNotNull(result);
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
@@ -270,7 +270,7 @@ public class TestBszDirective {
 			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 	
-		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+		AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);
 		Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
 		AbstractAssemblyLine line = engine.getAssembledLine(2);
 		AssembledBszDirectiveLine bszLine = (AssembledBszDirectiveLine) line;

@@ -319,7 +319,7 @@ public class TestSetDPDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC after SETDP instruction", 0x2000, engine.getCurrentPcValue());
 			Assert.assertEquals("Check SETDP value", 0, engine.getCurrentDPPage());
 
@@ -345,7 +345,7 @@ public class TestSetDPDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC after SETDP instruction", 0x2000, engine.getCurrentPcValue());
 			Assert.assertEquals("Check SETDP value", 1, engine.getCurrentDPPage());
 

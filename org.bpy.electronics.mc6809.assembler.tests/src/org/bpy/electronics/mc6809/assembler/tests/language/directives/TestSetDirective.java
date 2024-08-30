@@ -462,7 +462,7 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check the value",128 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -484,7 +484,7 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check the value",256 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -506,7 +506,7 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check the value",256 ,engine.getEquSetManager().getValue("SetVal").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -530,7 +530,7 @@ public class TestSetDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check the value EquVal1",20 ,engine.getEquSetManager().getValue("EquVal1").intValue());
 			Assert.assertEquals("Check the value EquVal2",40 ,engine.getEquSetManager().getValue("EquVal2").intValue());
 		} catch (Exception e) {

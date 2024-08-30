@@ -76,6 +76,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -2115,47 +2116,18 @@ public class CommandUtil {
 	 * @param regDirective reference on the REG Directive
 	 * @return List of registers name
 	 */
+	public static List<String> getRegisters(ListOfRegisters listOfRegisters) {
+		List<String> registers = new ArrayList<>();
+		for (Register register : listOfRegisters.getRegisters()) {
+			registers.add(register.getLiteral());
+		}
+		return registers;
+	}
+
 	public static List<String> getRegisters(RegDirective regDirective) {
 		List<String> registers = new ArrayList<>();
-		EList<Register> options = regDirective.getOptions();
-		for (Register option : options) {
-			registers.add(option.getLiteral());
-		}
-		return registers;
-	}
-
-	public static List<String> getRegisters(PshsInstruction instruction) {
-		List<String> registers = new ArrayList<>();
-		EList<Register> options = instruction.getRegisters();
-		for (Register option : options) {
-			registers.add(option.getLiteral());
-		}
-		return registers;
-	}
-
-	public static List<String> getRegisters(PshuInstruction instruction) {
-		List<String> registers = new ArrayList<>();
-		EList<Register> options = instruction.getRegisters();
-		for (Register option : options) {
-			registers.add(option.getLiteral());
-		}
-		return registers;
-	}
-
-	public static List<String> getRegisters(PulsInstruction instruction) {
-		List<String> registers = new ArrayList<>();
-		EList<Register> options = instruction.getRegisters();
-		for (Register option : options) {
-			registers.add(option.getLiteral());
-		}
-		return registers;
-	}
-
-	public static List<String> getRegisters(PuluInstruction instruction) {
-		List<String> registers = new ArrayList<>();
-		EList<Register> options = instruction.getRegisters();
-		for (Register option : options) {
-			registers.add(option.getLiteral());
+		for (Register register : regDirective.getOptions()) {
+			registers.add(register.getLiteral());
 		}
 		return registers;
 	}
@@ -2212,4 +2184,5 @@ public class CommandUtil {
 		}
 		return null;
 	}
+
 }

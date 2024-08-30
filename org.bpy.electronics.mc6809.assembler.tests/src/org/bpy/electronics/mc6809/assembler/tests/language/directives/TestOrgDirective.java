@@ -78,7 +78,7 @@ public class TestOrgDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an ORG directive line", directiveLine.getDirective() instanceof OrgDirective);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			OrgDirective orgDirective = (OrgDirective) directiveLine.getDirective();
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
 			Assert.assertEquals("Operand must be equals to 8000", 0x8000, ExpressionParser.parse(engine,orgDirective));
@@ -110,7 +110,7 @@ public class TestOrgDirective {
 			Assert.assertTrue("Must be an ORG directive line", directiveLine.getDirective() instanceof OrgDirective);
 
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			OrgDirective orgDirective = (OrgDirective)directiveLine.getDirective();
 		 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));	
 			Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(engine, orgDirective));		
@@ -138,7 +138,7 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
@@ -177,7 +177,7 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			SourceLine line0 = result.getSourceLines().get(1);
 			DirectiveLine directiveLine0 = (DirectiveLine) line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective) directiveLine0.getDirective();
@@ -406,7 +406,7 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;
@@ -433,7 +433,7 @@ public class TestOrgDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;
@@ -463,7 +463,7 @@ public class TestOrgDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label OrgPos is already defined");
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AbstractAssemblyLine assemblyLine = engine.getAssembledLine(1);
 			Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine);
 			AssembledOrgDirectiveLine orgDirective = (AssembledOrgDirectiveLine) assemblyLine;

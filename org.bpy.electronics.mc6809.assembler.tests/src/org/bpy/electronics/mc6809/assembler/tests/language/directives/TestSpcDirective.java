@@ -433,7 +433,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC after SPC instruction", 0x8000, engine.getCurrentPcValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -456,7 +456,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledSpcDirectiveLine line = (AssembledSpcDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
 			Assert.assertEquals("Check Keep count", 2, line.getkeepCountValue());
@@ -481,7 +481,7 @@ public class TestSpcDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledSpcDirectiveLine line = (AssembledSpcDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
 			Assert.assertEquals("Check Keep count", 0, line.getkeepCountValue());

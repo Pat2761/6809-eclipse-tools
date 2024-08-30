@@ -319,7 +319,7 @@ public class TestEquDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			SourceLine line0 = result.getSourceLines().get(0);
 			DirectiveLine directiveLine0 = (DirectiveLine)line0.getLineContent();
 			EquDirective equDirective0 = (EquDirective)directiveLine0.getDirective();
@@ -592,7 +592,7 @@ public class TestEquDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			SourceLine line = result.getSourceLines().get(0);
 			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
 			
@@ -623,7 +623,7 @@ public class TestEquDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			SourceLine line = result.getSourceLines().get(0);
 			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
 			
@@ -659,7 +659,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 255", 255, ExpressionParser.parse(engine, equDirective));		
@@ -689,7 +689,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective() ;
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 65535", 65535, ExpressionParser.parse(engine, equDirective));		
@@ -719,7 +719,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 90", 90, ExpressionParser.parse(engine, equDirective));		
@@ -749,7 +749,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 65365", 65365, ExpressionParser.parse(engine, equDirective));		
@@ -779,7 +779,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 80", 80, ExpressionParser.parse(engine, equDirective));		
@@ -809,7 +809,7 @@ public class TestEquDirective {
 			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
 			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
 			Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(engine, equDirective));		
@@ -908,7 +908,7 @@ public class TestEquDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check DEUX", 2, engine.getEquSetManager().getValue("DEUX").intValue());
 			Assert.assertEquals("Check TEN", 10, engine.getEquSetManager().getValue("TEN").intValue());
 		} catch (Exception e) {
@@ -936,7 +936,7 @@ public class TestEquDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoIssues(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check DEUX", 2, engine.getEquSetManager().getValue("DEUX").intValue());
 			Assert.assertEquals("Check TEN", 10, engine.getEquSetManager().getValue("TEN").intValue());
 		} catch (Exception e) {

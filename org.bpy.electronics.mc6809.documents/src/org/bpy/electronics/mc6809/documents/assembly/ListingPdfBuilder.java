@@ -133,7 +133,7 @@ public class ListingPdfBuilder {
 			header.setHeader(pdfFile.getName());
 			writer.setPageEvent(header);
 			document.open();
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model);
 			fillDocument(engine);
 			document.close();
 		} catch (FileNotFoundException | DocumentException e) {

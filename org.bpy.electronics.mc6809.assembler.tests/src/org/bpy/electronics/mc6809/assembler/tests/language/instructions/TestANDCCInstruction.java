@@ -102,7 +102,7 @@ public class TestANDCCInstruction {
 				"Direct mode is not valid for the ANDCC instruction"
 			);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);;
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -134,7 +134,7 @@ public class TestANDCCInstruction {
 				"Extended mode is not valid for the ANDCC instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);;
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -167,7 +167,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -200,7 +200,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -233,7 +233,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -266,7 +266,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -299,7 +299,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -332,7 +332,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -365,7 +365,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -398,7 +398,7 @@ public class TestANDCCInstruction {
 				"Indexed mode is not valid for the ANDCC instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
 			Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
@@ -454,7 +454,7 @@ public class TestANDCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.getCurrentPcValue());
 				
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(3);
@@ -488,7 +488,7 @@ public class TestANDCCInstruction {
 				InstructionValidator.OVERFLOW_ERROR,	
 				"The value -129 is below the possible limit, data may be lost"
 			);
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -513,7 +513,7 @@ public class TestANDCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);;
 		} catch (Exception e) {
@@ -538,7 +538,7 @@ public class TestANDCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);;
 		} catch (Exception e) {
@@ -565,7 +565,7 @@ public class TestANDCCInstruction {
 				InstructionValidator.OVERFLOW_ERROR,	
 				"The value 256 is greater than the possible limit, data may be lost"
 			);
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledANDCCInstruction line = (AssembledANDCCInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);;
 		} catch (Exception e) {

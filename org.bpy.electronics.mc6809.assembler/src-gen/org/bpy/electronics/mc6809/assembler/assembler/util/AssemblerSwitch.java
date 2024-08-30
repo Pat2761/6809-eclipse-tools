@@ -276,6 +276,20 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.PUSH_PULL_IDENTIFER_VALUE:
+      {
+        PushPullIdentiferValue pushPullIdentiferValue = (PushPullIdentiferValue)theEObject;
+        T result = casePushPullIdentiferValue(pushPullIdentiferValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.LIST_OF_REGISTERS:
+      {
+        ListOfRegisters listOfRegisters = (ListOfRegisters)theEObject;
+        T result = caseListOfRegisters(listOfRegisters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.OR_CC_INSTRUCTION:
       {
         OrCCInstruction orCCInstruction = (OrCCInstruction)theEObject;
@@ -1465,6 +1479,38 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePshsInstruction(PshsInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Push Pull Identifer Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Push Pull Identifer Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePushPullIdentiferValue(PushPullIdentiferValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of Registers</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of Registers</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfRegisters(ListOfRegisters object)
   {
     return null;
   }

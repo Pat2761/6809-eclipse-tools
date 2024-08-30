@@ -186,6 +186,8 @@ public class AssemblerEngine {
 	private Map<String, Integer> macroCallsCounter;
 	/** Contains the current DP Page */
 	private int currentDPPage;
+	/** Reference on the EMF model */
+	private Model model;
 	
 
 	/**
@@ -238,6 +240,7 @@ public class AssemblerEngine {
 	 * @param model reference on the EMF model of the AS9 file
 	 */
 	public void engine(Model model) {
+		this.model  = model;
 		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
 		clear();
@@ -249,6 +252,11 @@ public class AssemblerEngine {
 		assemblePass1(model);
 		assemblePass2(model);
 	}
+	
+	public Model getModel() {
+		return model;
+	}
+
 	
 	private void assembleParseEquSetDirectives(Model model) {
 		for (SourceLine sourceLine : model.getSourceLines()) {

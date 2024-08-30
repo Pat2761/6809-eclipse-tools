@@ -189,7 +189,7 @@ public class TestMacroDefinition {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationTestHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("4 NOP instructions", 0x8004, engine.getCurrentPcValue());
 
 		} catch (Exception e) {
@@ -219,7 +219,7 @@ public class TestMacroDefinition {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationTestHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals(" = x8000 + 1 + (2+1+2) + (2+1+2) +1", 0x800C, engine.getCurrentPcValue());
 
 			// assembled first assembled Macro

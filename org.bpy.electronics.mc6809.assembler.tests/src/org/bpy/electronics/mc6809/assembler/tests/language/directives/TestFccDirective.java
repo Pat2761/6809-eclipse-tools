@@ -192,7 +192,7 @@ public class TestFccDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledFccDirectiveLine line = (AssembledFccDirectiveLine)engine.getAssembledLine(1);
 			Assert.assertEquals("Check Label","Label1",line.getLabel());
 			Assert.assertEquals("Check Comment","; error message",line.getComment());
@@ -232,7 +232,7 @@ public class TestFccDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledFccDirectiveLine line = (AssembledFccDirectiveLine)engine.getAssembledLine(1);
 			Assert.assertEquals("Check Label","Label1",line.getLabel());
 			Assert.assertEquals("Check Comment","; error message",line.getComment());

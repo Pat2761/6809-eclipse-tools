@@ -92,7 +92,7 @@ public class TestEndDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);
 			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(4);
 			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;
@@ -124,7 +124,7 @@ public class TestEndDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+					AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);
 			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(4);
 			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;

@@ -207,7 +207,7 @@ public class TestBGEInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8005, engine.getCurrentPcValue());
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(4); 
@@ -239,7 +239,7 @@ public class TestBGEInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(2); 
@@ -271,7 +271,7 @@ public class TestBGEInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(2); 
@@ -308,7 +308,7 @@ public class TestBGEInstruction {
 				"Overflow error, you should use long branch"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(2); 
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
@@ -339,7 +339,7 @@ public class TestBGEInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(4); 
@@ -376,7 +376,7 @@ public class TestBGEInstruction {
 			);
 	
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
 			
 			AssembledBGEInstruction line = (AssembledBGEInstruction)engine.getAssembledLine(4); 

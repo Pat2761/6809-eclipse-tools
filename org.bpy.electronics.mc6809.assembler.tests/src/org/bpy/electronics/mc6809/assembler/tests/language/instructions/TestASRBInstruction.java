@@ -196,7 +196,7 @@ public class TestASRBInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			
 			Assert.assertEquals("Check PC after instruction", 0x8001, engine.getCurrentPcValue());
 			

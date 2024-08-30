@@ -2525,18 +2525,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionPULUKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cNumberSignKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cRegistersAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_0_0 = (RuleCall)cRegistersAssignment_2_1_0.eContents().get(0);
-		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
-		private final Assignment cRegistersAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_1_1_0 = (RuleCall)cRegistersAssignment_2_1_1_1.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandPushPullIdentiferValueParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandListOfRegistersParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
 		
 		///*
 		// * PULu
@@ -2553,8 +2545,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = 'PULU'
 		//    wsOperand=WS
 		//    (
-		//          '#' (operand = IdentifierValue)
-		//        |  ( registers+=Register (',' registers+=Register)*)
+		//        operand = (PushPullIdentiferValue | ListOfRegisters)
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2562,8 +2553,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//instruction = 'PULU'
 		//wsOperand=WS
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
 		public Group getGroup() { return cGroup; }
 		
@@ -2580,43 +2570,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
-		//'#' (operand = IdentifierValue)
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//(PushPullIdentiferValue | ListOfRegisters)
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
-		//'#'
-		public Keyword getNumberSignKeyword_2_0_0() { return cNumberSignKeyword_2_0_0; }
+		//PushPullIdentiferValue
+		public RuleCall getOperandPushPullIdentiferValueParserRuleCall_2_0_0() { return cOperandPushPullIdentiferValueParserRuleCall_2_0_0; }
 		
-		//(operand = IdentifierValue)
-		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
-		
-		//IdentifierValue
-		public RuleCall getOperandIdentifierValueParserRuleCall_2_0_1_0() { return cOperandIdentifierValueParserRuleCall_2_0_1_0; }
-		
-		//( registers+=Register (',' registers+=Register)*)
-		public Group getGroup_2_1() { return cGroup_2_1; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_0() { return cRegistersAssignment_2_1_0; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_0_0() { return cRegistersRegisterEnumRuleCall_2_1_0_0; }
-		
-		//(',' registers+=Register)*
-		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
-		
-		//','
-		public Keyword getCommaKeyword_2_1_1_0() { return cCommaKeyword_2_1_1_0; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_1_1() { return cRegistersAssignment_2_1_1_1; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_1_1_0() { return cRegistersRegisterEnumRuleCall_2_1_1_1_0; }
+		//ListOfRegisters
+		public RuleCall getOperandListOfRegistersParserRuleCall_2_0_1() { return cOperandListOfRegistersParserRuleCall_2_0_1; }
 	}
 	public class PulsInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PulsInstruction");
@@ -2625,18 +2590,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionPULSKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cNumberSignKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cRegistersAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_0_0 = (RuleCall)cRegistersAssignment_2_1_0.eContents().get(0);
-		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
-		private final Assignment cRegistersAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_1_1_0 = (RuleCall)cRegistersAssignment_2_1_1_1.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandPushPullIdentiferValueParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandListOfRegistersParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
 		
 		///*
 		// * PULS
@@ -2653,8 +2610,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = 'PULS'
 		//    wsOperand=WS
 		//    (
-		//          '#' (operand = IdentifierValue)
-		//        |  ( registers+=Register (',' registers+=Register)*)
+		//        operand = (PushPullIdentiferValue | ListOfRegisters)
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2662,8 +2618,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//instruction = 'PULS'
 		//wsOperand=WS
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
 		public Group getGroup() { return cGroup; }
 		
@@ -2680,43 +2635,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
-		//'#' (operand = IdentifierValue)
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//(PushPullIdentiferValue | ListOfRegisters)
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
-		//'#'
-		public Keyword getNumberSignKeyword_2_0_0() { return cNumberSignKeyword_2_0_0; }
+		//PushPullIdentiferValue
+		public RuleCall getOperandPushPullIdentiferValueParserRuleCall_2_0_0() { return cOperandPushPullIdentiferValueParserRuleCall_2_0_0; }
 		
-		//(operand = IdentifierValue)
-		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
-		
-		//IdentifierValue
-		public RuleCall getOperandIdentifierValueParserRuleCall_2_0_1_0() { return cOperandIdentifierValueParserRuleCall_2_0_1_0; }
-		
-		//( registers+=Register (',' registers+=Register)*)
-		public Group getGroup_2_1() { return cGroup_2_1; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_0() { return cRegistersAssignment_2_1_0; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_0_0() { return cRegistersRegisterEnumRuleCall_2_1_0_0; }
-		
-		//(',' registers+=Register)*
-		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
-		
-		//','
-		public Keyword getCommaKeyword_2_1_1_0() { return cCommaKeyword_2_1_1_0; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_1_1() { return cRegistersAssignment_2_1_1_1; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_1_1_0() { return cRegistersRegisterEnumRuleCall_2_1_1_1_0; }
+		//ListOfRegisters
+		public RuleCall getOperandListOfRegistersParserRuleCall_2_0_1() { return cOperandListOfRegistersParserRuleCall_2_0_1; }
 	}
 	public class PshuInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PshuInstruction");
@@ -2725,18 +2655,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionPSHUKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cNumberSignKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cRegistersAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_0_0 = (RuleCall)cRegistersAssignment_2_1_0.eContents().get(0);
-		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
-		private final Assignment cRegistersAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_1_1_0 = (RuleCall)cRegistersAssignment_2_1_1_1.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandPushPullIdentiferValueParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandListOfRegistersParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
 		
 		///*
 		// * PSHU
@@ -2753,8 +2675,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = 'PSHU'
 		//    wsOperand=WS
 		//    (
-		//          '#' (operand = IdentifierValue)
-		//        |  ( registers+=Register (',' registers+=Register)*)
+		//        operand = (PushPullIdentiferValue | ListOfRegisters)
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2762,8 +2683,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//instruction = 'PSHU'
 		//wsOperand=WS
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
 		public Group getGroup() { return cGroup; }
 		
@@ -2780,43 +2700,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
-		//'#' (operand = IdentifierValue)
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//(PushPullIdentiferValue | ListOfRegisters)
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
-		//'#'
-		public Keyword getNumberSignKeyword_2_0_0() { return cNumberSignKeyword_2_0_0; }
+		//PushPullIdentiferValue
+		public RuleCall getOperandPushPullIdentiferValueParserRuleCall_2_0_0() { return cOperandPushPullIdentiferValueParserRuleCall_2_0_0; }
 		
-		//(operand = IdentifierValue)
-		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
-		
-		//IdentifierValue
-		public RuleCall getOperandIdentifierValueParserRuleCall_2_0_1_0() { return cOperandIdentifierValueParserRuleCall_2_0_1_0; }
-		
-		//( registers+=Register (',' registers+=Register)*)
-		public Group getGroup_2_1() { return cGroup_2_1; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_0() { return cRegistersAssignment_2_1_0; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_0_0() { return cRegistersRegisterEnumRuleCall_2_1_0_0; }
-		
-		//(',' registers+=Register)*
-		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
-		
-		//','
-		public Keyword getCommaKeyword_2_1_1_0() { return cCommaKeyword_2_1_1_0; }
-		
-		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_1_1() { return cRegistersAssignment_2_1_1_1; }
-		
-		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_1_1_0() { return cRegistersRegisterEnumRuleCall_2_1_1_1_0; }
+		//ListOfRegisters
+		public RuleCall getOperandListOfRegistersParserRuleCall_2_0_1() { return cOperandListOfRegistersParserRuleCall_2_0_1; }
 	}
 	public class PshsInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PshsInstruction");
@@ -2825,18 +2720,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionPSHSKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cNumberSignKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cRegistersAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_0_0 = (RuleCall)cRegistersAssignment_2_1_0.eContents().get(0);
-		private final Group cGroup_2_1_1 = (Group)cGroup_2_1.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_1_0 = (Keyword)cGroup_2_1_1.eContents().get(0);
-		private final Assignment cRegistersAssignment_2_1_1_1 = (Assignment)cGroup_2_1_1.eContents().get(1);
-		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_1_1_0 = (RuleCall)cRegistersAssignment_2_1_1_1.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandPushPullIdentiferValueParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandListOfRegistersParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
 		
 		///*
 		// * PSHS
@@ -2853,8 +2740,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = 'PSHS'
 		//    wsOperand=WS
 		//    (
-		//          '#' (operand = IdentifierValue)
-		//        |  ( registers+=Register (',' registers+=Register)*)
+		//        operand = (PushPullIdentiferValue | ListOfRegisters)
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2862,8 +2748,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//instruction = 'PSHS'
 		//wsOperand=WS
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
 		public Group getGroup() { return cGroup; }
 		
@@ -2880,43 +2765,78 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//(
-		//      '#' (operand = IdentifierValue)
-		//    |  ( registers+=Register (',' registers+=Register)*)
+		//    operand = (PushPullIdentiferValue | ListOfRegisters)
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
-		//'#' (operand = IdentifierValue)
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//(PushPullIdentiferValue | ListOfRegisters)
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//PushPullIdentiferValue
+		public RuleCall getOperandPushPullIdentiferValueParserRuleCall_2_0_0() { return cOperandPushPullIdentiferValueParserRuleCall_2_0_0; }
+		
+		//ListOfRegisters
+		public RuleCall getOperandListOfRegistersParserRuleCall_2_0_1() { return cOperandListOfRegistersParserRuleCall_2_0_1; }
+	}
+	public class PushPullIdentiferValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PushPullIdentiferValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIdentifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdentifierIdentifierValueParserRuleCall_1_0 = (RuleCall)cIdentifierAssignment_1.eContents().get(0);
+		
+		//PushPullIdentiferValue:
+		//    '#' identifier = IdentifierValue
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'#' identifier = IdentifierValue
+		public Group getGroup() { return cGroup; }
 		
 		//'#'
-		public Keyword getNumberSignKeyword_2_0_0() { return cNumberSignKeyword_2_0_0; }
+		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
 		
-		//(operand = IdentifierValue)
-		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
+		//identifier = IdentifierValue
+		public Assignment getIdentifierAssignment_1() { return cIdentifierAssignment_1; }
 		
 		//IdentifierValue
-		public RuleCall getOperandIdentifierValueParserRuleCall_2_0_1_0() { return cOperandIdentifierValueParserRuleCall_2_0_1_0; }
+		public RuleCall getIdentifierIdentifierValueParserRuleCall_1_0() { return cIdentifierIdentifierValueParserRuleCall_1_0; }
+	}
+	public class ListOfRegistersElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ListOfRegisters");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cRegistersAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cRegistersRegisterEnumRuleCall_0_0 = (RuleCall)cRegistersAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cRegistersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cRegistersRegisterEnumRuleCall_1_1_0 = (RuleCall)cRegistersAssignment_1_1.eContents().get(0);
 		
-		//( registers+=Register (',' registers+=Register)*)
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		//ListOfRegisters:
+		//    registers+=Register (',' registers+=Register)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//registers+=Register (',' registers+=Register)*
+		public Group getGroup() { return cGroup; }
 		
 		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_0() { return cRegistersAssignment_2_1_0; }
+		public Assignment getRegistersAssignment_0() { return cRegistersAssignment_0; }
 		
 		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_0_0() { return cRegistersRegisterEnumRuleCall_2_1_0_0; }
+		public RuleCall getRegistersRegisterEnumRuleCall_0_0() { return cRegistersRegisterEnumRuleCall_0_0; }
 		
 		//(',' registers+=Register)*
-		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//','
-		public Keyword getCommaKeyword_2_1_1_0() { return cCommaKeyword_2_1_1_0; }
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 		
 		//registers+=Register
-		public Assignment getRegistersAssignment_2_1_1_1() { return cRegistersAssignment_2_1_1_1; }
+		public Assignment getRegistersAssignment_1_1() { return cRegistersAssignment_1_1; }
 		
 		//Register
-		public RuleCall getRegistersRegisterEnumRuleCall_2_1_1_1_0() { return cRegistersRegisterEnumRuleCall_2_1_1_1_0; }
+		public RuleCall getRegistersRegisterEnumRuleCall_1_1_0() { return cRegistersRegisterEnumRuleCall_1_1_0; }
 	}
 	public class OrCCInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrCCInstruction");
@@ -10428,6 +10348,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final PulsInstructionElements pPulsInstruction;
 	private final PshuInstructionElements pPshuInstruction;
 	private final PshsInstructionElements pPshsInstruction;
+	private final PushPullIdentiferValueElements pPushPullIdentiferValue;
+	private final ListOfRegistersElements pListOfRegisters;
 	private final OrCCInstructionElements pOrCCInstruction;
 	private final OrInstructionElements pOrInstruction;
 	private final NopInstructionElements pNopInstruction;
@@ -10576,6 +10498,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pPulsInstruction = new PulsInstructionElements();
 		this.pPshuInstruction = new PshuInstructionElements();
 		this.pPshsInstruction = new PshsInstructionElements();
+		this.pPushPullIdentiferValue = new PushPullIdentiferValueElements();
+		this.pListOfRegisters = new ListOfRegistersElements();
 		this.pOrCCInstruction = new OrCCInstructionElements();
 		this.pOrInstruction = new OrInstructionElements();
 		this.pNopInstruction = new NopInstructionElements();
@@ -11468,8 +11392,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    instruction = 'PULU'
 	//    wsOperand=WS
 	//    (
-	//          '#' (operand = IdentifierValue)
-	//        |  ( registers+=Register (',' registers+=Register)*)
+	//        operand = (PushPullIdentiferValue | ListOfRegisters)
 	//    )
 	//;
 	public PuluInstructionElements getPuluInstructionAccess() {
@@ -11495,8 +11418,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    instruction = 'PULS'
 	//    wsOperand=WS
 	//    (
-	//          '#' (operand = IdentifierValue)
-	//        |  ( registers+=Register (',' registers+=Register)*)
+	//        operand = (PushPullIdentiferValue | ListOfRegisters)
 	//    )
 	//;
 	public PulsInstructionElements getPulsInstructionAccess() {
@@ -11522,8 +11444,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    instruction = 'PSHU'
 	//    wsOperand=WS
 	//    (
-	//          '#' (operand = IdentifierValue)
-	//        |  ( registers+=Register (',' registers+=Register)*)
+	//        operand = (PushPullIdentiferValue | ListOfRegisters)
 	//    )
 	//;
 	public PshuInstructionElements getPshuInstructionAccess() {
@@ -11549,8 +11470,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    instruction = 'PSHS'
 	//    wsOperand=WS
 	//    (
-	//          '#' (operand = IdentifierValue)
-	//        |  ( registers+=Register (',' registers+=Register)*)
+	//        operand = (PushPullIdentiferValue | ListOfRegisters)
 	//    )
 	//;
 	public PshsInstructionElements getPshsInstructionAccess() {
@@ -11559,6 +11479,28 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getPshsInstructionRule() {
 		return getPshsInstructionAccess().getRule();
+	}
+	
+	//PushPullIdentiferValue:
+	//    '#' identifier = IdentifierValue
+	//;
+	public PushPullIdentiferValueElements getPushPullIdentiferValueAccess() {
+		return pPushPullIdentiferValue;
+	}
+	
+	public ParserRule getPushPullIdentiferValueRule() {
+		return getPushPullIdentiferValueAccess().getRule();
+	}
+	
+	//ListOfRegisters:
+	//    registers+=Register (',' registers+=Register)*
+	//;
+	public ListOfRegistersElements getListOfRegistersAccess() {
+		return pListOfRegisters;
+	}
+	
+	public ParserRule getListOfRegistersRule() {
+		return getListOfRegistersAccess().getRule();
 	}
 	
 	///*

@@ -102,7 +102,7 @@ public class TestCWAIInstruction {
 				"Direct mode is not valid for the CWAI instruction"
 			);	
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
@@ -137,7 +137,7 @@ public class TestCWAIInstruction {
 				"Extended mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
@@ -172,7 +172,7 @@ public class TestCWAIInstruction {
 				"Extended mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
@@ -207,7 +207,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
@@ -243,7 +243,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -279,7 +279,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -315,7 +315,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -351,7 +351,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -387,7 +387,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -424,7 +424,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -460,7 +460,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -496,7 +496,7 @@ public class TestCWAIInstruction {
 				"Indexed mode is not valid for the CWAI instruction"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -555,7 +555,7 @@ public class TestCWAIInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.getCurrentPcValue());
 			
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(3);
@@ -589,7 +589,7 @@ public class TestCWAIInstruction {
 				InstructionValidator.OVERFLOW_ERROR,	
 				"The value -129 is below the possible limit, data may be lost"
 			);
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -614,7 +614,7 @@ public class TestCWAIInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -639,7 +639,7 @@ public class TestCWAIInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 		} catch (Exception e) {
@@ -667,7 +667,7 @@ public class TestCWAIInstruction {
 				"The value 256 is greater than the possible limit, data may be lost"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledCWAIInstruction line = (AssembledCWAIInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 		} catch (Exception e) {

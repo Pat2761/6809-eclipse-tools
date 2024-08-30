@@ -202,7 +202,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals(	"Check opcode", 0x1F, line.getOpcode()[0]);
@@ -232,7 +232,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -268,7 +268,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a part of itself is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -298,7 +298,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -328,7 +328,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -363,7 +363,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -397,7 +397,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -433,7 +433,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -467,7 +467,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -501,7 +501,7 @@ public class TestTFRInstruction {
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -531,7 +531,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -565,7 +565,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -600,7 +600,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a part of itself is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -630,7 +630,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -660,7 +660,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -694,7 +694,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -729,7 +729,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -763,7 +763,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -797,7 +797,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -831,7 +831,7 @@ public class TestTFRInstruction {
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -861,7 +861,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -891,7 +891,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -925,7 +925,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -959,7 +959,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -989,7 +989,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1023,7 +1023,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1059,7 +1059,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1095,7 +1095,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1131,7 +1131,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1167,7 +1167,7 @@ public class TestTFRInstruction {
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1198,7 +1198,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1228,7 +1228,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1263,7 +1263,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1293,7 +1293,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1327,7 +1327,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1361,7 +1361,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1395,7 +1395,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1429,7 +1429,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1463,7 +1463,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1498,7 +1498,7 @@ public class TestTFRInstruction {
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1532,7 +1532,7 @@ public class TestTFRInstruction {
 				"Exchanging the register D with a part of itself is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1566,7 +1566,7 @@ public class TestTFRInstruction {
 				"Exchanging the register D with a part of itself is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1600,7 +1600,7 @@ public class TestTFRInstruction {
 				"Exchanging the register D with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1635,7 +1635,7 @@ public class TestTFRInstruction {
 				"Exchanging the register D with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1669,7 +1669,7 @@ public class TestTFRInstruction {
 				"Exchanging the register D with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1699,7 +1699,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1729,7 +1729,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1759,7 +1759,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1789,7 +1789,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1819,7 +1819,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1853,7 +1853,7 @@ public class TestTFRInstruction {
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1887,7 +1887,7 @@ public class TestTFRInstruction {
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1917,7 +1917,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1951,7 +1951,7 @@ public class TestTFRInstruction {
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -1985,7 +1985,7 @@ public class TestTFRInstruction {
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2020,7 +2020,7 @@ public class TestTFRInstruction {
 				"Exchanging the register X with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2050,7 +2050,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2080,7 +2080,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2110,7 +2110,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2140,7 +2140,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2174,7 +2174,7 @@ public class TestTFRInstruction {
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2208,7 +2208,7 @@ public class TestTFRInstruction {
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2238,7 +2238,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2272,7 +2272,7 @@ public class TestTFRInstruction {
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2306,7 +2306,7 @@ public class TestTFRInstruction {
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2336,7 +2336,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2370,7 +2370,7 @@ public class TestTFRInstruction {
 				"Exchanging the register Y with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2400,7 +2400,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2430,7 +2430,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2460,7 +2460,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2494,7 +2494,7 @@ public class TestTFRInstruction {
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2528,7 +2528,7 @@ public class TestTFRInstruction {
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2558,7 +2558,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2592,7 +2592,7 @@ public class TestTFRInstruction {
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2626,7 +2626,7 @@ public class TestTFRInstruction {
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2656,7 +2656,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2686,7 +2686,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2716,7 +2716,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2750,7 +2750,7 @@ public class TestTFRInstruction {
 				"Exchanging the register U with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2780,7 +2780,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2814,7 +2814,7 @@ public class TestTFRInstruction {
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2848,7 +2848,7 @@ public class TestTFRInstruction {
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2878,7 +2878,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2912,7 +2912,7 @@ public class TestTFRInstruction {
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2947,7 +2947,7 @@ public class TestTFRInstruction {
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -2977,7 +2977,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3007,7 +3007,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3041,7 +3041,7 @@ public class TestTFRInstruction {
 				"Exchanging the register S with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3071,7 +3071,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3101,7 +3101,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3136,7 +3136,7 @@ public class TestTFRInstruction {
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3170,7 +3170,7 @@ public class TestTFRInstruction {
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3200,7 +3200,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3234,7 +3234,7 @@ public class TestTFRInstruction {
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3269,7 +3269,7 @@ public class TestTFRInstruction {
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3299,7 +3299,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3329,7 +3329,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3359,7 +3359,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3389,7 +3389,7 @@ public class TestTFRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);
@@ -3423,7 +3423,7 @@ public class TestTFRInstruction {
 				"Exchanging the register PC with itself has no effect"
 			);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledTFRInstruction line = (AssembledTFRInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Opcode length", 1, line.getOpcode().length);
 			Assert.assertEquals("Check opcode", 0x1F, line.getOpcode()[0]);

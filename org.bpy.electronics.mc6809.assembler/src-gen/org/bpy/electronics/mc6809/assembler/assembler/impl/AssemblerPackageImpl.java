@@ -249,6 +249,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass pushPullIdentiferValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfRegistersEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass orCCInstructionEClass = null;
 
   /**
@@ -2154,17 +2168,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getPuluInstruction_Registers()
-  {
-        return (EAttribute)getPuluInstruction().getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getPulsInstruction()
   {
     if (pulsInstructionEClass == null)
@@ -2205,17 +2208,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getPulsInstruction_Operand()
   {
         return (EReference)getPulsInstruction().getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getPulsInstruction_Registers()
-  {
-        return (EAttribute)getPulsInstruction().getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2272,17 +2264,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getPshuInstruction_Registers()
-  {
-        return (EAttribute)getPshuInstruction().getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getPshsInstruction()
   {
     if (pshsInstructionEClass == null)
@@ -2331,9 +2312,50 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getPshsInstruction_Registers()
+  public EClass getPushPullIdentiferValue()
   {
-        return (EAttribute)getPshsInstruction().getEStructuralFeatures().get(3);
+    if (pushPullIdentiferValueEClass == null)
+    {
+      pushPullIdentiferValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(29);
+    }
+    return pushPullIdentiferValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPushPullIdentiferValue_Identifier()
+  {
+        return (EReference)getPushPullIdentiferValue().getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getListOfRegisters()
+  {
+    if (listOfRegistersEClass == null)
+    {
+      listOfRegistersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(30);
+    }
+    return listOfRegistersEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getListOfRegisters_Registers()
+  {
+        return (EAttribute)getListOfRegisters().getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2346,7 +2368,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (orCCInstructionEClass == null)
     {
-      orCCInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(29);
+      orCCInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(31);
     }
     return orCCInstructionEClass;
   }
@@ -2394,7 +2416,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (orInstructionEClass == null)
     {
-      orInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(30);
+      orInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(32);
     }
     return orInstructionEClass;
   }
@@ -2442,7 +2464,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (nopInstructionEClass == null)
     {
-      nopInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(31);
+      nopInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(33);
     }
     return nopInstructionEClass;
   }
@@ -2468,7 +2490,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (negInstructionEClass == null)
     {
-      negInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(32);
+      negInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(34);
     }
     return negInstructionEClass;
   }
@@ -2516,7 +2538,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (mulInstructionEClass == null)
     {
-      mulInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(33);
+      mulInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(35);
     }
     return mulInstructionEClass;
   }
@@ -2542,7 +2564,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (lsrInstructionEClass == null)
     {
-      lsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(34);
+      lsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(36);
     }
     return lsrInstructionEClass;
   }
@@ -2590,7 +2612,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (lslInstructionEClass == null)
     {
-      lslInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(35);
+      lslInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(37);
     }
     return lslInstructionEClass;
   }
@@ -2638,7 +2660,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (leaInstructionEClass == null)
     {
-      leaInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(36);
+      leaInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(38);
     }
     return leaInstructionEClass;
   }
@@ -2686,7 +2708,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (ldInstructionEClass == null)
     {
-      ldInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(37);
+      ldInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(39);
     }
     return ldInstructionEClass;
   }
@@ -2734,7 +2756,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (jsrInstructionEClass == null)
     {
-      jsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(38);
+      jsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(40);
     }
     return jsrInstructionEClass;
   }
@@ -2782,7 +2804,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (jmpInstructionEClass == null)
     {
-      jmpInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(39);
+      jmpInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(41);
     }
     return jmpInstructionEClass;
   }
@@ -2830,7 +2852,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (incInstructionEClass == null)
     {
-      incInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(40);
+      incInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(42);
     }
     return incInstructionEClass;
   }
@@ -2878,7 +2900,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (exgInstructionEClass == null)
     {
-      exgInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(41);
+      exgInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(43);
     }
     return exgInstructionEClass;
   }
@@ -2937,7 +2959,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (eorInstructionEClass == null)
     {
-      eorInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(42);
+      eorInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(44);
     }
     return eorInstructionEClass;
   }
@@ -2985,7 +3007,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (decInstructionEClass == null)
     {
-      decInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(43);
+      decInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(45);
     }
     return decInstructionEClass;
   }
@@ -3033,7 +3055,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (daaInstructionEClass == null)
     {
-      daaInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(44);
+      daaInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(46);
     }
     return daaInstructionEClass;
   }
@@ -3059,7 +3081,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (cwaiInstructionEClass == null)
     {
-      cwaiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(45);
+      cwaiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(47);
     }
     return cwaiInstructionEClass;
   }
@@ -3107,7 +3129,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (comInstructionEClass == null)
     {
-      comInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(46);
+      comInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(48);
     }
     return comInstructionEClass;
   }
@@ -3155,7 +3177,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (cmpInstructionEClass == null)
     {
-      cmpInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(47);
+      cmpInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(49);
     }
     return cmpInstructionEClass;
   }
@@ -3203,7 +3225,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (clrInstructionEClass == null)
     {
-      clrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(48);
+      clrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(50);
     }
     return clrInstructionEClass;
   }
@@ -3251,7 +3273,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bvsInstructionEClass == null)
     {
-      bvsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(49);
+      bvsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(51);
     }
     return bvsInstructionEClass;
   }
@@ -3299,7 +3321,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bvcInstructionEClass == null)
     {
-      bvcInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(50);
+      bvcInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(52);
     }
     return bvcInstructionEClass;
   }
@@ -3347,7 +3369,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bsrInstructionEClass == null)
     {
-      bsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(51);
+      bsrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(53);
     }
     return bsrInstructionEClass;
   }
@@ -3395,7 +3417,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (brnInstructionEClass == null)
     {
-      brnInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(52);
+      brnInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(54);
     }
     return brnInstructionEClass;
   }
@@ -3443,7 +3465,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (braInstructionEClass == null)
     {
-      braInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(53);
+      braInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(55);
     }
     return braInstructionEClass;
   }
@@ -3491,7 +3513,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bplInstructionEClass == null)
     {
-      bplInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(54);
+      bplInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(56);
     }
     return bplInstructionEClass;
   }
@@ -3539,7 +3561,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bneInstructionEClass == null)
     {
-      bneInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(55);
+      bneInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(57);
     }
     return bneInstructionEClass;
   }
@@ -3587,7 +3609,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bmiInstructionEClass == null)
     {
-      bmiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(56);
+      bmiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(58);
     }
     return bmiInstructionEClass;
   }
@@ -3635,7 +3657,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bltInstructionEClass == null)
     {
-      bltInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(57);
+      bltInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(59);
     }
     return bltInstructionEClass;
   }
@@ -3683,7 +3705,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (blsInstructionEClass == null)
     {
-      blsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(58);
+      blsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(60);
     }
     return blsInstructionEClass;
   }
@@ -3731,7 +3753,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bloInstructionEClass == null)
     {
-      bloInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(59);
+      bloInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(61);
     }
     return bloInstructionEClass;
   }
@@ -3779,7 +3801,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bleInstructionEClass == null)
     {
-      bleInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(60);
+      bleInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(62);
     }
     return bleInstructionEClass;
   }
@@ -3827,7 +3849,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bitInstructionEClass == null)
     {
-      bitInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(61);
+      bitInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(63);
     }
     return bitInstructionEClass;
   }
@@ -3875,7 +3897,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bhsInstructionEClass == null)
     {
-      bhsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(62);
+      bhsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(64);
     }
     return bhsInstructionEClass;
   }
@@ -3923,7 +3945,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bhiInstructionEClass == null)
     {
-      bhiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(63);
+      bhiInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(65);
     }
     return bhiInstructionEClass;
   }
@@ -3971,7 +3993,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bgtInstructionEClass == null)
     {
-      bgtInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(64);
+      bgtInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(66);
     }
     return bgtInstructionEClass;
   }
@@ -4019,7 +4041,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bgeInstructionEClass == null)
     {
-      bgeInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(65);
+      bgeInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(67);
     }
     return bgeInstructionEClass;
   }
@@ -4067,7 +4089,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (beqInstructionEClass == null)
     {
-      beqInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(66);
+      beqInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(68);
     }
     return beqInstructionEClass;
   }
@@ -4115,7 +4137,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bcsInstructionEClass == null)
     {
-      bcsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(67);
+      bcsInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(69);
     }
     return bcsInstructionEClass;
   }
@@ -4163,7 +4185,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bccInstructionEClass == null)
     {
-      bccInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(68);
+      bccInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(70);
     }
     return bccInstructionEClass;
   }
@@ -4211,7 +4233,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (asrInstructionEClass == null)
     {
-      asrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(69);
+      asrInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(71);
     }
     return asrInstructionEClass;
   }
@@ -4259,7 +4281,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (aslInstructionEClass == null)
     {
-      aslInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(70);
+      aslInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(72);
     }
     return aslInstructionEClass;
   }
@@ -4307,7 +4329,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (andCCInstructionEClass == null)
     {
-      andCCInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(71);
+      andCCInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(73);
     }
     return andCCInstructionEClass;
   }
@@ -4355,7 +4377,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (andInstructionEClass == null)
     {
-      andInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(72);
+      andInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(74);
     }
     return andInstructionEClass;
   }
@@ -4403,7 +4425,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (adddInstructionEClass == null)
     {
-      adddInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(73);
+      adddInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(75);
     }
     return adddInstructionEClass;
   }
@@ -4451,7 +4473,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (addInstructionEClass == null)
     {
-      addInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(74);
+      addInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(76);
     }
     return addInstructionEClass;
   }
@@ -4499,7 +4521,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (adcInstructionEClass == null)
     {
-      adcInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(75);
+      adcInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(77);
     }
     return adcInstructionEClass;
   }
@@ -4547,7 +4569,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (abxInstructionEClass == null)
     {
-      abxInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(76);
+      abxInstructionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(78);
     }
     return abxInstructionEClass;
   }
@@ -4573,7 +4595,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (extendedIndirectOperandEClass == null)
     {
-      extendedIndirectOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(77);
+      extendedIndirectOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(79);
     }
     return extendedIndirectOperandEClass;
   }
@@ -4599,7 +4621,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (extendedOperandEClass == null)
     {
-      extendedOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(78);
+      extendedOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(80);
     }
     return extendedOperandEClass;
   }
@@ -4625,7 +4647,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (directOperandEClass == null)
     {
-      directOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(79);
+      directOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(81);
     }
     return directOperandEClass;
   }
@@ -4651,7 +4673,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (immediatOperandEClass == null)
     {
-      immediatOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(80);
+      immediatOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(82);
     }
     return immediatOperandEClass;
   }
@@ -4677,7 +4699,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (indexedOperandEClass == null)
     {
-      indexedOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(81);
+      indexedOperandEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(83);
     }
     return indexedOperandEClass;
   }
@@ -4703,7 +4725,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (constantIndexedModeEClass == null)
     {
-      constantIndexedModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(82);
+      constantIndexedModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(84);
     }
     return constantIndexedModeEClass;
   }
@@ -4740,7 +4762,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (constantIndexedMovingIndirectModeEClass == null)
     {
-      constantIndexedMovingIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(83);
+      constantIndexedMovingIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(85);
     }
     return constantIndexedMovingIndirectModeEClass;
   }
@@ -4777,7 +4799,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (accumulatorMovingModeEClass == null)
     {
-      accumulatorMovingModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(84);
+      accumulatorMovingModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(86);
     }
     return accumulatorMovingModeEClass;
   }
@@ -4814,7 +4836,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (accumulatorMovingIndirectModeEClass == null)
     {
-      accumulatorMovingIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(85);
+      accumulatorMovingIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(87);
     }
     return accumulatorMovingIndirectModeEClass;
   }
@@ -4851,7 +4873,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (autoIncDecModeEClass == null)
     {
-      autoIncDecModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(86);
+      autoIncDecModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(88);
     }
     return autoIncDecModeEClass;
   }
@@ -4899,7 +4921,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (autoIncDecIndirectModeEClass == null)
     {
-      autoIncDecIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(87);
+      autoIncDecIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(89);
     }
     return autoIncDecIndirectModeEClass;
   }
@@ -4947,7 +4969,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (relatifToPCModeEClass == null)
     {
-      relatifToPCModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(88);
+      relatifToPCModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(90);
     }
     return relatifToPCModeEClass;
   }
@@ -4984,7 +5006,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (relatifToPCIndirectModeEClass == null)
     {
-      relatifToPCIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(89);
+      relatifToPCIndirectModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(91);
     }
     return relatifToPCIndirectModeEClass;
   }
@@ -5021,7 +5043,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (relativeModeEClass == null)
     {
-      relativeModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(90);
+      relativeModeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(92);
     }
     return relativeModeEClass;
   }
@@ -5058,7 +5080,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (directiveLineEClass == null)
     {
-      directiveLineEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(91);
+      directiveLineEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(93);
     }
     return directiveLineEClass;
   }
@@ -5128,7 +5150,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (setDPDirectiveEClass == null)
     {
-      setDPDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(92);
+      setDPDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(94);
     }
     return setDPDirectiveEClass;
   }
@@ -5176,7 +5198,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (fccDirectiveEClass == null)
     {
-      fccDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(93);
+      fccDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(95);
     }
     return fccDirectiveEClass;
   }
@@ -5224,7 +5246,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (regDirectiveEClass == null)
     {
-      regDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(94);
+      regDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(96);
     }
     return regDirectiveEClass;
   }
@@ -5272,7 +5294,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (spcDirectiveEClass == null)
     {
-      spcDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(95);
+      spcDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(97);
     }
     return spcDirectiveEClass;
   }
@@ -5331,7 +5353,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (namDirectiveEClass == null)
     {
-      namDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(96);
+      namDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(98);
     }
     return namDirectiveEClass;
   }
@@ -5379,7 +5401,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (pagDirectiveEClass == null)
     {
-      pagDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(97);
+      pagDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(99);
     }
     return pagDirectiveEClass;
   }
@@ -5427,7 +5449,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (optDirectiveEClass == null)
     {
-      optDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(98);
+      optDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(100);
     }
     return optDirectiveEClass;
   }
@@ -5475,7 +5497,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (failDirectiveEClass == null)
     {
-      failDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(99);
+      failDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(101);
     }
     return failDirectiveEClass;
   }
@@ -5501,7 +5523,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (setDirectiveEClass == null)
     {
-      setDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(100);
+      setDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(102);
     }
     return setDirectiveEClass;
   }
@@ -5560,7 +5582,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (fillDirectiveEClass == null)
     {
-      fillDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(101);
+      fillDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(103);
     }
     return fillDirectiveEClass;
   }
@@ -5619,7 +5641,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (bszDirectiveEClass == null)
     {
-      bszDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(102);
+      bszDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(104);
     }
     return bszDirectiveEClass;
   }
@@ -5667,7 +5689,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (fdbDirectiveEClass == null)
     {
-      fdbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(103);
+      fdbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(105);
     }
     return fdbDirectiveEClass;
   }
@@ -5715,7 +5737,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (fcbDirectiveEClass == null)
     {
-      fcbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(104);
+      fcbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(106);
     }
     return fcbDirectiveEClass;
   }
@@ -5763,7 +5785,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (rmbDirectiveEClass == null)
     {
-      rmbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(105);
+      rmbDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(107);
     }
     return rmbDirectiveEClass;
   }
@@ -5822,7 +5844,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (endDirectiveEClass == null)
     {
-      endDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(106);
+      endDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(108);
     }
     return endDirectiveEClass;
   }
@@ -5870,7 +5892,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (orgDirectiveEClass == null)
     {
-      orgDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(107);
+      orgDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(109);
     }
     return orgDirectiveEClass;
   }
@@ -5929,7 +5951,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (equDirectiveEClass == null)
     {
-      equDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(108);
+      equDirectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(110);
     }
     return equDirectiveEClass;
   }
@@ -5988,7 +6010,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (listOfExpressionEClass == null)
     {
-      listOfExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(109);
+      listOfExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(111);
     }
     return listOfExpressionEClass;
   }
@@ -6025,7 +6047,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (commaExpressionEClass == null)
     {
-      commaExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(110);
+      commaExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(112);
     }
     return commaExpressionEClass;
   }
@@ -6062,7 +6084,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (expressionEClass == null)
     {
-      expressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(111);
+      expressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(113);
     }
     return expressionEClass;
   }
@@ -6099,7 +6121,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (numericalValueEClass == null)
     {
-      numericalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(112);
+      numericalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(114);
     }
     return numericalValueEClass;
   }
@@ -6125,7 +6147,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (identifierValueEClass == null)
     {
-      identifierValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(113);
+      identifierValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(115);
     }
     return identifierValueEClass;
   }
@@ -6151,7 +6173,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (stringValueEClass == null)
     {
-      stringValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(114);
+      stringValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(116);
     }
     return stringValueEClass;
   }
@@ -6177,7 +6199,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (decimalValueEClass == null)
     {
-      decimalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(115);
+      decimalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(117);
     }
     return decimalValueEClass;
   }
@@ -6214,7 +6236,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (hexaDecimalValueEClass == null)
     {
-      hexaDecimalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(116);
+      hexaDecimalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(118);
     }
     return hexaDecimalValueEClass;
   }
@@ -6240,7 +6262,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (octalValueEClass == null)
     {
-      octalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(117);
+      octalValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(119);
     }
     return octalValueEClass;
   }
@@ -6266,7 +6288,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (binaryValueEClass == null)
     {
-      binaryValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(118);
+      binaryValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(120);
     }
     return binaryValueEClass;
   }
@@ -6292,7 +6314,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (characterValueEClass == null)
     {
-      characterValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(119);
+      characterValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(121);
     }
     return characterValueEClass;
   }
@@ -6318,7 +6340,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (multiplicationEClass == null)
     {
-      multiplicationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(122);
+      multiplicationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(124);
     }
     return multiplicationEClass;
   }
@@ -6366,7 +6388,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (divisionEClass == null)
     {
-      divisionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(123);
+      divisionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(125);
     }
     return divisionEClass;
   }
@@ -6414,7 +6436,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (moduloEClass == null)
     {
-      moduloEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(124);
+      moduloEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(126);
     }
     return moduloEClass;
   }
@@ -6462,7 +6484,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (additionEClass == null)
     {
-      additionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(125);
+      additionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(127);
     }
     return additionEClass;
   }
@@ -6499,7 +6521,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (substractionEClass == null)
     {
-      substractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(126);
+      substractionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(128);
     }
     return substractionEClass;
   }
@@ -6536,7 +6558,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (leftShiftEClass == null)
     {
-      leftShiftEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(127);
+      leftShiftEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(129);
     }
     return leftShiftEClass;
   }
@@ -6573,7 +6595,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (rightShiftEClass == null)
     {
-      rightShiftEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(128);
+      rightShiftEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(130);
     }
     return rightShiftEClass;
   }
@@ -6610,7 +6632,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (andEClass == null)
     {
-      andEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(129);
+      andEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(131);
     }
     return andEClass;
   }
@@ -6647,7 +6669,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (orEClass == null)
     {
-      orEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(130);
+      orEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(132);
     }
     return orEClass;
   }
@@ -6684,7 +6706,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (xorEClass == null)
     {
-      xorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(131);
+      xorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(133);
     }
     return xorEClass;
   }
@@ -6721,7 +6743,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (notEClass == null)
     {
-      notEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(132);
+      notEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(134);
     }
     return notEClass;
   }
@@ -6736,7 +6758,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (assemblyOptionEEnum == null)
     {
-      assemblyOptionEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(120);
+      assemblyOptionEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(122);
     }
     return assemblyOptionEEnum;
   }
@@ -6751,7 +6773,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   {
     if (registerEEnum == null)
     {
-      registerEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(121);
+      registerEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(AssemblerPackage.eNS_URI).getEClassifiers().get(123);
     }
     return registerEEnum;
   }

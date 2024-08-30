@@ -84,6 +84,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
@@ -108,6 +109,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PushPullIdentiferValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
@@ -423,6 +425,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.LIST_OF_EXPRESSION:
 				sequence_ListOfExpression(context, (ListOfExpression) semanticObject); 
 				return; 
+			case AssemblerPackage.LIST_OF_REGISTERS:
+				sequence_ListOfRegisters(context, (ListOfRegisters) semanticObject); 
+				return; 
 			case AssemblerPackage.LSL_INSTRUCTION:
 				sequence_LslInstruction(context, (LslInstruction) semanticObject); 
 				return; 
@@ -494,6 +499,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.PULU_INSTRUCTION:
 				sequence_PuluInstruction(context, (PuluInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.PUSH_PULL_IDENTIFER_VALUE:
+				sequence_PushPullIdentiferValue(context, (PushPullIdentiferValue) semanticObject); 
 				return; 
 			case AssemblerPackage.REG_DIRECTIVE:
 				sequence_RegDirective(context, (RegDirective) semanticObject); 
@@ -2136,6 +2144,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ListOfRegisters returns ListOfRegisters
+	 *
+	 * Constraint:
+	 *     (registers+=Register registers+=Register*)
+	 * </pre>
+	 */
+	protected void sequence_ListOfRegisters(ISerializationContext context, ListOfRegisters semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     LslInstruction returns LslInstruction
 	 *
 	 * Constraint:
@@ -2645,7 +2667,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshsInstruction returns PshsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHS' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHS' wsOperand=WS (operand=PushPullIdentiferValue | operand=ListOfRegisters))
 	 * </pre>
 	 */
 	protected void sequence_PshsInstruction(ISerializationContext context, PshsInstruction semanticObject) {
@@ -2659,7 +2681,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshuInstruction returns PshuInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHU' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHU' wsOperand=WS (operand=PushPullIdentiferValue | operand=ListOfRegisters))
 	 * </pre>
 	 */
 	protected void sequence_PshuInstruction(ISerializationContext context, PshuInstruction semanticObject) {
@@ -2673,7 +2695,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PulsInstruction returns PulsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULS' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULS' wsOperand=WS (operand=PushPullIdentiferValue | operand=ListOfRegisters))
 	 * </pre>
 	 */
 	protected void sequence_PulsInstruction(ISerializationContext context, PulsInstruction semanticObject) {
@@ -2687,11 +2709,31 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PuluInstruction returns PuluInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULU' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULU' wsOperand=WS (operand=PushPullIdentiferValue | operand=ListOfRegisters))
 	 * </pre>
 	 */
 	protected void sequence_PuluInstruction(ISerializationContext context, PuluInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     PushPullIdentiferValue returns PushPullIdentiferValue
+	 *
+	 * Constraint:
+	 *     identifier=IdentifierValue
+	 * </pre>
+	 */
+	protected void sequence_PushPullIdentiferValue(ISerializationContext context, PushPullIdentiferValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getPushPullIdentiferValue_Identifier()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getPushPullIdentiferValue_Identifier()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPushPullIdentiferValueAccess().getIdentifierIdentifierValueParserRuleCall_1_0(), semanticObject.getIdentifier());
+		feeder.finish();
 	}
 	
 	

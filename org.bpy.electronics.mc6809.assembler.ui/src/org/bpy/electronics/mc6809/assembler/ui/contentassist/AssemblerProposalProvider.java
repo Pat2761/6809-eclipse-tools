@@ -48,7 +48,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	public void completeRelativeMode_Offset(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 
-		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
 		setProposalForLabelDefinitions(assemblerEngine, model, acceptor, context);
 	}
 	
@@ -56,7 +56,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	public void complete_IdentifierValue(EObject model, RuleCall ruleCall, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
 
-		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
 		
 		if (isUsedByClass(model, Expression.class)) {
 			setProposalForConstantDefintions(model, acceptor, context);
@@ -76,7 +76,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	@Override
 	public void completeLabel_Name(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
 		List<String> labels = assemblerEngine.getMissingLabels();
 		Collections.sort(labels);
 
@@ -100,7 +100,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param context content assist context
 	 */
 	private void setProposalForRegDirective(EObject regDirective, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
-		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
 		Map<String, List<EquDefinitionContainer>> containers = assemblerEngine.getEquSetManager().getEquContainer();
 		for (Entry<String, List<EquDefinitionContainer>> entry : containers.entrySet()) {
 			
@@ -164,7 +164,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @param context content assist context
 	 */
 	private void setProposalForConstantDefintions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
-		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel(), true);
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
 		Map<String, List<EquDefinitionContainer>> csts = assemblerEngine.getEquSetManager().getEquContainer();
 
 		for (Entry<String, List<EquDefinitionContainer>> entry : csts.entrySet()) {

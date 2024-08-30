@@ -103,7 +103,7 @@ public class TestFillDirective {
 			DirectiveLine directiveLine1 = (DirectiveLine)line1.getLineContent();
 			Assert.assertTrue("Must be an FILL directive line", directiveLine1.getDirective() instanceof FillDirective);
 	
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
 			AbstractAssemblyLine line = engine.getAssembledLine(6);
 			AssembledFillDirectiveLine bszLine = (AssembledFillDirectiveLine)line;

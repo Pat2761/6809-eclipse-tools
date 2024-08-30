@@ -204,7 +204,7 @@ public class TestSWI2Instruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC Counter after instruction", 0x8002, engine.getCurrentPcValue());
 			AssembledSWI2Instruction line = (AssembledSWI2Instruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);

@@ -221,6 +221,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createPshsInstructionAdapter();
       }
       @Override
+      public Adapter casePushPullIdentiferValue(PushPullIdentiferValue object)
+      {
+        return createPushPullIdentiferValueAdapter();
+      }
+      @Override
+      public Adapter caseListOfRegisters(ListOfRegisters object)
+      {
+        return createListOfRegistersAdapter();
+      }
+      @Override
       public Adapter caseOrCCInstruction(OrCCInstruction object)
       {
         return createOrCCInstructionAdapter();
@@ -1183,6 +1193,36 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPshsInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.PushPullIdentiferValue <em>Push Pull Identifer Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PushPullIdentiferValue
+   * @generated
+   */
+  public Adapter createPushPullIdentiferValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters <em>List Of Registers</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters
+   * @generated
+   */
+  public Adapter createListOfRegistersAdapter()
   {
     return null;
   }

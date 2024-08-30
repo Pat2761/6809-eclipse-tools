@@ -31,17 +31,13 @@ import org.eclipse.xtext.validation.ComposedChecks;
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
+
+/** WARNING : AssemblerPrepareValidation must be always the first validation call */
 @ComposedChecks(validators = {DirectiveValidator.class, InstructionValidator.class})
 public class AssemblerValidator extends AbstractAssemblerValidator {
 	
 	public static final String INVALID_FIGURE = "invalidFigure";
 
-	@Check
-	public void prepareValidation(Model model) {
-//		AssemblerEngine.getInstance().clear();
-//		AssemblerEngine.getInstance().engine(model);
-	}
-	
 	@Check
 	public void checkFigureInBinary(BinaryValue binaryValue) {
 		String strVal = binaryValue.getValue();

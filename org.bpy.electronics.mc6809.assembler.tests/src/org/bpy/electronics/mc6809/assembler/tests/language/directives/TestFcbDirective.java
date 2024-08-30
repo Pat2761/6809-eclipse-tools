@@ -342,7 +342,7 @@ public class TestFcbDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			AssembledFcbDirectiveLine line = (AssembledFcbDirectiveLine)engine.getAssembledLine(3);
 			Assert.assertEquals("Check Label","Label2",line.getLabel());
 			Assert.assertEquals("Check Comment","; a comment",line.getComment());

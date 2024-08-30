@@ -146,25 +146,27 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PuluInstruction/operand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PulsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PulsInstruction/operand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PshuInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshuInstruction/operand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PshsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshsInstruction/operand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/registers"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//PushPullIdentiferValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PushPullIdentiferValue/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ListOfRegisters">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ListOfRegisters/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrCCInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrCCInstruction/instruction"/>

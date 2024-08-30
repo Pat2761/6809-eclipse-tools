@@ -209,7 +209,7 @@ public class TestLBRNInstruction {
 				"You can use a short branch"
 			);
 		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(4);
@@ -243,7 +243,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(4);
@@ -281,7 +281,7 @@ public class TestLBRNInstruction {
 				"You can use a short branch"
 			);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(2);
@@ -315,7 +315,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8085, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(2);
@@ -349,7 +349,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(2);
@@ -385,7 +385,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
@@ -418,7 +418,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(4);
@@ -452,7 +452,7 @@ public class TestLBRNInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
 
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
 			
 			AssembledLBRNInstruction line = (AssembledLBRNInstruction)engine.getAssembledLine(4);

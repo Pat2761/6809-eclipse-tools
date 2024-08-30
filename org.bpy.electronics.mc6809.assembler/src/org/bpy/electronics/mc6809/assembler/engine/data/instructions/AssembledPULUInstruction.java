@@ -19,7 +19,10 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PushPullIdentiferValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
@@ -41,22 +44,22 @@ public class AssembledPULUInstruction extends AbstractInstructionAssemblyLine {
 
 	/** Reference on the instruction */
 	private PuluInstruction instruction;
-	
+
 	/**
 	 * Constructor of the class.
-    *
+	 *
 	 * @param engine reference on the assembler engine.
 	 */
 	public AssembledPULUInstruction(AssemblerEngine engine) {
 		super(engine);
 	}
-	
+
 	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
-	 * @param instruction reference on the EMF instruction line
+	 * @param instruction    reference on the EMF instruction line
 	 * @param currentPcValue state of the current PC
-	 * @param lineNumber line number in assembly file
+	 * @param lineNumber     line number in assembly file
 	 */
 	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
 		this.instruction = (PuluInstruction) instruction;
@@ -66,7 +69,7 @@ public class AssembledPULUInstruction extends AbstractInstructionAssemblyLine {
 		this.lineNumber = lineNumber;
 		assembleInstruction();
 		operandBytes = new int[1];
-		operandBytes[0]=0;
+		operandBytes[0] = 0;
 	}
 
 	@Override
@@ -85,69 +88,60 @@ public class AssembledPULUInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		opcodeBytes =  new int[] {0x37};
+		opcodeBytes = new int[] { 0x37 };
 	}
 
 	@Override
 	public void setOperand(AddressingMode mode) {
 		if (instruction.getOperand() != null) {
-			parseIdentiferOperand();
-			
-		} else if (instruction.getRegisters() != null) {
-			
-			if (checkUnexpectedRegister(instruction.getRegisters(), Register.U)) {
-			
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"U register can't be pull for a PULU instruction", 
-						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), 
-						InstructionValidator.ILLEGAL_REGISTER);
-				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			if (instruction.getOperand() instanceof PushPullIdentiferValue identifierValue) {
+				parseIdentifierOperand(identifierValue.getIdentifier());
+			} else if (instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+				if (checkUnexpectedRegister(listOfRegisters.getRegisters(), Register.U)) {
 
-			} 
-			int convertedValue = CommandUtil.getRegisterConvertionValue(instruction.getRegisters());
-			operandBytes = new int[] {convertedValue&0xFF};
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription("U register can't be pull for a PULU instruction",
+							AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), InstructionValidator.ILLEGAL_REGISTER);
+					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+
+				}
+				int convertedValue = CommandUtil.getRegisterConvertionValue(listOfRegisters.getRegisters());
+				operandBytes = new int[] { convertedValue & 0xFF };
+			}
 		}
 	}
 
 	/**
-	 * Parse the identifier value of PULU instruction  
+	 * Parse the identifier value of PULU instruction
 	 */
-	private void parseIdentiferOperand() {
+	private void parseIdentifierOperand(IdentifierValue identifierValue) {
 		Integer convertedValue = null;
 
 		AssemblerEngine engine = getAssemblerEngine(instruction);
-		EObject directive = engine.getEquSetManager().getInstruction(instruction.getOperand().getValue());
+		EObject directive = engine.getEquSetManager().getInstruction(identifierValue.getValue());
 		if ((directive != null) && (directive instanceof RegDirective regDirective)) {
 			if (checkUnexpectedRegister(regDirective.getOptions(), Register.U)) {
-				
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"U register can't be pull for a PULU instruction", 
-						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), 
-						InstructionValidator.ILLEGAL_REGISTER);
+
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription("U register can't be pull for a PULU instruction",
+						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
 		}
-		
-		
+
 		try {
 			convertedValue = ExpressionParser.parseIdentifer(assemblerEngine, instruction,
-					AssemblerPackage.eINSTANCE.getPuluInstruction_Operand()
-					,instruction.getOperand());
+					AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), identifierValue);
 		} catch (UnresolvedException e) {
-			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-					e.getDescriptor().getMessage(), 
-					e.getDescriptor().getReference(), 
-					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(e.getDescriptor().getMessage(),
+					e.getDescriptor().getReference(), InstructionValidator.EXPRESSION_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}
 
 		if (convertedValue != null) {
-			operandBytes = new int[] {convertedValue&0xFF};
+			operandBytes = new int[] { convertedValue & 0xFF };
 		} else {
-			opcodeBytes =  new int[] {0x3F};
+			opcodeBytes = new int[] { 0x3F };
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
-					AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(), 
+					"REG " + identifierValue.getValue() + " directive is not defined", AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 					InstructionValidator.MISSING_DIRECTIVE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}
@@ -160,14 +154,14 @@ public class AssembledPULUInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public EObject getInstructionOperand() {
-		return null;
+		return instruction.getOperand();
 	}
-	
+
 	@Override
 	public String getInstructionName() {
 		return instruction.getInstruction();
 	}
-	
+
 	@Override
 	public String getOperandString() {
 		return getOperand(instruction.getOperand());

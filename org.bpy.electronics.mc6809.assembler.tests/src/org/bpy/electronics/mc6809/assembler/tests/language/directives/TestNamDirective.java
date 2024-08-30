@@ -226,7 +226,7 @@ public class TestNamDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result, false);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
 			Assert.assertEquals("Check PC after NAM instruction", 0x4000, engine.getCurrentPcValue());		
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);

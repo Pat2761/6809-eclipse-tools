@@ -19,7 +19,10 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PushPullIdentiferValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
@@ -90,33 +93,34 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void setOperand(AddressingMode mode) {
-		if (instruction.getOperand() != null) {
-			parseIdentiferOperand();
-			
-		} else if (instruction.getRegisters() != null) {
-			
-			if (checkUnexpectedRegister(instruction.getRegisters(), Register.U)) {
-			
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"U register can't be push for a PSHU instruction", 
-						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
-						InstructionValidator.ILLEGAL_REGISTER);
-				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+		
+		if (instruction.getOperand() != null)  {
+			if (instruction.getOperand() instanceof PushPullIdentiferValue identifierValue) {
+				parseIdentifierOperand(identifierValue.getIdentifier());
+			} else if (instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+				if (checkUnexpectedRegister(listOfRegisters.getRegisters(), Register.U)) {
+					
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							"U register can't be push for a PSHU instruction", 
+							AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
+							InstructionValidator.ILLEGAL_REGISTER);
+					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 
-			} 
-			int convertedValue = CommandUtil.getRegisterConvertionValue(instruction.getRegisters());
-			operandBytes = new int[] {convertedValue&0xFF};
-		}
+				} 
+				int convertedValue = CommandUtil.getRegisterConvertionValue(listOfRegisters.getRegisters());
+				operandBytes = new int[] {convertedValue&0xFF};
+			}
+		}	
 	}
 
 	/**
 	 * Parse the identifier value of PULU instruction  
 	 */
-	private void parseIdentiferOperand() {
+	private void parseIdentifierOperand(IdentifierValue identifierValue) {
 		Integer convertedValue = null;
 
 		AssemblerEngine engine = getAssemblerEngine(instruction);
-		EObject directive = engine.getEquSetManager().getInstruction(instruction.getOperand().getValue());
+		EObject directive = engine.getEquSetManager().getInstruction(identifierValue.getValue());
 		if ((directive != null) && (directive instanceof RegDirective regDirective)) {
 			if (checkUnexpectedRegister(regDirective.getOptions(), Register.U)) {
 				
@@ -132,7 +136,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 		try {
 			convertedValue = ExpressionParser.parseIdentifer(assemblerEngine, instruction,
 					AssemblerPackage.eINSTANCE.getPshuInstruction_Operand()
-					,instruction.getOperand());
+					,identifierValue);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
@@ -146,7 +150,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 		} else {
 			opcodeBytes =  new int[] {0x3F};
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
+					"REG " + identifierValue.getValue() + " directive is not defined" , 
 					AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
 					InstructionValidator.MISSING_DIRECTIVE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
@@ -160,7 +164,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public EObject getInstructionOperand() {
-		return null;
+		return instruction.getOperand();
 	}
 	
 	@Override

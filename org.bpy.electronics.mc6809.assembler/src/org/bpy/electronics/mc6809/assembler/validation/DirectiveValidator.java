@@ -55,7 +55,6 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcD
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 public class DirectiveValidator extends AbstractAssemblerValidator {
 
@@ -69,13 +68,9 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	
 	private AssemblerEngine assemblerEngine;
 	
-	@Override
-	public void register(EValidatorRegistrar registrar) {
-	}
-	
 	@Check
 	public void assembleModel(Model model) {
-		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model, true);
+		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel(model);
 	}
 	
 	/**

@@ -285,6 +285,24 @@ public interface AssemblerFactory extends EFactory
   PshsInstruction createPshsInstruction();
 
   /**
+   * Returns a new object of class '<em>Push Pull Identifer Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Push Pull Identifer Value</em>'.
+   * @generated
+   */
+  PushPullIdentiferValue createPushPullIdentiferValue();
+
+  /**
+   * Returns a new object of class '<em>List Of Registers</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of Registers</em>'.
+   * @generated
+   */
+  ListOfRegisters createListOfRegisters();
+
+  /**
    * Returns a new object of class '<em>Or CC Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

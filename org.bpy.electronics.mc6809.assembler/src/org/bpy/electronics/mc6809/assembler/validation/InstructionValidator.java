@@ -63,6 +63,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
@@ -75,14 +76,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -92,10 +91,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.xtext.validation.Check;
 
@@ -440,8 +435,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	@Check
 	public void checkInstructionLine(PshsInstruction instruction) {
 		
-		if (instruction.getOperand() == null) {
-			List<String> regs = CommandUtil.getRegisters(instruction);
+		if ( (instruction.getOperand() != null) && instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+			List<String> regs = CommandUtil.getRegisters(listOfRegisters);
 			List<String> testReg = new ArrayList<>();
 			
 			if (regs.isEmpty()) {
@@ -490,8 +485,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	@Check
 	public void checkInstructionLine(PshuInstruction instruction) {
 		
-		if (instruction.getOperand() == null) {
-			List<String> regs = CommandUtil.getRegisters(instruction);
+		if ( (instruction.getOperand() != null) && instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+			List<String> regs = CommandUtil.getRegisters(listOfRegisters);
 			List<String> testReg = new ArrayList<>();
 			
 			if (regs.isEmpty()) {
@@ -540,8 +535,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	@Check
 	public void checkInstructionLine(PulsInstruction instruction) {
 		
-		if (instruction.getOperand() == null) {
-			List<String> regs = CommandUtil.getRegisters(instruction);
+		if ( (instruction.getOperand() != null) && instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+			List<String> regs = CommandUtil.getRegisters(listOfRegisters);
 			List<String> testReg = new ArrayList<>();
 			
 			if (regs.isEmpty()) {
@@ -590,8 +585,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	@Check
 	public void checkInstructionLine(PuluInstruction instruction) {
 		
-		if (instruction.getOperand() == null) {
-			List<String> regs = CommandUtil.getRegisters(instruction);
+		if ( (instruction.getOperand() != null) && instruction.getOperand() instanceof ListOfRegisters listOfRegisters) {
+			List<String> regs = CommandUtil.getRegisters(listOfRegisters);
 			List<String> testReg = new ArrayList<>();
 			
 			if (regs.isEmpty()) {

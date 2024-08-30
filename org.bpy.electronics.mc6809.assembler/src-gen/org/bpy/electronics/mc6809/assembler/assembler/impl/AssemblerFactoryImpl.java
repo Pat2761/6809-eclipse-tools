@@ -95,6 +95,8 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.PULS_INSTRUCTION: return createPulsInstruction();
       case AssemblerPackage.PSHU_INSTRUCTION: return createPshuInstruction();
       case AssemblerPackage.PSHS_INSTRUCTION: return createPshsInstruction();
+      case AssemblerPackage.PUSH_PULL_IDENTIFER_VALUE: return createPushPullIdentiferValue();
+      case AssemblerPackage.LIST_OF_REGISTERS: return createListOfRegisters();
       case AssemblerPackage.OR_CC_INSTRUCTION: return createOrCCInstruction();
       case AssemblerPackage.OR_INSTRUCTION: return createOrInstruction();
       case AssemblerPackage.NOP_INSTRUCTION: return createNopInstruction();
@@ -586,6 +588,30 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     PshsInstructionImpl pshsInstruction = new PshsInstructionImpl();
     return pshsInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PushPullIdentiferValue createPushPullIdentiferValue()
+  {
+    PushPullIdentiferValueImpl pushPullIdentiferValue = new PushPullIdentiferValueImpl();
+    return pushPullIdentiferValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ListOfRegisters createListOfRegisters()
+  {
+    ListOfRegistersImpl listOfRegisters = new ListOfRegistersImpl();
+    return listOfRegisters;
   }
 
   /**
