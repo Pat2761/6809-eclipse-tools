@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getWsOperand <em>Ws Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg1 <em>Reg1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg2 <em>Reg2</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getTfrInstruction()
@@ -71,53 +70,25 @@ public interface TfrInstruction extends EObject
   void setWsOperand(String value);
 
   /**
-   * Returns the value of the '<em><b>Reg1</b></em>' attribute.
-   * The literals are from the enumeration {@link org.bpy.electronics.mc6809.assembler.assembler.Register}.
+   * Returns the value of the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg1</em>' attribute.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-   * @see #setReg1(Register)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getTfrInstruction_Reg1()
-   * @model
+   * @return the value of the '<em>Operand</em>' containment reference.
+   * @see #setOperand(TfrExgRegisters)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getTfrInstruction_Operand()
+   * @model containment="true"
    * @generated
    */
-  Register getReg1();
+  TfrExgRegisters getOperand();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg1 <em>Reg1</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getOperand <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg1</em>' attribute.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-   * @see #getReg1()
+   * @param value the new value of the '<em>Operand</em>' containment reference.
+   * @see #getOperand()
    * @generated
    */
-  void setReg1(Register value);
-
-  /**
-   * Returns the value of the '<em><b>Reg2</b></em>' attribute.
-   * The literals are from the enumeration {@link org.bpy.electronics.mc6809.assembler.assembler.Register}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Reg2</em>' attribute.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-   * @see #setReg2(Register)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getTfrInstruction_Reg2()
-   * @model
-   * @generated
-   */
-  Register getReg2();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg2 <em>Reg2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reg2</em>' attribute.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-   * @see #getReg2()
-   * @generated
-   */
-  void setReg2(Register value);
+  void setOperand(TfrExgRegisters value);
 
 } // TfrInstruction

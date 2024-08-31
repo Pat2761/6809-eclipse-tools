@@ -132,6 +132,15 @@ public interface AssemblerFactory extends EFactory
   TfrInstruction createTfrInstruction();
 
   /**
+   * Returns a new object of class '<em>Tfr Exg Registers</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tfr Exg Registers</em>'.
+   * @generated
+   */
+  TfrExgRegisters createTfrExgRegisters();
+
+  /**
    * Returns a new object of class '<em>Sync Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

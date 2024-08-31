@@ -136,6 +136,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrExgRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
@@ -580,6 +581,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SYNC_INSTRUCTION:
 				sequence_SyncInstruction(context, (SyncInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.TFR_EXG_REGISTERS:
+				sequence_TfrExgRegisters(context, (TfrExgRegisters) semanticObject); 
 				return; 
 			case AssemblerPackage.TFR_INSTRUCTION:
 				sequence_TfrInstruction(context, (TfrInstruction) semanticObject); 
@@ -1604,7 +1608,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExgInstruction returns ExgInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='EXG' wsOperand=WS reg1=Register reg2=Register)
+	 *     (instruction='EXG' wsOperand=WS operand=TfrExgRegisters)
 	 * </pre>
 	 */
 	protected void sequence_ExgInstruction(ISerializationContext context, ExgInstruction semanticObject) {
@@ -1613,16 +1617,13 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Instruction()));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_WsOperand()) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_WsOperand()));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg1()) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg1()));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg2()) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg2()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExgInstructionAccess().getInstructionEXGKeyword_0_0(), semanticObject.getInstruction());
 		feeder.accept(grammarAccess.getExgInstructionAccess().getWsOperandWSTerminalRuleCall_1_0(), semanticObject.getWsOperand());
-		feeder.accept(grammarAccess.getExgInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
-		feeder.accept(grammarAccess.getExgInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
+		feeder.accept(grammarAccess.getExgInstructionAccess().getOperandTfrExgRegistersParserRuleCall_2_0(), semanticObject.getOperand());
 		feeder.finish();
 	}
 	
@@ -3264,10 +3265,33 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     TfrExgRegisters returns TfrExgRegisters
+	 *
+	 * Constraint:
+	 *     (reg1=Register reg2=Register)
+	 * </pre>
+	 */
+	protected void sequence_TfrExgRegisters(ISerializationContext context, TfrExgRegisters semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrExgRegisters_Reg1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrExgRegisters_Reg1()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrExgRegisters_Reg2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrExgRegisters_Reg2()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTfrExgRegistersAccess().getReg1RegisterEnumRuleCall_0_0(), semanticObject.getReg1());
+		feeder.accept(grammarAccess.getTfrExgRegistersAccess().getReg2RegisterEnumRuleCall_2_0(), semanticObject.getReg2());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     TfrInstruction returns TfrInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='TFR' wsOperand=WS reg1=Register reg2=Register)
+	 *     (instruction='TFR' wsOperand=WS operand=TfrExgRegisters)
 	 * </pre>
 	 */
 	protected void sequence_TfrInstruction(ISerializationContext context, TfrInstruction semanticObject) {
@@ -3276,16 +3300,13 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Instruction()));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_WsOperand()) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_WsOperand()));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg1()) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg1()));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2()) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getInstructionTFRKeyword_0_0(), semanticObject.getInstruction());
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getWsOperandWSTerminalRuleCall_1_0(), semanticObject.getWsOperand());
-		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
-		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
+		feeder.accept(grammarAccess.getTfrInstructionAccess().getOperandTfrExgRegistersParserRuleCall_2_0(), semanticObject.getOperand());
 		feeder.finish();
 	}
 	

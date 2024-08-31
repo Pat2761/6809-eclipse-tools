@@ -89,6 +89,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrExgRegisters;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -977,6 +978,11 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 		exposeProblems(instruction);
 	}
 
+	@Check
+	public void checkTfrExgRegisters(TfrExgRegisters tfrExgRegisters) {
+		exposeProblems(tfrExgRegisters);
+	}
+	
 	/**
 	 * Declare problems and warnings detected during the assembly step for an Instruction
 	 * 

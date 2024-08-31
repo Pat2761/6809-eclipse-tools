@@ -170,6 +170,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLabelAccess().getGroup(), "rule__Label__Group__0");
 			builder.put(grammarAccess.getTstInstructionAccess().getGroup_1(), "rule__TstInstruction__Group_1__0");
 			builder.put(grammarAccess.getTfrInstructionAccess().getGroup(), "rule__TfrInstruction__Group__0");
+			builder.put(grammarAccess.getTfrExgRegistersAccess().getGroup(), "rule__TfrExgRegisters__Group__0");
 			builder.put(grammarAccess.getSubdInstructionAccess().getGroup(), "rule__SubdInstruction__Group__0");
 			builder.put(grammarAccess.getSubInstructionAccess().getGroup(), "rule__SubInstruction__Group__0");
 			builder.put(grammarAccess.getStInstructionAccess().getGroup(), "rule__StInstruction__Group__0");
@@ -419,8 +420,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTstInstructionAccess().getOperandAssignment_1_2(), "rule__TstInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getTfrInstructionAccess().getInstructionAssignment_0(), "rule__TfrInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getTfrInstructionAccess().getWsOperandAssignment_1(), "rule__TfrInstruction__WsOperandAssignment_1");
-			builder.put(grammarAccess.getTfrInstructionAccess().getReg1Assignment_2(), "rule__TfrInstruction__Reg1Assignment_2");
-			builder.put(grammarAccess.getTfrInstructionAccess().getReg2Assignment_4(), "rule__TfrInstruction__Reg2Assignment_4");
+			builder.put(grammarAccess.getTfrInstructionAccess().getOperandAssignment_2(), "rule__TfrInstruction__OperandAssignment_2");
+			builder.put(grammarAccess.getTfrExgRegistersAccess().getReg1Assignment_0(), "rule__TfrExgRegisters__Reg1Assignment_0");
+			builder.put(grammarAccess.getTfrExgRegistersAccess().getReg2Assignment_2(), "rule__TfrExgRegisters__Reg2Assignment_2");
 			builder.put(grammarAccess.getSyncInstructionAccess().getInstructionAssignment(), "rule__SyncInstruction__InstructionAssignment");
 			builder.put(grammarAccess.getSwi3InstructionAccess().getInstructionAssignment(), "rule__Swi3Instruction__InstructionAssignment");
 			builder.put(grammarAccess.getSwi2InstructionAccess().getInstructionAssignment(), "rule__Swi2Instruction__InstructionAssignment");
@@ -501,8 +503,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIncInstructionAccess().getOperandAssignment_1_2(), "rule__IncInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getExgInstructionAccess().getInstructionAssignment_0(), "rule__ExgInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getExgInstructionAccess().getWsOperandAssignment_1(), "rule__ExgInstruction__WsOperandAssignment_1");
-			builder.put(grammarAccess.getExgInstructionAccess().getReg1Assignment_2(), "rule__ExgInstruction__Reg1Assignment_2");
-			builder.put(grammarAccess.getExgInstructionAccess().getReg2Assignment_4(), "rule__ExgInstruction__Reg2Assignment_4");
+			builder.put(grammarAccess.getExgInstructionAccess().getOperandAssignment_2(), "rule__ExgInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getEorInstructionAccess().getInstructionAssignment_0(), "rule__EorInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getEorInstructionAccess().getWsOperandAssignment_1(), "rule__EorInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getEorInstructionAccess().getOperandAssignment_2(), "rule__EorInstruction__OperandAssignment_2");

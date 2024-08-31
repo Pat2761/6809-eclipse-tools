@@ -197,7 +197,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with itself has no effect"
 			);
@@ -263,7 +263,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a part of itself is suspicious"
 			);
@@ -358,7 +358,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
@@ -392,7 +392,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
@@ -428,7 +428,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
@@ -462,7 +462,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
@@ -496,7 +496,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register A with a 16 bits register is suspicious"
 			);
@@ -560,7 +560,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with itself has no effect"
 			);
@@ -595,7 +595,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a part of itself is suspicious"
 			);
@@ -689,7 +689,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
@@ -724,7 +724,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
@@ -758,7 +758,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
@@ -792,7 +792,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
@@ -826,7 +826,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register B with a 16 bits register is suspicious"
 			);
@@ -920,7 +920,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -954,7 +954,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with itself has no effect"
 			);
@@ -1018,7 +1018,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -1054,7 +1054,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -1090,7 +1090,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -1126,7 +1126,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -1162,7 +1162,7 @@ public class TestEXGInstruction {
 			validationHelper.assertNoErrors(result);		
 	
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register CC with a 16 bits register is suspicious"
 			);
@@ -1258,7 +1258,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1322,7 +1322,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with itself has no effect"
 			);
@@ -1356,7 +1356,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1390,7 +1390,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1424,7 +1424,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1458,7 +1458,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1493,7 +1493,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register DP with a 16 bits register is suspicious"
 			);
@@ -1527,7 +1527,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register D with a part of itself is suspicious"
 			);
@@ -1561,7 +1561,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register D with a part of itself is suspicious"
 			);
@@ -1595,7 +1595,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register D with itself has no effect"
 			);
@@ -1630,7 +1630,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register D with a 8 bits register is suspicious"
 			);
@@ -1664,7 +1664,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register D with a 8 bits register is suspicious"
 			);
@@ -1848,7 +1848,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
@@ -1882,7 +1882,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
@@ -1946,7 +1946,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
@@ -1980,7 +1980,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register X with a 8 bits register is suspicious"
 			);
@@ -2015,7 +2015,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register X with itself has no effect"
 			);
@@ -2169,7 +2169,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
@@ -2203,7 +2203,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
@@ -2267,7 +2267,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
@@ -2301,7 +2301,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register Y with a 8 bits register is suspicious"
 			);
@@ -2365,7 +2365,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register Y with itself has no effect"
 			);
@@ -2489,7 +2489,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
@@ -2523,7 +2523,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
@@ -2587,7 +2587,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
@@ -2621,7 +2621,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register U with a 8 bits register is suspicious"
 			);
@@ -2745,7 +2745,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register U with itself has no effect"
 			);
@@ -2809,7 +2809,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
@@ -2843,7 +2843,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
@@ -2907,7 +2907,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
@@ -2942,7 +2942,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register S with a 8 bits register is suspicious"
 			);
@@ -3036,7 +3036,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register S with itself has no effect"
 			);
@@ -3131,7 +3131,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
@@ -3165,7 +3165,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
@@ -3229,7 +3229,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
@@ -3264,7 +3264,7 @@ public class TestEXGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register PC with a 8 bits register is suspicious"
 			);
@@ -3418,7 +3418,7 @@ public class TestEXGInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
-				AssemblerPackage.eINSTANCE.getExgInstruction(),
+				AssemblerPackage.eINSTANCE.getTfrExgRegisters(),
 				InstructionValidator.ILLEGAL_EXCHANGE,
 				"Exchanging the register PC with itself has no effect"
 			);

@@ -145,4 +145,27 @@ public class AssemblerManager {
 		engines.put(fileName, assemblerEngine);
 		return assemblerEngine;
 	}
+
+	/**
+	 * 
+	 * @param model         reference on the model
+	 * @param forceAssembly <b>true</b> force assembly, <b>false</b> otherwise
+	 * 
+	 * @return reference on the assembly result
+	 */
+	public AssemblerEngine getAssemblyModel(Model model, boolean forceAssembly) {
+		String fileName = "";
+		if (model.eResource().getURI().scheme() != null) {
+			// normal mode
+			IFile file = ResourceUtil.getFile(model.eResource());
+			fileName = file.getFullPath().toOSString();
+		} else {
+			// Mode unit test
+			fileName = "junit.as9";
+		}
+		if (forceAssembly && engines.containsKey(fileName)) {
+			engines.remove(fileName);
+		}
+		return getAssemblyModel(model);
+	}
 }

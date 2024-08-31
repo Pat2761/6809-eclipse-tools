@@ -1477,11 +1477,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionTFRKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Assignment cReg1Assignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cReg1RegisterEnumRuleCall_2_0 = (RuleCall)cReg1Assignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cReg2Assignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cReg2RegisterEnumRuleCall_4_0 = (RuleCall)cReg2Assignment_4.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandTfrExgRegistersParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
 		///*
 		// * TFR
@@ -1505,12 +1502,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//TfrInstruction:
 		//    instruction = ('TFR' )
-		//    wsOperand=WS reg1=Register ',' reg2=Register
+		//    wsOperand=WS operand = TfrExgRegisters
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//instruction = ('TFR' )
-		//wsOperand=WS reg1=Register ',' reg2=Register
+		//wsOperand=WS operand = TfrExgRegisters
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('TFR' )
@@ -1525,20 +1522,43 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
+		//operand = TfrExgRegisters
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//TfrExgRegisters
+		public RuleCall getOperandTfrExgRegistersParserRuleCall_2_0() { return cOperandTfrExgRegistersParserRuleCall_2_0; }
+	}
+	public class TfrExgRegistersElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.TfrExgRegisters");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cReg1Assignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cReg1RegisterEnumRuleCall_0_0 = (RuleCall)cReg1Assignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cReg2Assignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cReg2RegisterEnumRuleCall_2_0 = (RuleCall)cReg2Assignment_2.eContents().get(0);
+		
+		//TfrExgRegisters:
+		//    reg1=Register ',' reg2=Register
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//reg1=Register ',' reg2=Register
+		public Group getGroup() { return cGroup; }
+		
 		//reg1=Register
-		public Assignment getReg1Assignment_2() { return cReg1Assignment_2; }
+		public Assignment getReg1Assignment_0() { return cReg1Assignment_0; }
 		
 		//Register
-		public RuleCall getReg1RegisterEnumRuleCall_2_0() { return cReg1RegisterEnumRuleCall_2_0; }
+		public RuleCall getReg1RegisterEnumRuleCall_0_0() { return cReg1RegisterEnumRuleCall_0_0; }
 		
 		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
 		
 		//reg2=Register
-		public Assignment getReg2Assignment_4() { return cReg2Assignment_4; }
+		public Assignment getReg2Assignment_2() { return cReg2Assignment_2; }
 		
 		//Register
-		public RuleCall getReg2RegisterEnumRuleCall_4_0() { return cReg2RegisterEnumRuleCall_4_0; }
+		public RuleCall getReg2RegisterEnumRuleCall_2_0() { return cReg2RegisterEnumRuleCall_2_0; }
 	}
 	public class SyncInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SyncInstruction");
@@ -4117,11 +4137,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionEXGKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
-		private final Assignment cReg1Assignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cReg1RegisterEnumRuleCall_2_0 = (RuleCall)cReg1Assignment_2.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cReg2Assignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cReg2RegisterEnumRuleCall_4_0 = (RuleCall)cReg2Assignment_4.eContents().get(0);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandTfrExgRegistersParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
 		///*
 		// * EXG
@@ -4145,12 +4162,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//ExgInstruction:
 		//    instruction = ('EXG' )
-		//    wsOperand=WS reg1=Register ',' reg2=Register
+		//    wsOperand=WS operand=TfrExgRegisters
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//instruction = ('EXG' )
-		//wsOperand=WS reg1=Register ',' reg2=Register
+		//wsOperand=WS operand=TfrExgRegisters
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('EXG' )
@@ -4165,20 +4182,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
-		//reg1=Register
-		public Assignment getReg1Assignment_2() { return cReg1Assignment_2; }
+		//operand=TfrExgRegisters
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
-		//Register
-		public RuleCall getReg1RegisterEnumRuleCall_2_0() { return cReg1RegisterEnumRuleCall_2_0; }
-		
-		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
-		
-		//reg2=Register
-		public Assignment getReg2Assignment_4() { return cReg2Assignment_4; }
-		
-		//Register
-		public RuleCall getReg2RegisterEnumRuleCall_4_0() { return cReg2RegisterEnumRuleCall_4_0; }
+		//TfrExgRegisters
+		public RuleCall getOperandTfrExgRegistersParserRuleCall_2_0() { return cOperandTfrExgRegistersParserRuleCall_2_0; }
 	}
 	public class EorInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EorInstruction");
@@ -10331,6 +10339,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final LabelElements pLabel;
 	private final TstInstructionElements pTstInstruction;
 	private final TfrInstructionElements pTfrInstruction;
+	private final TfrExgRegistersElements pTfrExgRegisters;
 	private final SyncInstructionElements pSyncInstruction;
 	private final Swi3InstructionElements pSwi3Instruction;
 	private final Swi2InstructionElements pSwi2Instruction;
@@ -10481,6 +10490,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pLabel = new LabelElements();
 		this.pTstInstruction = new TstInstructionElements();
 		this.pTfrInstruction = new TfrInstructionElements();
+		this.pTfrExgRegisters = new TfrExgRegistersElements();
 		this.pSyncInstruction = new SyncInstructionElements();
 		this.pSwi3Instruction = new Swi3InstructionElements();
 		this.pSwi2Instruction = new Swi2InstructionElements();
@@ -10926,7 +10936,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//TfrInstruction:
 	//    instruction = ('TFR' )
-	//    wsOperand=WS reg1=Register ',' reg2=Register
+	//    wsOperand=WS operand = TfrExgRegisters
 	//;
 	public TfrInstructionElements getTfrInstructionAccess() {
 		return pTfrInstruction;
@@ -10934,6 +10944,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getTfrInstructionRule() {
 		return getTfrInstructionAccess().getRule();
+	}
+	
+	//TfrExgRegisters:
+	//    reg1=Register ',' reg2=Register
+	//;
+	public TfrExgRegistersElements getTfrExgRegistersAccess() {
+		return pTfrExgRegisters;
+	}
+	
+	public ParserRule getTfrExgRegistersRule() {
+		return getTfrExgRegistersAccess().getRule();
 	}
 	
 	///*
@@ -11947,7 +11968,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//ExgInstruction:
 	//    instruction = ('EXG' )
-	//    wsOperand=WS reg1=Register ',' reg2=Register
+	//    wsOperand=WS operand=TfrExgRegisters
 	//;
 	public ExgInstructionElements getExgInstructionAccess() {
 		return pExgInstruction;

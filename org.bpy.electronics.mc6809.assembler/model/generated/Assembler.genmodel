@@ -88,8 +88,11 @@
     <genClasses ecoreClass="Assembler.ecore#//TfrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/wsOperand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/reg1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/reg2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//TfrInstruction/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//TfrExgRegisters">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrExgRegisters/reg1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrExgRegisters/reg2"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SyncInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SyncInstruction/instruction"/>
@@ -227,8 +230,7 @@
     <genClasses ecoreClass="Assembler.ecore#//ExgInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/wsOperand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/reg1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/reg2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ExgInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//EorInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EorInstruction/instruction"/>

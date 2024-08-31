@@ -157,6 +157,13 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.TFR_EXG_REGISTERS:
+      {
+        TfrExgRegisters tfrExgRegisters = (TfrExgRegisters)theEObject;
+        T result = caseTfrExgRegisters(tfrExgRegisters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.SYNC_INSTRUCTION:
       {
         SyncInstruction syncInstruction = (SyncInstruction)theEObject;
@@ -1207,6 +1214,22 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTfrInstruction(TfrInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tfr Exg Registers</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tfr Exg Registers</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTfrExgRegisters(TfrExgRegisters object)
   {
     return null;
   }

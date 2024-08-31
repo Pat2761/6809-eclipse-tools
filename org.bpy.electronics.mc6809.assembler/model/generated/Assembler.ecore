@@ -73,6 +73,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="TfrInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsOperand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//TfrExgRegisters"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TfrExgRegisters">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reg1" eType="#//Register"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reg2" eType="#//Register"/>
   </eClassifiers>
@@ -234,8 +238,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExgInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsOperand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reg1" eType="#//Register"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reg2" eType="#//Register"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//TfrExgRegisters"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EorInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

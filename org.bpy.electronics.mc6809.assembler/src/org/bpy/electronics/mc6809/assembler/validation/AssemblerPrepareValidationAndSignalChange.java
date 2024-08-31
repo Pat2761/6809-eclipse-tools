@@ -34,7 +34,7 @@ public class AssemblerPrepareValidationAndSignalChange  extends AbstractAssemble
 
 	@Check
 	public void assembleModel(Model model) {
-//		AssemblerManager.getInstance().getAssemblyModel(model);
+		AssemblerManager.getInstance().getAssemblyModel(model,true);
 	}
 						
 }

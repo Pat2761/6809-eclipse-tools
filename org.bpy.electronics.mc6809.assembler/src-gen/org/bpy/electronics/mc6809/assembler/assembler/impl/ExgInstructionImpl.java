@@ -5,11 +5,13 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrExgRegisters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -24,8 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl#getWsOperand <em>Ws Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl#getReg1 <em>Reg1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl#getReg2 <em>Reg2</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,44 +74,14 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
   protected String wsOperand = WS_OPERAND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getReg1() <em>Reg1</em>}' attribute.
+   * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getReg1()
+   * @see #getOperand()
    * @generated
    * @ordered
    */
-  protected static final Register REG1_EDEFAULT = Register.A;
-
-  /**
-   * The cached value of the '{@link #getReg1() <em>Reg1</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReg1()
-   * @generated
-   * @ordered
-   */
-  protected Register reg1 = REG1_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getReg2() <em>Reg2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReg2()
-   * @generated
-   * @ordered
-   */
-  protected static final Register REG2_EDEFAULT = Register.A;
-
-  /**
-   * The cached value of the '{@link #getReg2() <em>Reg2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReg2()
-   * @generated
-   * @ordered
-   */
-  protected Register reg2 = REG2_EDEFAULT;
+  protected TfrExgRegisters operand;
 
   /**
    * <!-- begin-user-doc -->
@@ -189,9 +160,9 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public Register getReg1()
+  public TfrExgRegisters getOperand()
   {
-    return reg1;
+    return operand;
   }
 
   /**
@@ -199,13 +170,16 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setReg1(Register newReg1)
+  public NotificationChain basicSetOperand(TfrExgRegisters newOperand, NotificationChain msgs)
   {
-    Register oldReg1 = reg1;
-    reg1 = newReg1 == null ? REG1_EDEFAULT : newReg1;
+    TfrExgRegisters oldOperand = operand;
+    operand = newOperand;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXG_INSTRUCTION__REG1, oldReg1, reg1));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXG_INSTRUCTION__OPERAND, oldOperand, newOperand);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -214,9 +188,20 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public Register getReg2()
+  public void setOperand(TfrExgRegisters newOperand)
   {
-    return reg2;
+    if (newOperand != operand)
+    {
+      NotificationChain msgs = null;
+      if (operand != null)
+        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXG_INSTRUCTION__OPERAND, null, msgs);
+      if (newOperand != null)
+        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXG_INSTRUCTION__OPERAND, null, msgs);
+      msgs = basicSetOperand(newOperand, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXG_INSTRUCTION__OPERAND, newOperand, newOperand));
   }
 
   /**
@@ -225,12 +210,14 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public void setReg2(Register newReg2)
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    Register oldReg2 = reg2;
-    reg2 = newReg2 == null ? REG2_EDEFAULT : newReg2;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXG_INSTRUCTION__REG2, oldReg2, reg2));
+    switch (featureID)
+    {
+      case AssemblerPackage.EXG_INSTRUCTION__OPERAND:
+        return basicSetOperand(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -247,10 +234,8 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
         return getInstruction();
       case AssemblerPackage.EXG_INSTRUCTION__WS_OPERAND:
         return getWsOperand();
-      case AssemblerPackage.EXG_INSTRUCTION__REG1:
-        return getReg1();
-      case AssemblerPackage.EXG_INSTRUCTION__REG2:
-        return getReg2();
+      case AssemblerPackage.EXG_INSTRUCTION__OPERAND:
+        return getOperand();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -271,11 +256,8 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
       case AssemblerPackage.EXG_INSTRUCTION__WS_OPERAND:
         setWsOperand((String)newValue);
         return;
-      case AssemblerPackage.EXG_INSTRUCTION__REG1:
-        setReg1((Register)newValue);
-        return;
-      case AssemblerPackage.EXG_INSTRUCTION__REG2:
-        setReg2((Register)newValue);
+      case AssemblerPackage.EXG_INSTRUCTION__OPERAND:
+        setOperand((TfrExgRegisters)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -297,11 +279,8 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
       case AssemblerPackage.EXG_INSTRUCTION__WS_OPERAND:
         setWsOperand(WS_OPERAND_EDEFAULT);
         return;
-      case AssemblerPackage.EXG_INSTRUCTION__REG1:
-        setReg1(REG1_EDEFAULT);
-        return;
-      case AssemblerPackage.EXG_INSTRUCTION__REG2:
-        setReg2(REG2_EDEFAULT);
+      case AssemblerPackage.EXG_INSTRUCTION__OPERAND:
+        setOperand((TfrExgRegisters)null);
         return;
     }
     super.eUnset(featureID);
@@ -321,10 +300,8 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
         return INSTRUCTION_EDEFAULT == null ? instruction != null : !INSTRUCTION_EDEFAULT.equals(instruction);
       case AssemblerPackage.EXG_INSTRUCTION__WS_OPERAND:
         return WS_OPERAND_EDEFAULT == null ? wsOperand != null : !WS_OPERAND_EDEFAULT.equals(wsOperand);
-      case AssemblerPackage.EXG_INSTRUCTION__REG1:
-        return reg1 != REG1_EDEFAULT;
-      case AssemblerPackage.EXG_INSTRUCTION__REG2:
-        return reg2 != REG2_EDEFAULT;
+      case AssemblerPackage.EXG_INSTRUCTION__OPERAND:
+        return operand != null;
     }
     return super.eIsSet(featureID);
   }
@@ -344,10 +321,6 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
     result.append(instruction);
     result.append(", wsOperand: ");
     result.append(wsOperand);
-    result.append(", reg1: ");
-    result.append(reg1);
-    result.append(", reg2: ");
-    result.append(reg2);
     result.append(')');
     return result.toString();
   }

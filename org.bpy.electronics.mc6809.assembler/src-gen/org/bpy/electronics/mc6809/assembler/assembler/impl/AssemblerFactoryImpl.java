@@ -78,6 +78,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.LABEL: return createLabel();
       case AssemblerPackage.TST_INSTRUCTION: return createTstInstruction();
       case AssemblerPackage.TFR_INSTRUCTION: return createTfrInstruction();
+      case AssemblerPackage.TFR_EXG_REGISTERS: return createTfrExgRegisters();
       case AssemblerPackage.SYNC_INSTRUCTION: return createSyncInstruction();
       case AssemblerPackage.SWI3_INSTRUCTION: return createSwi3Instruction();
       case AssemblerPackage.SWI2_INSTRUCTION: return createSwi2Instruction();
@@ -384,6 +385,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     TfrInstructionImpl tfrInstruction = new TfrInstructionImpl();
     return tfrInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TfrExgRegisters createTfrExgRegisters()
+  {
+    TfrExgRegistersImpl tfrExgRegisters = new TfrExgRegistersImpl();
+    return tfrExgRegisters;
   }
 
   /**

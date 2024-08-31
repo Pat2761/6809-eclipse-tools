@@ -234,7 +234,11 @@ TstInstruction:
  */
 TfrInstruction:
 	instruction = ('TFR' )
-	wsOperand=WS reg1=Register ',' reg2=Register	
+	wsOperand=WS operand = TfrExgRegisters	
+;
+
+TfrExgRegisters:
+	reg1=Register ',' reg2=Register
 ;
 
 /*
@@ -1030,7 +1034,7 @@ IncInstruction:
  */
 ExgInstruction:
 	instruction = ('EXG' )
-	wsOperand=WS reg1=Register ',' reg2=Register	
+	wsOperand=WS operand=TfrExgRegisters	
 ;
 
 /*

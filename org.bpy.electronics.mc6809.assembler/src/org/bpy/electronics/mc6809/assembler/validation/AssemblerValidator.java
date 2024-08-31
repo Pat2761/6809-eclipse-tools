@@ -33,7 +33,7 @@ import org.eclipse.xtext.validation.ComposedChecks;
  */
 
 /** WARNING : AssemblerPrepareValidation must be always the first validation call */
-@ComposedChecks(validators = {DirectiveValidator.class, InstructionValidator.class})
+@ComposedChecks(validators = {AssemblerPrepareValidationAndSignalChange.class, DirectiveValidator.class, InstructionValidator.class})
 public class AssemblerValidator extends AbstractAssemblerValidator {
 	
 	public static final String INVALID_FIGURE = "invalidFigure";

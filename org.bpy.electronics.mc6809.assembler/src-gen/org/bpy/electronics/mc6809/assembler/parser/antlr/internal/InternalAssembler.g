@@ -2592,40 +2592,78 @@ ruleTfrInstruction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTfrInstructionAccess().getReg1RegisterEnumRuleCall_2_0());
+					newCompositeNode(grammarAccess.getTfrInstructionAccess().getOperandTfrExgRegistersParserRuleCall_2_0());
 				}
-				lv_reg1_2_0=ruleRegister
+				lv_operand_2_0=ruleTfrExgRegisters
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTfrInstructionRule());
 					}
 					set(
 						$current,
+						"operand",
+						lv_operand_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.TfrExgRegisters");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTfrExgRegisters
+entryRuleTfrExgRegisters returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTfrExgRegistersRule()); }
+	iv_ruleTfrExgRegisters=ruleTfrExgRegisters
+	{ $current=$iv_ruleTfrExgRegisters.current; }
+	EOF;
+
+// Rule TfrExgRegisters
+ruleTfrExgRegisters returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTfrExgRegistersAccess().getReg1RegisterEnumRuleCall_0_0());
+				}
+				lv_reg1_0_0=ruleRegister
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTfrExgRegistersRule());
+					}
+					set(
+						$current,
 						"reg1",
-						lv_reg1_2_0,
+						lv_reg1_0_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3=','
+		otherlv_1=','
 		{
-			newLeafNode(otherlv_3, grammarAccess.getTfrInstructionAccess().getCommaKeyword_3());
+			newLeafNode(otherlv_1, grammarAccess.getTfrExgRegistersAccess().getCommaKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTfrInstructionAccess().getReg2RegisterEnumRuleCall_4_0());
+					newCompositeNode(grammarAccess.getTfrExgRegistersAccess().getReg2RegisterEnumRuleCall_2_0());
 				}
-				lv_reg2_4_0=ruleRegister
+				lv_reg2_2_0=ruleRegister
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTfrInstructionRule());
+						$current = createModelElementForParent(grammarAccess.getTfrExgRegistersRule());
 					}
 					set(
 						$current,
 						"reg2",
-						lv_reg2_4_0,
+						lv_reg2_2_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 					afterParserOrEnumRuleCall();
 				}
@@ -5987,41 +6025,18 @@ ruleExgInstruction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExgInstructionAccess().getReg1RegisterEnumRuleCall_2_0());
+					newCompositeNode(grammarAccess.getExgInstructionAccess().getOperandTfrExgRegistersParserRuleCall_2_0());
 				}
-				lv_reg1_2_0=ruleRegister
+				lv_operand_2_0=ruleTfrExgRegisters
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExgInstructionRule());
 					}
 					set(
 						$current,
-						"reg1",
-						lv_reg1_2_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3=','
-		{
-			newLeafNode(otherlv_3, grammarAccess.getExgInstructionAccess().getCommaKeyword_3());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getExgInstructionAccess().getReg2RegisterEnumRuleCall_4_0());
-				}
-				lv_reg2_4_0=ruleRegister
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExgInstructionRule());
-					}
-					set(
-						$current,
-						"reg2",
-						lv_reg2_4_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
+						"operand",
+						lv_operand_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.TfrExgRegisters");
 					afterParserOrEnumRuleCall();
 				}
 			)
