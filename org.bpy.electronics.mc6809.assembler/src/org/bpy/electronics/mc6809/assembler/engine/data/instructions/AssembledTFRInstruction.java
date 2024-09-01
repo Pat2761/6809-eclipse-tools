@@ -245,7 +245,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public EObject getInstructionOperand() {
-		return null;
+		return instruction.getOperand();
 	}
 	
 	@Override

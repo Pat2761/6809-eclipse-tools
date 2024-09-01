@@ -138,12 +138,17 @@ public class AssemblerManager {
 		} else {
 			// Mode unit test
 			fileName = "junit.as9";
-		}
-		assemblerEngine = new AssemblerEngine();
-		assemblerEngine.engine(model);
+		} 
+		
+		if (engines.containsKey(fileName)) {
+			return engines.get(fileName);
+		} else {
+			assemblerEngine = new AssemblerEngine();
+			assemblerEngine.engine(model);
 
-		engines.put(fileName, assemblerEngine);
-		return assemblerEngine;
+			engines.put(fileName, assemblerEngine);
+			return assemblerEngine;
+		}
 	}
 
 	/**

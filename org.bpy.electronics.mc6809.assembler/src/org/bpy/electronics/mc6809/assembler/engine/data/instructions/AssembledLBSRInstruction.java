@@ -38,22 +38,22 @@ public class AssembledLBSRInstruction extends AbstractRelativeBranchInstruction 
 
 	/** Reference on the instruction */
 	private BsrInstruction instruction;
-	
+
 	/**
 	 * Constructor of the class.
-    *
+	 *
 	 * @param engine reference on the assembler engine.
 	 */
 	public AssembledLBSRInstruction(AssemblerEngine engine) {
 		super(engine);
 	}
-	
+
 	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
-	 * @param instruction reference on the EMF instruction line
+	 * @param instruction    reference on the EMF instruction line
 	 * @param currentPcValue state of the current PC
-	 * @param lineNumber line number in assembly file
+	 * @param lineNumber     line number in assembly file
 	 */
 	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
 		this.instruction = (BsrInstruction) instruction;
@@ -69,18 +69,20 @@ public class AssembledLBSRInstruction extends AbstractRelativeBranchInstruction 
 	@Override
 	public void parsePass2() {
 
-		String label = instruction.getOperand().getOffset().getValue();
-		if (label != null) {
+		if (instruction.getOperand().getOffset() != null) {
+			String label = instruction.getOperand().getOffset().getValue();
+			if (label != null) {
 
-			AssemblerEngine engine = getAssemblerEngine(instruction);
-			AbstractAssemblyLine targetLine = engine.getLabelsPositionObject().get(label);
-			if (targetLine != null) {
-				computeOperand(targetLine.getPcAddress(), WORD_MODE, AssemblerPackage.eINSTANCE.getBsrInstruction_Operand());
-			} else {
-				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.eINSTANCE.getBsrInstruction_Operand(), InstructionValidator.MISSING_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
-				engine.addMissingLabel(label);
+				AssemblerEngine engine = getAssemblerEngine(instruction);
+				AbstractAssemblyLine targetLine = engine.getLabelsPositionObject().get(label);
+				if (targetLine != null) {
+					computeOperand(targetLine.getPcAddress(), WORD_MODE, AssemblerPackage.eINSTANCE.getBsrInstruction_Operand());
+				} else {
+					AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+							AssemblerPackage.eINSTANCE.getBsrInstruction_Operand(), InstructionValidator.MISSING_LABEL);
+					AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+					engine.addMissingLabel(label);
+				}
 			}
 		}
 	}
@@ -96,7 +98,7 @@ public class AssembledLBSRInstruction extends AbstractRelativeBranchInstruction 
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		opcodeBytes =  new int[] {0x17};
+		opcodeBytes = new int[] { 0x17 };
 	}
 
 	@Override
@@ -117,12 +119,12 @@ public class AssembledLBSRInstruction extends AbstractRelativeBranchInstruction 
 	protected Object getLocalInstruction() {
 		return instruction;
 	}
-	
+
 	@Override
 	public String getInstructionName() {
 		return instruction.getInstruction();
 	}
-	
+
 	@Override
 	public String getOperandString() {
 		return getOperand(instruction.getOperand());
