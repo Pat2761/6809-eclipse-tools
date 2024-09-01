@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Binaries
+Bundle-SymbolicName: org.bpy.electronics.mc6809.binaries
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.bpy.electronics.mc6809.binaries.Activator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: org.bpy.electronics.mc6809.binaries
+Bundle-ActivationPolicy: lazy
+Export-Package: org.bpy.electronics.mc6809.binaries.exceptions,
+ org.bpy.electronics.mc6809.binaries.srec
