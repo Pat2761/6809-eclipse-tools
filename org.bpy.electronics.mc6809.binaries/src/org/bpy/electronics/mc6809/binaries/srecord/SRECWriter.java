@@ -22,7 +22,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +53,8 @@ public class SRECWriter extends AbstractFileManager {
 	 * @param stringWriter reference on a String Writer object
 	 * @throws IOException In case on file error
 	 */
-	public void createSRECFile(StringWriter stringWriter) throws IOException {
-		writer = new BufferedWriter(stringWriter);
+	public void createSRECFile(Writer writer) throws IOException {
+		this.writer = new BufferedWriter(writer);
 	}
 
 	/**

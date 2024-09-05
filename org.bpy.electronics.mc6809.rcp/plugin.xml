@@ -366,6 +366,23 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.bpy.electronics.mc6809.rcp.binaries.popupsrec"
+               label="Generate SRecord file"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="or">
+                     <reference
+                           definitionId="org.bpy.electronics.mc6809.rcp.assemblerFile">
+                     </reference>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -373,6 +390,14 @@
          <command
                commandId="org.bpy.electronics.mc6809.rcp.reports.popuplisting"
                label="Generate listing"
+               style="push">
+         </command>
+         <separator
+               name="org.bpy.electronics.mc6809.rcp.separator1">
+         </separator>
+         <command
+               commandId="org.bpy.electronics.mc6809.rcp.binaries.popupsrec"
+               label="Generate SRecord file"
                style="push">
          </command>
       </menuContribution>
@@ -534,6 +559,10 @@
             id="org.bpy.electronics.mc6809.rcp.reports.listingmenu"
             name="Generate listing">
       </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.binaries.popupsrec"
+            name="Generate SRecord file">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -669,6 +698,10 @@
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.GenreateListingHandlerPopup"
             commandId="org.bpy.electronics.mc6809.rcp.reports.popuplisting">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.GenerateSRecordFilePopupHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.binaries.popupsrec">
       </handler>
    </extension>
    <extension

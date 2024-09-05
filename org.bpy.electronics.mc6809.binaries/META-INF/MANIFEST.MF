@@ -4,10 +4,20 @@ Bundle-Name: Binaries
 Bundle-SymbolicName: org.bpy.electronics.mc6809.binaries
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.bpy.electronics.mc6809.binaries.Activator
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.bpy.electronics.mc6809.assembler.ui,
+ org.bpy.electronics.mc6809.assembler,
+ org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.bpy.electronics.mc6809.binaries
 Bundle-ActivationPolicy: lazy
-Export-Package: org.bpy.electronics.mc6809.binaries.exceptions,
+Export-Package: org.bpy.electronics.mc6809.binaries,
+ org.bpy.electronics.mc6809.binaries.exceptions,
  org.bpy.electronics.mc6809.binaries.srecord
-Import-Package: org.apache.commons.lang3
+Import-Package: com.google.inject;version="1.4.0",
+ org.apache.commons.lang3,
+ org.eclipse.core.internal.resources,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.xtext.resource,
+ org.eclipse.xtext.ui.resource

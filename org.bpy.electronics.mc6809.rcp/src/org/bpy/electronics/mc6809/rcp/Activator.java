@@ -1,7 +1,5 @@
 package org.bpy.electronics.mc6809.rcp;
 
-import java.util.logging.Logger;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -12,8 +10,12 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
+
+	/** Name of the tool */
+	public static final String TOOL_NAME = "6809-eclipse-tools";
 	
-	private static final Logger logger = Logger.getLogger(Activator.class.getName());
+	/** Tool version */
+	public static final String VERSION = "1.0.0"; 
 	
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.rcp"; //$NON-NLS-1$
