@@ -1,9 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>org.bpy.electronics.mc6809.binaries</artifactId>
-	<packaging>eclipse-plugin</packaging>
-
+  <modelVersion>4.0.0</modelVersion>
+	<artifactId>org.bpy.electronics.mc6809.binaries.tests</artifactId>
+	<packaging>eclipse-test-plugin</packaging>
+	
 	<parent>
 		<groupId>org.bpy.electronics.mc6809</groupId>
 		<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
@@ -12,24 +11,26 @@
 	</parent>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.17.0</version>
+			<groupId>org.bpy.electronics.mc6809</groupId>
+			<artifactId>org.bpy.electronics.mc6809.binaries</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 
-	<build>
+ 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+	
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
 				<configuration>
-					<release>11</release>
+					<useUIHarness>false</useUIHarness>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
-</project>
+ </project>
