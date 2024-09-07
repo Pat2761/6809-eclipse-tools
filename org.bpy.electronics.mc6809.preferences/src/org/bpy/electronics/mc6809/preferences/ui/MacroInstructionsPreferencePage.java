@@ -18,9 +18,13 @@
  */
 package org.bpy.electronics.mc6809.preferences.ui;
 
+import org.bpy.electronics.mc6809.preferences.ui.dialogs.MacroInstructionWizard;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -31,6 +35,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 /**
  * Allow to define the list of possible macros instructions used by the assembler
@@ -40,6 +46,7 @@ import org.eclipse.swt.widgets.TableColumn;
  */
 public class MacroInstructionsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 	private Table table;
+	private Button btnNew;
 
 	/**
 	 * Constructor of the class.
@@ -91,19 +98,27 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		
-		TableColumn tblclmnNewColumn = new TableColumn(table, SWT.NONE);
-		tblclmnNewColumn.setWidth(79);
-		tblclmnNewColumn.setText("Name");
+		TableColumn tblclmnName = new TableColumn(table, SWT.NONE);
+		tblclmnName.setWidth(79);
+		tblclmnName.setText("Name");
 		
 		TableColumn tblclmnInstruction = new TableColumn(table, SWT.NONE);
-		tblclmnInstruction.setWidth(65);
+		tblclmnInstruction.setWidth(93);
 		tblclmnInstruction.setText("Instruction");
 		
 		TableColumn tblclmnOperand = new TableColumn(table, SWT.NONE);
 		tblclmnOperand.setWidth(122);
 		tblclmnOperand.setText("Operand");
 		
-		Button btnNew = new Button(container, SWT.NONE);
+		btnNew = new Button(container, SWT.NONE);
+		btnNew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				MacroInstructionWizard wizard = new MacroInstructionWizard();
+				WizardDialog dialog = new WizardDialog(getShell(), wizard);
+				dialog.open();
+			}
+		});
 		btnNew.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnNew.setText("New");
 		
@@ -115,7 +130,19 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		btnDelete.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnDelete.setText("Delete");
 		
-		Label lblNewLabel = new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		
+		table.addControlListener(new ControlAdapter() {
+
+			@Override
+			public void controlResized(ControlEvent e) {
+
+				int newWidth = table.getBounds().width - tblclmnName.getWidth() - tblclmnInstruction.getWidth() ;
+				tblclmnOperand.setWidth(newWidth);
+				super.controlResized(e);
+			}
+			
+		});
 		return container;
 	}
 
