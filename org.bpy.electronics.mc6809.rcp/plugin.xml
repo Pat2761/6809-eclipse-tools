@@ -262,6 +262,14 @@
             </command>
          </menu>
          <menu
+               label="Binaries">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu"
+                  label="Generate SRecord File"
+                  style="push">
+            </command>
+         </menu>
+         <menu
                id="org.bpy.electronics.mc6809.rcp.menu.search"
                label="Search">
             <command
@@ -561,7 +569,11 @@
       </command>
       <command
             id="org.bpy.electronics.mc6809.rcp.binaries.popupsrec"
-            name="Generate SRecord file">
+            name="Generate SRecord File">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.binary.srecord.menu"
+            name="Generate SRecord File">
       </command>
    </extension>
    <extension
@@ -702,6 +714,10 @@
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.GenerateSRecordFilePopupHandler"
             commandId="org.bpy.electronics.mc6809.rcp.binaries.popupsrec">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.GenreateSRecordFileMenuHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu">
       </handler>
    </extension>
    <extension

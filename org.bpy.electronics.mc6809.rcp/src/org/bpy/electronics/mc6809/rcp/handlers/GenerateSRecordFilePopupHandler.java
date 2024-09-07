@@ -19,9 +19,10 @@
 package org.bpy.electronics.mc6809.rcp.handlers;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.binaries.SRECDataFormatter;
-import org.bpy.electronics.mc6809.documents.assembly.PdfAssemblyListing;
 import org.bpy.electronics.mc6809.rcp.Activator;
 import org.bpy.electronics.mc6809.rcp.dialogs.AssemblerFileSelector;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -48,6 +49,9 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
  */
 public class GenerateSRecordFilePopupHandler implements IHandler {
 
+	/** Logger of the class */
+	private static final Logger logger = Logger.getLogger(GenerateSRecordFilePopupHandler.class.getSimpleName());
+
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
 		// Nothing to do here
@@ -67,15 +71,7 @@ public class GenerateSRecordFilePopupHandler implements IHandler {
 			if ((part instanceof XtextEditor editor) && 
 					(editor.getLanguageName().equals("org.bpy.electronics.mc6809.assembler.Assembler"))){
 				IResource resource = editor.getResource();
-				
-				SRECDataFormatter dataFormatter = new SRECDataFormatter();
-				dataFormatter.initiateSRECData(Activator.TOOL_NAME + ": Version=" + Activator.VERSION);
-				try {
-					dataFormatter.fillData((IFile)resource);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				createSREcFile((IFile) resource);
 				
 			}    
 		} else if (selection instanceof TreeSelection treeSelection) {
@@ -84,14 +80,34 @@ public class GenerateSRecordFilePopupHandler implements IHandler {
 				AssemblerFileSelector fileSelector = new AssemblerFileSelector(Display.getCurrent().getActiveShell());
 				fileSelector.initDialog(selection);
 				fileSelector.open();
+				
+				if (!fileSelector.getSelectedFiles().isEmpty()) {
+					for (IFile selectedFile : fileSelector.getSelectedFiles()) {
+						createSREcFile((IFile) selectedFile);
+					}
+				}
 			} else {
-//				PdfAssemblyListing pdfAssemblyListing = new PdfAssemblyListing();
-//				pdfAssemblyListing.buildAssemblyFile((IFile)treeSelection.getFirstElement());
+				createSREcFile((IFile) treeSelection.getFirstElement());
 			}
 		}
 
-		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Report generation", "Report is generated in the report folder");
+		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Binary file generation", "Binary file is generated in the bin folder");
 		return null;
+	}
+
+	/**
+	 * Generate a SRECORD file.
+	 * 
+	 * @param resource reference on the assembly file
+	 */
+	private void createSREcFile(IFile resource) {
+		SRECDataFormatter dataFormatter = new SRECDataFormatter();
+		dataFormatter.initiateSRECData(Activator.TOOL_NAME + ": Version=" + Activator.VERSION);
+		try {
+			dataFormatter.fillData((IFile)resource);
+		} catch (IOException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
 	}
 
 	@Override

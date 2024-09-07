@@ -37,7 +37,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * @author Patrick BRIAND
  *
  */
-public class GenreateListingHandlerMenu implements IHandler {
+public class GenreateSRecordFileMenuHandler implements IHandler {
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
