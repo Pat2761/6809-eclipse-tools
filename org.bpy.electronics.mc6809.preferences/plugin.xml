@@ -27,6 +27,12 @@
             id="org.bpy.electronics.mc6809.preferences.listing"
             name="Listing">
       </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.MacroInstructionsPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.macroinstructions"
+            name="Macro instructions">
+      </page>
    </extension>
 
 </plugin>

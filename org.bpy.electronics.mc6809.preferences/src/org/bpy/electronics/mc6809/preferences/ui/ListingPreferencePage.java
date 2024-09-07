@@ -1,3 +1,21 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.preferences.ui;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
@@ -15,33 +33,61 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Spinner;
 
+/**
+ * Page which allow to define preference for listing generation
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class ListingPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
+	/** characters number for line number information */ 
 	private Spinner lineNumberSize;
+	/** characters number for address information */ 
 	private Spinner adresseColumnSize;
+	/** characters number for instruction information */ 
 	private Spinner instructionColumnSize;
+	/** characters number for lebel information */ 
 	private Spinner labelColumnSize;
+	/** characters number for operand information */ 
 	private Spinner operandInstColumnSize;
+	/** characters number for page orientation information */ 
 	private Combo cboOrientation;
+	/** characters number for opcode information */ 
 	private Spinner opcodeColumnSize;
+	/** characters number for operand information */ 
 	private Spinner operandColumnSize;
 
 	/**
+	 * Constructor of the class.
+	 * 
 	 * @wbp.parser.constructor
 	 */
 	public ListingPreferencePage() {
 		setTitle("Define listing preferences");
 	}
 
+	/**
+	 * Constructor of the class.
+	 * .
+	 * @param title title of the preference page
+	 */
 	public ListingPreferencePage(String title) {
 		super(title);
 	}
 
+	/**
+	 * Constructor of the class.
+	 * .
+	 * @param title title of the preference page
+	 * @param image image in the header of the preference page
+	 */
 	public ListingPreferencePage(String title, ImageDescriptor image) {
 		super(title, image);
 	}
 
 	@Override
 	public void init(IWorkbench workbench) {
+		// nothing to do
 	}
 
 	@Override
@@ -54,10 +100,10 @@ public class ListingPreferencePage extends PreferencePage implements IWorkbenchP
 		lblPageOrientation.setText("Page orientation");
 		
 		cboOrientation = new Combo(container, SWT.NONE);
-		cboOrientation.setItems(new String[] {"Landscape", "Portrait"});
+		cboOrientation.setItems("Landscape", "Portrait");
 		cboOrientation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		Label lblNewLabel = new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
 		new Label(container, SWT.NONE);
 		
 		Group grpDefineNumbersOf = new Group(container, SWT.SHADOW_ETCHED_IN);
@@ -119,6 +165,9 @@ public class ListingPreferencePage extends PreferencePage implements IWorkbenchP
 		return container;
 	}
 
+	/** 
+	 * Initialize the content of the preference page
+	 */
 	private void intializeContent() {
 		if ("Landscape".equals(PreferenceManager.getInstance().getListingPageOrientation())) {
 			cboOrientation.select(0);
