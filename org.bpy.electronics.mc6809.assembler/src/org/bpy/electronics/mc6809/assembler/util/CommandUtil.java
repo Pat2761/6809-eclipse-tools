@@ -2093,6 +2093,7 @@ public class CommandUtil {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
+
 	public static int getByteToSet(AssemblerEngine engine, FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
 		Expression value = fillDirective.getValue().getOperand();
 		return ExpressionParser.resolveExpression(engine, value, fillDirective, currentReference);
@@ -2184,5 +2185,4 @@ public class CommandUtil {
 		}
 		return null;
 	}
-
 }

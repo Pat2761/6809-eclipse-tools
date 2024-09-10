@@ -144,12 +144,15 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcD
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroInstructionAssembled;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -355,32 +358,13 @@ public class AssemblerEngine {
 		} 
 		macroCallsCounter.put(instructionName, callCounter);
 		
+		Map<String, MacroInstructionData> macroInstructions = PreferenceManager.getInstance().getMacroInstructionPreferences();
+		
 		if (macroDefinitions.containsKey(instructionName)) {
-
-			MacroDefinition macroDefinition = macroDefinitions.get(instructionName);
-
-			MacroAssembledElement assembledMacro = new MacroAssembledElement(this);
-			assembledMacro.parsePass1(macroDefinition, callCounter);
-			assembledMacro.setPcAddress(currentPcValue);
-			if (otherInstruction.getLabel().getName() != null) {
-				assembledMacro.setLabel(otherInstruction.getLabel().getName().getValue());
-			}
-			assembledMacro.setComment(otherInstruction.getComment());
-			assembledMacro.setLineNumber(lineNumber);
-			
-			for(int i=0; i< assembledMacro.getInstructionLines().size(); i++) {
-
-				InstructionLine instruction = assembledMacro.getInstructionLines().get(i);
-				parseInstructionLinePass1(instruction);
-				int assembledInstructionPosition = assemblyLines.size();
-				AbstractAssemblyLine assembledLine = assemblyLines.get(assembledInstructionPosition-1);
-				
-				assembledMacro.addAssembledInstruction(assembledLine);
-				assemblyLines.remove(assembledInstructionPosition-1);
-			}
-			
-			assemblyLines.add(assembledMacro);
-			assembledLinesMap.put(otherInstruction, assembledMacro);
+			manageMacroCallInstruction(otherInstruction, instructionName, callCounter);
+		
+		} else if (macroInstructions.containsKey(instructionName)) {	
+			manageMacroInstruction(otherInstruction, macroInstructions.get(instructionName), callCounter);
 			
 		} else {
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("The instruction " + instructionName + " is not recognized",
@@ -388,6 +372,46 @@ public class AssemblerEngine {
 					InstructionValidator.UNRECOGNIZED_INSTRUCTION);
 			AssemblerErrorManager.getInstance().addProblem(otherInstruction, problemDescription);
 		}
+	}
+
+	private void manageMacroInstruction(OtherKindOfInstructions otherInstruction, MacroInstructionData macroInstructionData, int callCounter) {
+		MacroInstructionAssembled macroInstruction = new MacroInstructionAssembled(this);
+		macroInstruction.parsePass1(otherInstruction, currentPcValue, lineNumber);
+		macroInstruction.setMacroDescription(macroInstructionData);
+		
+		assemblyLines.add(macroInstruction);
+		currentPcValue += macroInstruction.getPcIncrement();
+
+		registerLabelPosition(macroInstruction, 
+				otherInstruction,
+				AssemblerPackage.eINSTANCE.getOtherKindOfInstructions_Label());
+	}
+
+	private void manageMacroCallInstruction(OtherKindOfInstructions otherInstruction, String instructionName, int callCounter) {
+		MacroDefinition macroDefinition = macroDefinitions.get(instructionName);
+
+		MacroAssembledElement assembledMacro = new MacroAssembledElement(this);
+		assembledMacro.parsePass1(macroDefinition, callCounter);
+		assembledMacro.setPcAddress(currentPcValue);
+		if (otherInstruction.getLabel().getName() != null) {
+			assembledMacro.setLabel(otherInstruction.getLabel().getName().getValue());
+		}
+		assembledMacro.setComment(otherInstruction.getComment());
+		assembledMacro.setLineNumber(lineNumber);
+		
+		for(int i=0; i< assembledMacro.getInstructionLines().size(); i++) {
+
+			InstructionLine instruction = assembledMacro.getInstructionLines().get(i);
+			parseInstructionLinePass1(instruction);
+			int assembledInstructionPosition = assemblyLines.size();
+			AbstractAssemblyLine assembledLine = assemblyLines.get(assembledInstructionPosition-1);
+			
+			assembledMacro.addAssembledInstruction(assembledLine);
+			assemblyLines.remove(assembledInstructionPosition-1);
+		}
+		
+		assemblyLines.add(assembledMacro);
+		assembledLinesMap.put(otherInstruction, assembledMacro);
 	}
 
 	/**
