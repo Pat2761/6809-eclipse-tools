@@ -36,10 +36,10 @@ public class MacroInstructionData {
 	private String equivalentOperand;
 	
 	/** Opcode of the instruction */
-	private byte[] opcode;
+	private int[] opcode;
 	
 	/** Operand if the instruction */
-	private byte[] operand;
+	private int[] operand;
 
 	/**
 	 * Get the macro instruction name.
@@ -100,7 +100,7 @@ public class MacroInstructionData {
 	 * 
 	 * @return opcode of the macro instruction
 	 */
-	public byte[] getOpcode() {
+	public int[] getOpcode() {
 		return opcode;
 	}
 
@@ -109,7 +109,7 @@ public class MacroInstructionData {
 	 * 
 	 * @param opcode opcode of the macro instruction
 	 */
-	public void setOpcode(byte[] opcode) {
+	public void setOpcode(int[] opcode) {
 		this.opcode = opcode;
 	}
 
@@ -118,7 +118,7 @@ public class MacroInstructionData {
 	 * 
 	 * @return operand of the macro instruction
 	 */
-	public byte[] getOperand() {
+	public int[] getOperand() {
 		return operand;
 	}
 
@@ -127,7 +127,7 @@ public class MacroInstructionData {
 	 * 
 	 * @param operand operand of the macro instruction
 	 */
-	public void setOperand(byte[] operand) {
+	public void setOperand(int[] operand) {
 		this.operand = operand;
 	}
 }

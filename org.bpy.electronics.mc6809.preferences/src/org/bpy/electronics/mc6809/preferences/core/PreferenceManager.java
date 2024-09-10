@@ -552,7 +552,7 @@ public class PreferenceManager {
 		
 		for (String macroDescription : macroDescriptions) {
 			String[] fields = macroDescription.split(MACRO_FIELD_SEPARATOR);
-			if (fields.length == 5) {
+			if (fields.length >= 4) {
 				
 				MacroInstructionData macroInstructionData = new MacroInstructionData();
 				String macroName = fields[MACRO_INSTRUCTION_NAME];
@@ -562,20 +562,24 @@ public class PreferenceManager {
 				
 				String strOpcode = fields[MACRO_EQUIVALENT_OPCODE];
 				String[] strOpcodes = strOpcode.split(",");
-				byte[] opcodes = new byte[strOpcodes.length];
+				int[] opcodes = new int[strOpcodes.length];
 				for (int i=0; i<strOpcodes.length; i++ ) {
-					opcodes[i] = (byte) (Integer.parseInt(strOpcodes[i]) & 0xFF);
+					opcodes[i] = Integer.parseInt(strOpcodes[i],16) & 0xFF;
 				}
 				macroInstructionData.setOpcode(opcodes);
 				
-				String strOperand = fields[MACRO_EQUIVALENT_OPERAND];
-				String[] strOperands = strOperand.split(",");
-				byte[] operands = new byte[strOperands.length];
-				for (int i=0; i<strOperands.length; i++ ) {
-					operands[i] = (byte) (Integer.parseInt(strOperands[i]) & 0xFF);
+				if (fields.length > 4) {
+					String strOperand = fields[MACRO_EQUIVALENT_OPERAND];
+					String[] strOperands = strOperand.split(",");
+					int[] operands = new int[strOperands.length];
+					for (int i=0; i<strOperands.length; i++ ) {
+						operands[i] = Integer.parseInt(strOperands[i],16) & 0xFF;
+					}
+					macroInstructionData.setOperand(operands);
+				} else {
+					macroInstructionData.setOperand(new int[0]);
 				}
-				macroInstructionData.setOperand(operands);
-
+				
 				macros.put(macroName, macroInstructionData);
 				
 			} else {
@@ -603,25 +607,24 @@ public class PreferenceManager {
 			strBuilder.append(entry.getValue().getEquivalenoperand() + MACRO_FIELD_SEPARATOR);
 			
 			StringBuilder opcodeBuilder = new StringBuilder("");
-//			for (byte opcode : entry.getValue().getOpcode()) {
-//				if (!opcodeBuilder.isEmpty()) {
-//					opcodeBuilder.append(",");
-//				}
-//				opcodeBuilder.append(String.format("%0x2X", opcode&0xFF));
-//			}
+			for (int opcode : entry.getValue().getOpcode()) {
+				if (!opcodeBuilder.isEmpty()) {
+					opcodeBuilder.append(",");
+				}
+				opcodeBuilder.append(String.format("%02X", opcode&0xFF));
+			}
 			strBuilder.append(opcodeBuilder.toString() + MACRO_FIELD_SEPARATOR);
 			
 			StringBuilder operandBuilder = new StringBuilder("");
-//			for (byte operand : entry.getValue().getOperand()) {
-//				if (!operandBuilder.isEmpty()) {
-//					operandBuilder.append(",");
-//				}
-//				operandBuilder.append(String.format("%0x2X", operand&0xFF));
-//			}
+			for (int operand : entry.getValue().getOperand()) {
+				if (!operandBuilder.isEmpty()) {
+					operandBuilder.append(",");
+				}
+				operandBuilder.append(String.format("%02X", operand&0xFF));
+			}
 			strBuilder.append(operandBuilder.toString());
 		}
 		
-		System.out.println("BPY: Put macros = " + strBuilder.toString());
 		preferences.put(MACRO_INSTRUCTION_KEY, strBuilder.toString());
 	
 		savePreference();

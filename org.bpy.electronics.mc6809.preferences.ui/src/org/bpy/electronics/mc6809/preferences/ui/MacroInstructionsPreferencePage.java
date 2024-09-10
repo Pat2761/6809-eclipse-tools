@@ -18,11 +18,13 @@
  */
 package org.bpy.electronics.mc6809.preferences.ui;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 import org.bpy.electronics.mc6809.preferences.ui.dialogs.MacroInstructionWizard;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -39,9 +41,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.window.Window;
@@ -53,9 +55,15 @@ import org.eclipse.jface.window.Window;
  *
  */
 public class MacroInstructionsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
-	private Button btnNew;
-	private Table table_1;
+
+	/** Reference on SWT table viewer which contains the list of macro definition */
 	private TableViewer tableViewer;
+	/** SWT button for modify a macro instruction */
+	private Button btnModify;
+	/** SWT button for delete a macro instruction */
+	private Button btnDelete;
+	/** Collection of macro instructions */
+	private Map<String, MacroInstructionData> macros;
 
 	/**
 	 * Constructor of the class.
@@ -86,7 +94,7 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 
 	@Override
 	public void init(IWorkbench workbench) {
-		// nothing to do
+		macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
 	}
 
 	@Override
@@ -124,17 +132,22 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		
 		tableViewer.setContentProvider(new MacroContentProvider());
 		tableViewer.setLabelProvider(new MacroInstructionLabelProvider());
+		tableViewer.getTable().addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateButtons();
+			}
+			
+		});
 		
-		btnNew = new Button(container, SWT.NONE);
+		Button btnNew = new Button(container, SWT.NONE);
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Map<String, MacroInstructionData> macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
-				MacroInstructionWizard wizard = new MacroInstructionWizard(macros);
+				MacroInstructionWizard wizard = new MacroInstructionWizard(macros, null);
 				WizardDialog dialog = new WizardDialog(getShell(), wizard);
 				if (dialog.open() == Window.OK) {
-					PreferenceManager.getInstance().setMacroInstructionPreferences(wizard.getMacroInstructions());
-					
 					updateDisplay();
 				}
 			}
@@ -142,13 +155,28 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		btnNew.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnNew.setText("New");
 		
-		Button btnModify = new Button(container, SWT.NONE);
+		btnModify = new Button(container, SWT.NONE);
 		btnModify.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnModify.setText("Modify");
+		btnModify.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				modfyMacroInstruction();
+			}
+		});
 		
-		Button btnDelete = new Button(container, SWT.NONE);
+		btnDelete = new Button(container, SWT.NONE);
 		btnDelete.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnDelete.setText("Delete");
+		btnDelete.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				removeMacroInstruction();
+			}
+			
+		});
 		new Label(container, SWT.NONE);
 
 		table.addControlListener(new ControlAdapter() {
@@ -162,19 +190,77 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 			}
 			
 		});
-
-		
 		updateDisplay();
-		
-		
+	
 		return container;
 	}
 
-	protected void updateDisplay() {
-		Map<String, MacroInstructionData> macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
-		IContentProvider contentProvider = tableViewer.getContentProvider();
-		contentProvider.inputChanged(tableViewer, null, macros);
-		
+	/**
+	 * Modify the selected macro instruction.
+	 */
+	protected void modfyMacroInstruction() {
+		int index = tableViewer.getTable().getSelectionIndex();
+		if (index > -1) {
+			TableItem item = tableViewer.getTable().getItem(index);
+			String macroName = item.getText(0);
+			MacroInstructionWizard wizard = new MacroInstructionWizard(macros, macroName);
+			WizardDialog dialog = new WizardDialog(getShell(), wizard);
+			if (dialog.open() == Window.OK) {
+				updateDisplay();
+			}
+		}
 	}
 
+	/**
+	 * Remove the selected macro instruction.
+	 */
+	protected void removeMacroInstruction() {
+		int index = tableViewer.getTable().getSelectionIndex();
+		if (index > -1) {
+			TableItem item = tableViewer.getTable().getItem(index);
+			String macroName = item.getText(0);
+			boolean confirm = MessageDialog.openQuestion(getShell(), "Delete " + macroName, "Do you really want to delete the Macro instruction " + macroName);
+			if (confirm) {
+				macros.remove(macroName);
+				updateDisplay();
+			}
+		}
+	}
+
+	/**
+	 * Update the content of the table viewer and the buttons.
+	 */
+	protected void updateDisplay() {
+		tableViewer.setInput(macros);
+		updateButtons();
+	}
+
+	/**
+	 * Update the buttons
+	 */
+	private void updateButtons() {
+		btnModify.setEnabled(tableViewer.getTable().getSelectionIndex()>-1);
+		btnDelete.setEnabled(tableViewer.getTable().getSelectionIndex()>-1);
+	}
+
+	@Override
+	protected void performApply() {
+		PreferenceManager.getInstance().setMacroInstructionPreferences(macros);
+		super.performApply();
+	}
+
+	@Override
+	public boolean performOk() {
+		PreferenceManager.getInstance().setMacroInstructionPreferences(macros);
+		return super.performOk();
+	}
+
+	@Override
+	protected void performDefaults() {
+		macros = new HashMap<>();
+		PreferenceManager.getInstance().setMacroInstructionPreferences(macros);
+		updateDisplay();
+		super.performDefaults();
+	}
+	
 }

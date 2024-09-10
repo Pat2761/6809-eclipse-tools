@@ -198,16 +198,21 @@ public class MacroInstructionWizardPage extends WizardPage {
 	/** Collection of existing macro instructions */
 	private Map<String, MacroInstructionData> existingMacroInstructions;
 
+	/** Name of the edited macro, null if new macro */ 
+	private String currentMacroName;
+
 	/** Injector on the Game parser */
 	private static final Injector injector = AssemblerActivator.getInstance().getInjector("org.bpy.electronics.mc6809.assembler.Assembler"); //$NON-NLS-1$
 
 	
 	/**
 	 * Constructor of the class.
+	 * @param macroName 
 	 */
-	public MacroInstructionWizardPage(Map<String,MacroInstructionData> existingMacroInstructions) {
+	public MacroInstructionWizardPage(Map<String,MacroInstructionData> existingMacroInstructions, String macroName) {
 		super("MacroInstructionWizardPage");
 		
+		currentMacroName = macroName;
 		this.existingMacroInstructions = existingMacroInstructions;
 		setTitle("Edit macro instruction");
 		setDescription("Allow to define a macro instruction");
@@ -283,7 +288,7 @@ public class MacroInstructionWizardPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String instructionName = comboInstruction.getText();
-				if (instructionName.isBlank() || !possibleInstructions.get(instructionName)) {
+				if (instructionName.isBlank() || Boolean.FALSE.equals(possibleInstructions.get(instructionName))) {
 					txtOperandValue.setText("");
 					txtOperandValue.setEnabled(false);
 				} else {
@@ -315,6 +320,15 @@ public class MacroInstructionWizardPage extends WizardPage {
 		for (String instruction : instructions) {
 			comboInstruction.add(instruction);
 		}
+		
+		if (currentMacroName != null) {
+			MacroInstructionData macroInstructionData = existingMacroInstructions.get(currentMacroName);
+			txtMacroIstructionName.setText(currentMacroName);
+			comboInstruction.setText(macroInstructionData.getEquivalentInstructionName());
+			txtOperandValue.setText(macroInstructionData.getEquivalenoperand());
+			
+			txtOperandValue.setEnabled(possibleInstructions.get(macroInstructionData.getEquivalentInstructionName()));
+		}
 		updatePageState();
 	}
 
@@ -329,7 +343,7 @@ public class MacroInstructionWizardPage extends WizardPage {
 			return;
 		}
 		
-		if (existingMacroInstructions.containsKey(txtMacroIstructionName.getText())) {
+		if (currentMacroName==null && existingMacroInstructions.containsKey(txtMacroIstructionName.getText())) {
 			setErrorMessage("Macro instruction " + txtMacroIstructionName.getText() + " already exist");
 			setPageComplete(false);
 			return;
@@ -353,7 +367,7 @@ public class MacroInstructionWizardPage extends WizardPage {
 		if (needOperand) {
 			assemblerLine +=  " " + txtOperandValue.getText();
 		}
-		assemblerLine += "\n";
+		assemblerLine += " ;\r\n";
 		String message = parseAssemblyLine(assemblerLine);
 		if (message != null) {
 			setErrorMessage(message);
@@ -382,8 +396,8 @@ public class MacroInstructionWizardPage extends WizardPage {
 		  
 			resource.load(in, resourceSet.getLoadOptions());
 			Model model = (Model) resource.getContents().get(0);
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model,AssemblerManager.STUB_FILE_NAME);
 			org.eclipse.emf.common.util.Diagnostic diagnostic = Diagnostician.INSTANCE.validate(model);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model,AssemblerManager.STUB_FILE_NAME);
 
 			EList<Diagnostic> errors = resource.getErrors();
 			if (!errors.isEmpty()) {
@@ -400,7 +414,7 @@ public class MacroInstructionWizardPage extends WizardPage {
 				return diagnostics.get(0).getMessage();
 			}
 
-			// no errors so update data for memorisation
+			// no errors so update data for memorization
 			updateValideData(engine);
 			
 		} catch (IOException e) {

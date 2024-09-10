@@ -45,9 +45,8 @@
 		<module>../org.bpy.electronics.mc6809.assembler.tests</module>
 		<module>../org.bpy.electronics.mc6809.assembler.ui</module>
 		<module>../org.bpy.electronics.mc6809.assembler.ui.tests</module>
-		<!-- <module>../org.bpy.electronics.mc6809.assembler.engine</module>
-		<module>../org.bpy.electronics.mc6809.assembler.engine.tests</module>-->
 		<module>../org.bpy.electronics.mc6809.preferences</module>
+		<module>../org.bpy.electronics.mc6809.preferences.ui</module>
 		<module>../org.bpy.electronics.mc6809.preferences.tests</module>
 		<module>../org.bpy.electronics.mc6809.documents</module>
 		<module>../org.bpy.electronics.mc6809.binaries</module>
