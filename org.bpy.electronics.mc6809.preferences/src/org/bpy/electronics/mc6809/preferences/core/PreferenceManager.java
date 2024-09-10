@@ -33,7 +33,7 @@ import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
 import org.bpy.electronics.mc6809.preferences.Activator;
-import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 
 /**
  * This class manage the all preferences linked to this application

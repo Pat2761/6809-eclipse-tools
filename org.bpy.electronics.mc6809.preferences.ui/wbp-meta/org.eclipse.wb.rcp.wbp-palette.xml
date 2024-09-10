@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<palette>
+	<category id="someUniqueId" name="Nebula" description="Category added for project org.bpy.electronics.mc6809.preferences" open="true"><component
+			class="org.eclipse.nebula.widgets.richtext.RichTextViewer"
+			name="Rich viewer" description="Allow to display rich text">
+</component>
+	</category>
+</palette>

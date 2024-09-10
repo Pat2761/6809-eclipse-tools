@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.preferences.ui.data;
+package org.bpy.electronics.mc6809.preferences.core.data;
 
 /**
  * Data container for the description of a macro instruction.

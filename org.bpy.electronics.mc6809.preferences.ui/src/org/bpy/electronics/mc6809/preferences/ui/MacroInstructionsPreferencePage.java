@@ -21,7 +21,7 @@ package org.bpy.electronics.mc6809.preferences.ui;
 import java.util.Map;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
-import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 import org.bpy.electronics.mc6809.preferences.ui.dialogs.MacroInstructionWizard;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;

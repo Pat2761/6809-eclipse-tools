@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.parser.IParseResult;
@@ -49,6 +50,8 @@ public class AssemblerManager {
 
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerManager.class.getSimpleName());
+
+	public static final String STUB_FILE_NAME = "junit.as9";
 
 	/**
 	 * collection of assembly resources key: Full path of the file, Content:
@@ -130,16 +133,35 @@ public class AssemblerManager {
 	 */
 	public AssemblerEngine getAssemblyModel(Model model) {
 		AssemblerEngine assemblerEngine = null;
-		String fileName = "";
-		if (model.eResource().getURI().scheme() != null) {
-			// normal mode
+		String fileName = STUB_FILE_NAME;
+		if ((model.eResource().getURI().scheme() != null) && (!model.eResource().getURI().toString().contains(STUB_FILE_NAME))) {
 			IFile file = ResourceUtil.getFile(model.eResource());
-			fileName = file.getFullPath().toOSString();
+			if (file != null) {
+				fileName = file.getFullPath().toOSString();
+			}
+		}
+
+		if (engines.containsKey(fileName)) {
+			return engines.get(fileName);
 		} else {
-			// Mode unit test
-			fileName = "junit.as9";
-		} 
-		
+			assemblerEngine = new AssemblerEngine();
+			assemblerEngine.engine(model);
+
+			engines.put(fileName, assemblerEngine);
+			return assemblerEngine;
+		}
+	}
+
+	/**
+	 * 
+	 * @param model         reference on the model
+	 * @param forceAssembly <b>true</b> force assembly, <b>false</b> otherwise
+	 * 
+	 * @return reference on the assembly result
+	 */
+	public AssemblerEngine getAssemblyModel(Model model, String fileName) {
+		AssemblerEngine assemblerEngine = null;
+
 		if (engines.containsKey(fileName)) {
 			return engines.get(fileName);
 		} else {
@@ -159,14 +181,11 @@ public class AssemblerManager {
 	 * @return reference on the assembly result
 	 */
 	public AssemblerEngine getAssemblyModel(Model model, boolean forceAssembly) {
-		String fileName = "";
-		if (model.eResource().getURI().scheme() != null) {
+		String fileName = STUB_FILE_NAME;
+		if ((model.eResource().getURI().scheme() != null) && (!model.eResource().getURI().toString().contains(STUB_FILE_NAME))) {
 			// normal mode
 			IFile file = ResourceUtil.getFile(model.eResource());
 			fileName = file.getFullPath().toOSString();
-		} else {
-			// Mode unit test
-			fileName = "junit.as9";
 		}
 		if (forceAssembly && engines.containsKey(fileName)) {
 			engines.remove(fileName);

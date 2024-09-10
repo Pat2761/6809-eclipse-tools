@@ -18,13 +18,29 @@
  */
 package org.bpy.electronics.mc6809.preferences.ui.dialogs;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.ui.internal.AssemblerActivator;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -33,6 +49,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
+
+import com.google.inject.Injector;
 
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
@@ -44,6 +64,9 @@ import org.eclipse.swt.widgets.Combo;
  *
  */
 public class MacroInstructionWizardPage extends WizardPage {
+
+	/** Logger of the class */
+	private static final Logger logger = Logger.getLogger(MacroInstructionWizardPage.class.getSimpleName());
 
 	/** Contains the list of possible instructions */
 	private static HashMap<String, Boolean> possibleInstructions = new HashMap<>();
@@ -167,8 +190,17 @@ public class MacroInstructionWizardPage extends WizardPage {
 	private String realInstructionName;
 	/** Value of the operand */
 	private String realOperandString;
+	/** Opcode of the instruction */
+	private int[] opcode;
+	/** Operand of the instruction */
+	private int[] operand;
+	
 	/** Collection of existing macro instructions */
 	private Map<String, MacroInstructionData> existingMacroInstructions;
+
+	/** Injector on the Game parser */
+	private static final Injector injector = AssemblerActivator.getInstance().getInjector("org.bpy.electronics.mc6809.assembler.Assembler"); //$NON-NLS-1$
+
 	
 	/**
 	 * Constructor of the class.
@@ -206,6 +238,24 @@ public class MacroInstructionWizardPage extends WizardPage {
 	 */
 	public String getRealOperandString() {
 		return realOperandString;
+	}
+
+	/**
+	 * Get the opcode of the macro instruction
+	 * 
+	 * @return  opcode of the macro instruction
+	 */
+	public int[] getOpcode() {
+		return opcode;
+	}
+
+	/**
+	 * Get the operand of the macro instruction
+	 * 
+	 * @return  operand of the macro instruction
+	 */
+	public int[] getOperand() {
+		return operand;
 	}
 
 	@Override
@@ -299,7 +349,80 @@ public class MacroInstructionWizardPage extends WizardPage {
 			return;
 		}
 		
+		String assemblerLine = " " + instructionName;
+		if (needOperand) {
+			assemblerLine +=  " " + txtOperandValue.getText();
+		}
+		assemblerLine += "\n";
+		String message = parseAssemblyLine(assemblerLine);
+		if (message != null) {
+			setErrorMessage(message);
+			setPageComplete(false);
+			return;
+		}
+		
 		setErrorMessage(null);
 		setPageComplete(true);
+	}
+
+	/**
+	 * Assemble and signal error or warnings if exist.
+	 * 
+	 * @param assemblerLine reference on the assembly line to assemble
+	 * @return error or warning message, <b>null</b> if the line has no problems
+	 */
+	private String parseAssemblyLine(String assemblerLine) {
+
+		XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+		Resource resource = resourceSet.createResource(URI.createURI("dummy:/" + AssemblerManager.STUB_FILE_NAME));
+		
+		try {
+			InputStream in = new ByteArrayInputStream(assemblerLine.getBytes());
+		  
+			resource.load(in, resourceSet.getLoadOptions());
+			Model model = (Model) resource.getContents().get(0);
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(model,AssemblerManager.STUB_FILE_NAME);
+			org.eclipse.emf.common.util.Diagnostic diagnostic = Diagnostician.INSTANCE.validate(model);
+
+			EList<Diagnostic> errors = resource.getErrors();
+			if (!errors.isEmpty()) {
+				return errors.get(0).getMessage();
+			}
+
+			EList<Diagnostic> warnings = resource.getWarnings();
+			if (!warnings.isEmpty()) {
+				return warnings.get(0).getMessage();
+			}
+
+			List<org.eclipse.emf.common.util.Diagnostic> diagnostics = diagnostic.getChildren();
+			if (!diagnostics.isEmpty()) {
+				return diagnostics.get(0).getMessage();
+			}
+
+			// no errors so update data for memorisation
+			updateValideData(engine);
+			
+		} catch (IOException e) {
+			logger.log(Level.SEVERE, e.getMessage());
+		}
+		
+		return null;
+	}
+
+	/**
+	 * Set field information for create a new macro instruction.
+	 * 
+	 * @param engine reference on ghe assembly file engine
+	 */
+	private void updateValideData(AssemblerEngine engine) {
+		macroInstructionName = txtMacroIstructionName.getText();
+		realInstructionName = comboInstruction.getText();
+		realOperandString = txtOperandValue.getText();
+		
+		AbstractInstructionAssemblyLine instructionLine = (AbstractInstructionAssemblyLine) engine.getAssembledLine().get(0);
+
+	   opcode = Arrays.copyOf(instructionLine.getOpcode(), instructionLine.getOpcode().length);
+	   operand = Arrays.copyOf(instructionLine.getOperand(), instructionLine.getOperand().length);
 	}
 }

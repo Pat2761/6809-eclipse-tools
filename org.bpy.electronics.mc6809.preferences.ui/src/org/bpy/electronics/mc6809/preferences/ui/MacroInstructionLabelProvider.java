@@ -18,7 +18,7 @@
  */
 package org.bpy.electronics.mc6809.preferences.ui;
 
-import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.bpy.electronics.mc6809.preferences.core.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.FormattingPreferences"
+            id="org.bpy.electronics.mc6809.rcp.preference.formatting"
+            name="Formatter">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.FoldingPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.folding"
+            name="Folding">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.ListingPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.listing"
+            name="Listing">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.MacroInstructionsPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.macroinstructions"
+            name="Macro instructions">
+      </page>
+   </extension>
+
+</plugin>

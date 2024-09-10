@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
