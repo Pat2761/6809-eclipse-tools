@@ -1,26 +1,54 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.preferences.ui.dialogs;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 
+/**
+ * Wizard page for create or modify a macro instruction
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class MacroInstructionWizardPage extends WizardPage {
-	private Text txtMacroIstructionName;
-	private Text txtOperandValue;
 
+	/** Contains the list of possible instructions */
 	private static HashMap<String, Boolean> possibleInstructions = new HashMap<>();
-	private Combo comboInstruction;
 	
+	/** Initialization of the possible instructions */
 	static {
 		possibleInstructions.put("ABX", false);
 		possibleInstructions.put("ADCA", true);
@@ -125,11 +153,59 @@ public class MacroInstructionWizardPage extends WizardPage {
 		possibleInstructions.put("TSTB", false);
 		possibleInstructions.put("TST", true);
 	}
+
+	/** Widget for define the name of the macro instruction */
+	private Text txtMacroIstructionName;
+	/** Widget for define the operand of the instruction if necessary */
+	private Text txtOperandValue;
+	/** Widget for select the corresponding instruction */
+	private Combo comboInstruction;
 	
-	public MacroInstructionWizardPage() {
+	/** name of the macro instruction */
+	private String macroInstructionName;
+	/** Name of the real instruction used */
+	private String realInstructionName;
+	/** Value of the operand */
+	private String realOperandString;
+	/** Collection of existing macro instructions */
+	private Map<String, MacroInstructionData> existingMacroInstructions;
+	
+	/**
+	 * Constructor of the class.
+	 */
+	public MacroInstructionWizardPage(Map<String,MacroInstructionData> existingMacroInstructions) {
 		super("MacroInstructionWizardPage");
+		
+		this.existingMacroInstructions = existingMacroInstructions;
 		setTitle("Edit macro instruction");
 		setDescription("Allow to define a macro instruction");
+	}
+
+	/**
+	 * Get the name of the macro instruction.
+	 * 
+	 * @return name of the macro instruction
+	 */
+	public String getMacroInstructionName() {
+		return macroInstructionName;
+	}
+
+	/**
+	 * Get the Name of the real instruction used.
+	 * 
+	 * @return Name of the real instruction used
+	 */
+	public String getRealInstructionName() {
+		return realInstructionName;
+	}
+
+	/**
+	 * get the value of the operand.
+	 * 
+	 * @return value of the operand
+	 */
+	public String getRealOperandString() {
+		return realOperandString;
 	}
 
 	@Override
@@ -145,23 +221,43 @@ public class MacroInstructionWizardPage extends WizardPage {
 		
 		txtMacroIstructionName = new Text(container, SWT.BORDER);
 		txtMacroIstructionName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		txtMacroIstructionName.addModifyListener(e -> updatePageState());
 		
 		Label lblEquivalentInstruction = new Label(container, SWT.NONE);
 		lblEquivalentInstruction.setText("Equivalent instruction:");
 		
-		comboInstruction = new Combo(container, SWT.NONE);
+		comboInstruction = new Combo(container, SWT.READ_ONLY);
 		comboInstruction.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		
+	
+		comboInstruction.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String instructionName = comboInstruction.getText();
+				if (instructionName.isBlank() || !possibleInstructions.get(instructionName)) {
+					txtOperandValue.setText("");
+					txtOperandValue.setEnabled(false);
+				} else {
+					txtOperandValue.setEnabled(true);
+				}
+				updatePageState();
+			}
+		});
+	
 		Label lblOperand = new Label(container, SWT.NONE);
 		lblOperand.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblOperand.setText("Operand:");
 		
 		txtOperandValue = new Text(container, SWT.BORDER);
 		txtOperandValue.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-
+		txtOperandValue.setEnabled(false);
+		txtOperandValue.addModifyListener(e -> updatePageState());
+		
 		populateControl();
 	}
 
+	/**
+	 * Populate the wizard.
+	 */
 	private void populateControl() {
 		List<String> instructions = new ArrayList<>(possibleInstructions.keySet());
 		Collections.sort(instructions);
@@ -169,9 +265,41 @@ public class MacroInstructionWizardPage extends WizardPage {
 		for (String instruction : instructions) {
 			comboInstruction.add(instruction);
 		}
-		
-		
+		updatePageState();
 	}
-	
-	
+
+	/**
+	 * Check the consistency of the informations defined in this wizard
+	 */
+	private void updatePageState() {
+		
+		if (txtMacroIstructionName.getText().isBlank()) {
+			setErrorMessage("Macro instruction must be named");
+			setPageComplete(false);
+			return;
+		}
+		
+		if (existingMacroInstructions.containsKey(txtMacroIstructionName.getText())) {
+			setErrorMessage("Macro instruction " + txtMacroIstructionName.getText() + " already exist");
+			setPageComplete(false);
+			return;
+		}
+		
+		if (comboInstruction.getSelectionIndex()<1) {
+			setErrorMessage("You have to select an instruction");
+			setPageComplete(false);
+			return;
+		}
+		
+		String instructionName = comboInstruction.getText();
+		boolean needOperand  = possibleInstructions.get(instructionName);
+		if (needOperand && txtOperandValue.getText().isBlank()) {
+			setErrorMessage("An operand must be defined for the isntruction " + instructionName);
+			setPageComplete(false);
+			return;
+		}
+		
+		setErrorMessage(null);
+		setPageComplete(true);
+	}
 }

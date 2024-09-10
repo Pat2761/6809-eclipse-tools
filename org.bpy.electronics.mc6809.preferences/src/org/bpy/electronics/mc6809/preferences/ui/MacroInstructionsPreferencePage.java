@@ -18,6 +18,10 @@
  */
 package org.bpy.electronics.mc6809.preferences.ui;
 
+import java.util.Map;
+
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
 import org.bpy.electronics.mc6809.preferences.ui.dialogs.MacroInstructionWizard;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -37,6 +41,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.window.Window;
 
 /**
  * Allow to define the list of possible macros instructions used by the assembler
@@ -45,8 +53,9 @@ import org.eclipse.swt.events.SelectionEvent;
  *
  */
 public class MacroInstructionsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
-	private Table table;
 	private Button btnNew;
+	private Table table_1;
+	private TableViewer tableViewer;
 
 	/**
 	 * Constructor of the class.
@@ -91,32 +100,43 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		lblMacroInstructionsDescription.setText("Macro instructions description: ");
 		new Label(container, SWT.NONE);
 		
-		table = new Table(container, SWT.BORDER | SWT.FULL_SELECTION);
-		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4);
-		gd_table.widthHint = 233;
-		table.setLayoutData(gd_table);
-		table.setHeaderVisible(true);
+		tableViewer = new TableViewer(container, SWT.BORDER | SWT.FULL_SELECTION | SWT.H_SCROLL
+            | SWT.V_SCROLL );
+		Table table = tableViewer.getTable();
 		table.setLinesVisible(true);
+		table.setHeaderVisible(true);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
 		
-		TableColumn tblclmnName = new TableColumn(table, SWT.NONE);
-		tblclmnName.setWidth(79);
-		tblclmnName.setText("Name");
+		TableViewerColumn nameViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
+		TableColumn macroNameColumn = nameViewerColumn.getColumn();
+		macroNameColumn.setText("Name");
+		macroNameColumn.setWidth(100);
 		
-		TableColumn tblclmnInstruction = new TableColumn(table, SWT.NONE);
-		tblclmnInstruction.setWidth(93);
-		tblclmnInstruction.setText("Instruction");
+		TableViewerColumn instructionViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
+		TableColumn instructionColumn = instructionViewerColumn.getColumn();
+		instructionColumn.setText("Instruction");
+		instructionColumn.setWidth(100);
+
+		TableViewerColumn operandViewerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
+		TableColumn operandColumn = operandViewerColumn.getColumn();
+		operandColumn.setText("Operand");
+		operandColumn.setWidth(100);
 		
-		TableColumn tblclmnOperand = new TableColumn(table, SWT.NONE);
-		tblclmnOperand.setWidth(122);
-		tblclmnOperand.setText("Operand");
+		tableViewer.setContentProvider(new MacroContentProvider());
+		tableViewer.setLabelProvider(new MacroInstructionLabelProvider());
 		
 		btnNew = new Button(container, SWT.NONE);
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MacroInstructionWizard wizard = new MacroInstructionWizard();
+				Map<String, MacroInstructionData> macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
+				MacroInstructionWizard wizard = new MacroInstructionWizard(macros);
 				WizardDialog dialog = new WizardDialog(getShell(), wizard);
-				dialog.open();
+				if (dialog.open() == Window.OK) {
+					PreferenceManager.getInstance().setMacroInstructionPreferences(wizard.getMacroInstructions());
+					
+					updateDisplay();
+				}
 			}
 		});
 		btnNew.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -129,21 +149,32 @@ public class MacroInstructionsPreferencePage extends PreferencePage implements I
 		Button btnDelete = new Button(container, SWT.NONE);
 		btnDelete.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnDelete.setText("Delete");
-		
 		new Label(container, SWT.NONE);
-		
+
 		table.addControlListener(new ControlAdapter() {
 
 			@Override
 			public void controlResized(ControlEvent e) {
 
-				int newWidth = table.getBounds().width - tblclmnName.getWidth() - tblclmnInstruction.getWidth() ;
-				tblclmnOperand.setWidth(newWidth);
+				int newWidth = table.getBounds().width - macroNameColumn.getWidth() - instructionColumn.getWidth() ;
+				operandColumn.setWidth(newWidth);
 				super.controlResized(e);
 			}
 			
 		});
+
+		
+		updateDisplay();
+		
+		
 		return container;
+	}
+
+	protected void updateDisplay() {
+		Map<String, MacroInstructionData> macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
+		IContentProvider contentProvider = tableViewer.getContentProvider();
+		contentProvider.inputChanged(tableViewer, null, macros);
+		
 	}
 
 }

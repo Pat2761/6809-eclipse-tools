@@ -97,26 +97,6 @@
 			</snapshots>
 		</repository>
 
-
-		<!-- Repository for the code coverage utilities -->
-<!--   		<repository>
-			<id>Jacoco</id>
-			<url>https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>  -->
-
-		<!-- JRE repositary -->
-<!-- 		<repository>
-			<id>justj</id>
-			<url>https://download.eclipse.org/justj/jres/11/updates/release/latest/</url>
-			<layout>p2</layout>
-		</repository> -->
-
 	</repositories>
 
 	<!-- Properties -->

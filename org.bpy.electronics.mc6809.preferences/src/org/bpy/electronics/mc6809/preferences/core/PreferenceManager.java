@@ -20,6 +20,9 @@ package org.bpy.electronics.mc6809.preferences.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
@@ -30,6 +33,7 @@ import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
 import org.bpy.electronics.mc6809.preferences.Activator;
+import org.bpy.electronics.mc6809.preferences.ui.data.MacroInstructionData;
 
 /**
  * This class manage the all preferences linked to this application
@@ -38,7 +42,25 @@ import org.bpy.electronics.mc6809.preferences.Activator;
  *
  */
 public class PreferenceManager {
+	
+	/** Logger of the class */
+	private static final Logger logger = Logger.getLogger(PreferenceManager.class.getSimpleName());
 
+	/** Separator of macros */
+	private static final String MACRO_SEPARATOR = ";";
+	/** Content separator for the macro description */
+	private static final String MACRO_FIELD_SEPARATOR = "@@";
+	/** Index of the macro name */
+	private static final int MACRO_INSTRUCTION_NAME = 0;
+	/** Index of the equivalent instruction name */
+	private static final int MACRO_EQUIVALENT_NAME = 1;
+	/** Index of the equivalent instruction operand */
+	private static final int MACRO_EQUIVALENT_OPERAND_STRING = 2;
+	/** Index of the equivalent instruction opcode */
+	private static final int MACRO_EQUIVALENT_OPCODE = 3;
+	/** Index of the equivalent instruction opcode */
+	private static final int MACRO_EQUIVALENT_OPERAND = 4;
+	
 	/** Name of node which store the preferences */
 	public static final String ASSEMBLER_PREFERENCE_NODE = "assemblerPreferenceNode";
 	
@@ -130,6 +152,11 @@ public class PreferenceManager {
 	/** define the default number of spaces for the operand instruction information in the listing */
 	public static final int DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES = 20;
 
+	/** define the key for store macro instructions */
+	public static final String MACRO_INSTRUCTION_KEY = "macroInstructionKey";
+	/** define the default value for macro instructions */
+	public static final String DEFAULT_MACRO_INSTRUCTION = "";
+	
 	
 	/** Instance of the preference manager singleton */ 
 	private static PreferenceManager eInstance;
@@ -172,6 +199,8 @@ public class PreferenceManager {
 		defaultsValues.put(LISTING_INSTRUCTION_NUMBER_SPACES,""+DEFAULT_LISTING_INSTRUCTION_NUMBER_SPACES);
 		defaultsValues.put(LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES,""+DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES);
 		
+		defaultsValues.put(MACRO_INSTRUCTION_KEY, ""+DEFAULT_MACRO_INSTRUCTION);
+
 		store = EditorsUI.getPreferenceStore();	
 	}
 	
@@ -507,6 +536,94 @@ public class PreferenceManager {
 	 */
 	public void setMacroFolding(boolean state ) {
 		preferences.putBoolean(MACRO_FOLDING_A_INIT,state);
+		savePreference();
+	}
+	
+	/** 
+	 * Return the collection of macro instructions defined in the preferences.
+	 * 
+	 * @return collection of macro instructions defined in the preferences
+	 */
+	public Map<String, MacroInstructionData> getMacroInstructionPreferences() {
+		Map<String, MacroInstructionData> macros = new HashMap<>();
+
+		String preferedMacros = preferences.get(MACRO_INSTRUCTION_KEY, DEFAULT_MACRO_INSTRUCTION);
+		String[] macroDescriptions = preferedMacros.split(MACRO_SEPARATOR);
+		
+		for (String macroDescription : macroDescriptions) {
+			String[] fields = macroDescription.split(MACRO_FIELD_SEPARATOR);
+			if (fields.length == 5) {
+				
+				MacroInstructionData macroInstructionData = new MacroInstructionData();
+				String macroName = fields[MACRO_INSTRUCTION_NAME];
+				macroInstructionData.setMacroInstructionName(macroName);
+				macroInstructionData.setEquivalentInstructionName(fields[MACRO_EQUIVALENT_NAME]);
+				macroInstructionData.setEquivalentOperand(fields[MACRO_EQUIVALENT_OPERAND_STRING]);
+				
+				String strOpcode = fields[MACRO_EQUIVALENT_OPCODE];
+				String[] strOpcodes = strOpcode.split(",");
+				byte[] opcodes = new byte[strOpcodes.length];
+				for (int i=0; i<strOpcodes.length; i++ ) {
+					opcodes[i] = (byte) (Integer.parseInt(strOpcodes[i]) & 0xFF);
+				}
+				macroInstructionData.setOpcode(opcodes);
+				
+				String strOperand = fields[MACRO_EQUIVALENT_OPERAND];
+				String[] strOperands = strOperand.split(",");
+				byte[] operands = new byte[strOperands.length];
+				for (int i=0; i<strOperands.length; i++ ) {
+					operands[i] = (byte) (Integer.parseInt(strOperands[i]) & 0xFF);
+				}
+				macroInstructionData.setOperand(operands);
+
+				macros.put(macroName, macroInstructionData);
+				
+			} else {
+				logger.log(Level.SEVERE, "Bad format for Macro instruction description : {0}", macroDescription);
+			}
+		}
+		
+		return macros;
+	}
+
+	/**
+	 * Save macro instructions in the preference store.
+	 * 
+	 * @param macros Collection of macro instructions to save
+	 */
+	public void setMacroInstructionPreferences(Map<String, MacroInstructionData> macros) {
+		StringBuilder strBuilder = new StringBuilder();
+		for (Entry<String, MacroInstructionData> entry : macros.entrySet()) {
+			if (!strBuilder.isEmpty()) {
+				strBuilder.append(MACRO_SEPARATOR);
+			}
+			
+			strBuilder.append(entry.getKey() + MACRO_FIELD_SEPARATOR);
+			strBuilder.append(entry.getValue().getEquivalentInstructionName() + MACRO_FIELD_SEPARATOR);
+			strBuilder.append(entry.getValue().getEquivalenoperand() + MACRO_FIELD_SEPARATOR);
+			
+			StringBuilder opcodeBuilder = new StringBuilder("");
+//			for (byte opcode : entry.getValue().getOpcode()) {
+//				if (!opcodeBuilder.isEmpty()) {
+//					opcodeBuilder.append(",");
+//				}
+//				opcodeBuilder.append(String.format("%0x2X", opcode&0xFF));
+//			}
+			strBuilder.append(opcodeBuilder.toString() + MACRO_FIELD_SEPARATOR);
+			
+			StringBuilder operandBuilder = new StringBuilder("");
+//			for (byte operand : entry.getValue().getOperand()) {
+//				if (!operandBuilder.isEmpty()) {
+//					operandBuilder.append(",");
+//				}
+//				operandBuilder.append(String.format("%0x2X", operand&0xFF));
+//			}
+			strBuilder.append(operandBuilder.toString());
+		}
+		
+		System.out.println("BPY: Put macros = " + strBuilder.toString());
+		preferences.put(MACRO_INSTRUCTION_KEY, strBuilder.toString());
+	
 		savePreference();
 	}
 	
