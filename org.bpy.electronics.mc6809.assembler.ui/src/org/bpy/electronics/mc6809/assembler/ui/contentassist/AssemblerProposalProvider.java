@@ -4,7 +4,6 @@
 package org.bpy.electronics.mc6809.assembler.ui.contentassist;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +48,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 			ICompletionProposalAcceptor acceptor) {
 
 		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
-		setProposalForLabelDefinitions(assemblerEngine, model, acceptor, context);
+		setProposalForLabelDefinitions(assemblerEngine, acceptor, context);
 	}
 	
 	@Override
@@ -63,14 +62,22 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 
 		} else if ((isUsedByClass(model, JmpInstructionImpl.class)) || 
 				     (isUsedByClass(model, JsrInstructionImpl.class))) {
-			setProposalForLabelDefinitions(assemblerEngine, model, acceptor, context);
+			setProposalForLabelDefinitions(assemblerEngine, acceptor, context);
 	
 		} else if ((isUsedByClass(model, PshsInstructionImpl.class)) ||
 				     (isUsedByClass(model, PshuInstructionImpl.class)) ||
 					  (isUsedByClass(model, PulsInstructionImpl.class)) ||
 					  (isUsedByClass(model, PuluInstructionImpl.class))) {
 			setProposalForRegDirective(model, acceptor, context);				
+		
 		}
+	}
+
+	@Override
+	public void completeEndDirective_Operand(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		AssemblerEngine assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)context.getRootModel());
+		setProposalForLabelDefinitions(assemblerEngine, acceptor, context);
 	}
 
 	@Override
@@ -130,11 +137,10 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * Create content assist for labels
 	 * 
 	 * @param assemblerEngine reference on the assemblerEngine
-	 * @param model reference on the selected element
 	 * @param acceptor Content assist acceptor
 	 * @param context content assist context
 	 */
-	private void setProposalForLabelDefinitions(AssemblerEngine assemblerEngine, EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+	private void setProposalForLabelDefinitions(AssemblerEngine assemblerEngine, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
 		List<String> labels = getSortedLabels(assemblerEngine);
 		labels.addAll(getMissingLabels(assemblerEngine));
 		Collections.sort(labels);
@@ -152,8 +158,7 @@ public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider
 	 * @return List of missing labels
 	 */
 	private List<String> getMissingLabels(AssemblerEngine assemblerEngine) {
-		List<String> labels = assemblerEngine.getMissingLabels();
-		return labels;
+		return assemblerEngine.getMissingLabels();
 	}
 
 	/**
