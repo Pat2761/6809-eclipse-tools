@@ -254,22 +254,6 @@
             </command>
          </menu>
          <menu
-               label="Reports">
-            <command
-                  commandId="org.bpy.electronics.mc6809.rcp.reports.listingmenu"
-                  label="Generate listing"
-                  style="push">
-            </command>
-         </menu>
-         <menu
-               label="Binaries">
-            <command
-                  commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu"
-                  label="Generate SRecord File"
-                  style="push">
-            </command>
-         </menu>
-         <menu
                id="org.bpy.electronics.mc6809.rcp.menu.search"
                label="Search">
             <command
@@ -284,6 +268,22 @@
             <command
                   commandId="org.bpy.electronics.mc6809.rcp.command.searchfile"
                   label="Search file"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               label="Reports">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.reports.listingmenu"
+                  label="Generate listing"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               label="Binaries">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu"
+                  label="Generate SRecord File"
                   style="push">
             </command>
          </menu>
