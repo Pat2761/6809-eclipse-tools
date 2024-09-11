@@ -257,14 +257,10 @@
                id="org.bpy.electronics.mc6809.rcp.menu.search"
                label="Search">
             <command
-                  commandId="org.bpy.electronics.mc6809.rcp.command.search"
+                  commandId="org.eclipse.search.ui.openFileSearchPage"
                   label="Search"
                   style="push">
             </command>
-            <separator
-                  name="search.separator.1"
-                  visible="true">
-            </separator>
             <command
                   commandId="org.bpy.electronics.mc6809.rcp.command.searchfile"
                   label="Search file"
@@ -524,14 +520,6 @@
             name="Find/Replace">
       </command>
       <command
-            id="org.bpy.electronics.mc6809.rcp.command.search"
-            name="Search">
-      </command>
-      <command
-            id="org.bpy.electronics.mc6809.rcp.command.searchfile"
-            name="Search file">
-      </command>
-      <command
             id="org.bpy.electronics.mc6809.rcp.command.showview"
             name="Show view">
       </command>
@@ -669,14 +657,6 @@
       </handler>
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
-            commandId="org.bpy.electronics.mc6809.rcp.command.search">
-      </handler>
-      <handler
-            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
-            commandId="org.bpy.electronics.mc6809.rcp.command.searchfile">
-      </handler>
-      <handler
-            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
             commandId="org.bpy.electronics.mc6809.rcp.command.showview">
       </handler>
       <handler
@@ -794,6 +774,262 @@
             </test>
          </adapt>
       </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="org.bpy.score.rcp.disable.maven"
+            name="disableMaven">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.maven"
+            pattern=".*/org.eclipse.m2e.core.wizards.Maven2ModuleWizard">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.maven"
+            pattern=".*/org.eclipse.m2e.core.wizards.Maven2ProjectWizard">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.pde"
+            name="disablePDE">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.pde"
+            pattern=".*/org.eclipse.pde.ui..*">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.ecore"
+            name="disableEcore">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.ecore"
+            pattern=".*/org.eclipse.emf.ecore.presentation.EcoreModelWizardID">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.java"
+            name="disableJava">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.ant.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.ui.wizards.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.ui.PackageExplorer.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.debug.ui.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.launching.remoteJavaApplication.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.launching.localJavaApplication.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.junit.wizards.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.launching.javaApplet.*">
+      </activityPatternBinding>
+<!-- BPY -->      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.ui.*">
+      </activityPatternBinding><!-- BPY -->
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.ui.actions.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.ui.actions.OpenJavaSearchPage">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.internal.ui.jarpackager.JarPackageWizard">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.internal.ui.fatjarpackager.JarPackageWizard">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.java"
+            pattern=".*/org.eclipse.jdt.internal.ui.javadocexport.JavadocWizard">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.mwe"
+            name="DisableMWE">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.mwe"
+            pattern=".*/org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType.*">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.debug.core"
+            name="DisableDebugCore">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.debug.core"
+            pattern=".*/org.eclipse.debug.*">
+      </activityPatternBinding>
+
+      <activity
+            id="org.bpy.score.rcp.disable.team"
+            name="DisableTeam">
+         <enabledWhen>
+            <with
+                  variable="true">
+               <equals
+                     value="false">
+               </equals>
+            </with>
+         </enabledWhen>
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.team"
+            pattern=".*/nonbound.org.eclipse.team.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.team"
+            pattern=".*/org.eclipse.team.ui.showLocalHistory.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.team"
+            pattern=".*/org.eclipse.team.ui.applyPatch.*">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.pde"
+            name="Disable PDE ">
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.pde"
+            pattern=".*/org.eclipse.pde.*">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.disable.annotation"
+            name="DisableAnnotation">
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.disable.annotation"
+            pattern=".*/org.eclipse.ui.edit..*Annotation.*">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.externaltools"
+            name="External tools">
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.externaltools"
+            pattern=".*/org.eclipse.ui.externalTools.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.externaltools"
+            pattern=".*/org.eclipse.ui.externaltools.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.externaltools"
+            pattern=".*/org.eclipse.ui.externaltool.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.externaltools"
+            pattern=".*/org.eclipse.ui.externaltools.ExternalToolsSet">
+      </activityPatternBinding>
+      <activity
+            id="org.bpy.score.rcp.importExport"
+            name="Import Export">
+      </activity>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.e4.ui.importer.wizard">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.ui.wizards.import.FileSystem">
+      </activityPatternBinding>
+<!--      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.ui.wizards.import.ExternalProject">
+      </activityPatternBinding>-->
+<!--      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.ui.wizards.import.ZipFile">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.ui.wizards.export.ZipFile">
+      </activityPatternBinding>-->
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.m2e.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.ui.wizards.export.FileSystem">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern=".*/org.eclipse.team.ui.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.bpy.score.rcp.importExport"
+            pattern="org.eclipse.ui.wizards.export.ZipFile">
+      </activityPatternBinding>
    </extension>
 
 </plugin>
