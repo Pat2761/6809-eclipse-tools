@@ -200,11 +200,19 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		
 		/* Manage Constant type instruction */
 		if (line.getDirective() instanceof EquDirective equDirective) {
-			String expressionRepresentation = serializer.serialize(equDirective.getOperand());
-			manageConstantDeclaration(equDirective, "EQU" , label, expressionRepresentation);
+			if (equDirective.getOperand() != null) {
+				String expressionRepresentation = serializer.serialize(equDirective.getOperand());
+				manageConstantDeclaration(equDirective, "EQU" , label, expressionRepresentation);
+			} else {
+				manageConstantDeclaration(equDirective, "EQU" , label, "");
+			}
 		} else if (line.getDirective() instanceof SetDirective setDirective) {
-			String expressionRepresentation = serializer.serialize(setDirective.getOperand());
-			manageConstantDeclaration(setDirective, "SET" , label, expressionRepresentation);
+			if (setDirective.getOperand() != null) {
+				String expressionRepresentation = serializer.serialize(setDirective.getOperand());
+				manageConstantDeclaration(setDirective, "SET" , label, expressionRepresentation);
+			} else {
+				manageConstantDeclaration(setDirective, "SET" , label, "");
+			}
 
 		/* Manage data declaration */	
 		} else if (line.getDirective() instanceof BszDirective bszDirective) {
