@@ -182,7 +182,7 @@ public class AssemblerEngine {
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
 	/** Contains the collection of macro definition */
-	private Map<String, MacroDefinition> macroDefinitions;
+	public Map<String, MacroDefinition> macroDefinitions;
 	/** Contains the collection of assembled line  */
 	private Map<Object, AbstractAssemblyLine> assembledLinesMap;
 	/** Contains counter for macro calls  */
@@ -236,6 +236,15 @@ public class AssemblerEngine {
 	 */
 	public Map<String, AbstractAssemblyLine> getLabelsPositionObject() {
 		return labelsPositionObject;
+	}
+
+	/**
+	 * Get the list of macros defined in the assembly file.
+	 * 
+	 * @return list of macros defined in the assembly file.
+	 */
+	public Map<String, MacroDefinition> getMacroDefinitions() {
+		return macroDefinitions;
 	}
 
 	/**

@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerManager;
@@ -40,9 +43,17 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider;
+import org.eclipse.xtext.xbase.lib.Extension;
+
+import com.google.common.base.Strings;
+import com.google.inject.Inject;
 
 import org.bpy.electronics.mc6809.help.Activator;
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.bpy.electronics.mc6809.preferences.core.data.MacroInstructionData;
 
 /**
  * Class which supply information when the mouse is hover a line of code.
@@ -52,12 +63,25 @@ import org.bpy.electronics.mc6809.help.Activator;
  */
 public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 
+	/** Column number for instruction */
+	private static final int INSTRUCTION_POSITION = 12;
+	/** Column number for operand */
+	private static final int OPERAND_POSITION = 18;
+	/** Column number for comment */
+	private static final int COMMENT_POSITION = 40;
+	
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerHoverProvider.class.getSimpleName());
 
 	/** Reference on the assembler engine */
 	private AssemblerEngine assemblerEngine;
 
+	/** Reference on the XTEXT serializer */
+	@Inject
+	@Extension
+	private ISerializer serializer;
+
+	
 	@Override
 	protected String getHoverInfoAsHtml(EObject o) {
 		return getString(o);
@@ -82,8 +106,131 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 			return getExpressionInformation(expression);
 		} else if (o.eContainer() instanceof  RelativeMode relativeMode) {
 			return getRelativeModeInformation(relativeMode);
+		} else if (o.eContainer() instanceof OtherKindOfInstructions otherKindOfInstructions) {
+			return getMacroDescription(otherKindOfInstructions); 
 		}
 		return o.eContainer().getClass().getSimpleName();
+	}
+
+	/**
+	 * Create description for the macro and macro instruction.
+	 * 
+	 * @param otherKindOfInstructions reference on the macro 
+	 * @return HTML String to display
+	 */
+	private String getMacroDescription(OtherKindOfInstructions otherKindOfInstructions) {
+		Map<String, MacroInstructionData> macros = PreferenceManager.getInstance().getMacroInstructionPreferences();
+
+		if (macros.containsKey(otherKindOfInstructions.getName().getValue())) {
+			return getMacroInstructionDescription(macros.get(otherKindOfInstructions.getName().getValue()));
+		}
+		
+		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)EcoreUtil.getRootContainer(otherKindOfInstructions));
+		if (assemblerEngine.getMacroDefinitions().containsKey(otherKindOfInstructions.getName().getValue())) {
+			return getMacroDescription(otherKindOfInstructions.getName().getValue());
+		}
+		
+		return null;
+	}
+
+	/**
+	 * Display a description of the macro instruction.
+	 * 
+	 * @param macroInstructionData reference on the macro instruction
+	 * 
+	 * @return HTML description of the macro instruction
+	 */
+	private String getMacroDescription(String name) {
+		InputStream inputStream = Activator.class.getResourceAsStream("/html/hover/en/html/MacroInstructionTemplate.html");
+		if (inputStream != null) {
+			try {
+				String htmlDescription = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+				htmlDescription = htmlDescription.replace("@@@TITLE@@@", name);
+				htmlDescription = htmlDescription.replace("@@@DESCRIPTION@@@", "Macro defined in the assembly file");
+
+				MacroDefinition macroDefinition = assemblerEngine.getMacroDefinitions().get(name);
+				
+				StringBuilder strBuilder = new StringBuilder("<pre>");
+				for (InstructionLine line : macroDefinition.getInstructions()) {
+					String strToDisplay = serializer.serialize(line);
+					strToDisplay = formatInstructionLine(strToDisplay);
+					strBuilder.append(strToDisplay + "\n");
+				}
+				strBuilder.append("</pre>");
+				htmlDescription = htmlDescription.replace("@@@EquivalentInstruction@@@", strBuilder.toString() );
+				return htmlDescription;
+			} catch (IOException e) {
+				return null;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Format an instruction line 
+	 * 
+	 * @param strToDisplay String to display
+	 * @return formatted string to display
+	 */
+	private String formatInstructionLine(String strToDisplay) {
+		StringBuilder strBuilder = new StringBuilder();
+		String[] parts = strToDisplay.split("\\s+");
+
+		if (Character.isWhitespace(strToDisplay.charAt(0))) {
+			strBuilder.append(Strings.repeat(" ", INSTRUCTION_POSITION));
+		} else {
+			strBuilder.append(parts[0]);
+			int nbSpacesNeeded = ((INSTRUCTION_POSITION-parts[0].length())>0 ? INSTRUCTION_POSITION-parts[0].length() : 1) ;
+			strBuilder.append(Strings.repeat(" ", nbSpacesNeeded));
+		}
+		strBuilder.append(parts[1]);
+		int nbSpacesNeeded = (OPERAND_POSITION-strBuilder.length() > 0 ? OPERAND_POSITION-strBuilder.length() : 1);
+		strBuilder.append(Strings.repeat(" ", nbSpacesNeeded));
+		
+		int nextPosition = 2;
+		boolean commentDetected = false;
+		while (nextPosition < parts.length) {
+
+			if (commentDetected) {
+				strBuilder.append(" " + parts[nextPosition]);
+			} else if (parts[nextPosition].charAt(0) == ';') {
+				// Next element is comment
+				commentDetected = true;
+				nbSpacesNeeded = (COMMENT_POSITION-strBuilder.length() > 0 ? COMMENT_POSITION-strBuilder.length() : 1);
+				strBuilder.append(Strings.repeat(" ", nbSpacesNeeded));
+				strBuilder.append(parts[nextPosition]);
+
+			} else {
+				strBuilder.append(parts[nextPosition]);
+			}
+			nextPosition++;
+		}
+
+ 		return strBuilder.toString();
+	}
+
+	/**
+	 * Display a description of the macro instruction.
+	 * 
+	 * @param macroInstructionData reference on the macro instruction
+	 * 
+	 * @return HTML description of the macro instruction
+	 */
+	private String getMacroInstructionDescription(MacroInstructionData macroInstructionData) {
+		InputStream inputStream = Activator.class.getResourceAsStream("/html/hover/en/html/MacroInstructionTemplate.html");
+		if (inputStream != null) {
+			try {
+				String htmlDescription = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+				htmlDescription = htmlDescription.replace("@@@TITLE@@@", macroInstructionData.getMacroInstructionName());
+				htmlDescription = htmlDescription.replace("@@@DESCRIPTION@@@", "Macro instruction defined in the preferences");
+				String equivalentInstruction = macroInstructionData.getEquivalentInstructionName() + " " + macroInstructionData.getEquivalenoperand();
+				htmlDescription = htmlDescription.replace("@@@EquivalentInstruction@@@", equivalentInstruction);
+				return htmlDescription;
+			} catch (IOException e) {
+				return null;
+			}
+		}
+		return null;
 	}
 
 	/**
