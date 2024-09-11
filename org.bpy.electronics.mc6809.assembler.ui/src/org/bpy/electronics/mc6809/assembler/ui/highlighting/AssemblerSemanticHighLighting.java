@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
@@ -238,10 +239,11 @@ public class AssemblerSemanticHighLighting implements ISemanticHighlightingCalcu
 	private void setIdentifierColoration(IHighlightedPositionAcceptor acceptor, ILeafNode node) {
 		// in case of label use
 		
-		if (node.getParent().getParent().getSemanticElement() instanceof Label) {
+		if ((node.getParent().getParent().getSemanticElement() instanceof Label) || 
+		    (node.getParent().getParent().getSemanticElement() instanceof EndDirective)) {
 			acceptor.addPosition(node.getOffset(), node.getText().length(),  AssemblerHighlightingConfiguration.LABEL_ID);
 	
-		} else if (node.getParent().getParent().getSemanticElement() instanceof OtherKindOfInstructions) {
+		} else if (node.getParent().getParent().getSemanticElement() instanceof OtherKindOfInstructions) { 
 			acceptor.addPosition(node.getOffset(), node.getText().length(),  AssemblerHighlightingConfiguration.MACRO_ID);
 	
 		} else if ((node.getParent().getParent().getSemanticElement() instanceof RelativeMode)||
