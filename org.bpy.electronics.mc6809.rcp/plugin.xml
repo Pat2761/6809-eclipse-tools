@@ -563,6 +563,12 @@
             id="org.bpy.electronics.mc6809.rcp.binary.srecord.menu"
             name="Generate SRecord File">
       </command>
+      <command
+            category="org.eclipse.ui.category.edit"
+            defaultHandler="org.bpy.electronics.mc6809.rcp.handlers.EditorCommentHandler"
+            id="org.bpy.electronics.mc6809.rcp.editor.comment"
+            name="Comment">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -1030,6 +1036,15 @@
             activityId="org.bpy.score.rcp.importExport"
             pattern="org.eclipse.ui.wizards.export.ZipFile">
       </activityPatternBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.bpy.electronics.mc6809.rcp.editor.comment"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+;">
+      </key>
    </extension>
 
 </plugin>
