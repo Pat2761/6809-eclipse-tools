@@ -131,7 +131,6 @@ public class AssemblerAutoEditStrategyProvider extends DefaultAutoEditStrategyPr
 			private void checkIfInherentInstruction(EObject instructionToCheck) {
 				if ((instructionToCheck != null) &&(instructionToCheck instanceof InstructionLine instructionLine)) {
 					EObject instruction = instructionLine.getInstruction();
-					System.out.println("BPY:" + instruction.getClass().getSimpleName());
 					if ((instruction instanceof AbxInstruction) || (instruction instanceof DaaInstruction)
 							|| (instruction instanceof MulInstruction) || (instruction instanceof NopInstruction)
 							|| (instruction instanceof RtiInstruction) || (instruction instanceof RtsInstruction)

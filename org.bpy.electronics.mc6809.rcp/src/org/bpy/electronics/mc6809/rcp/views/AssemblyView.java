@@ -54,15 +54,20 @@ import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledEle
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.nebula.widgets.grid.Grid;
 import org.eclipse.nebula.widgets.grid.GridColumn;
 import org.eclipse.nebula.widgets.grid.GridItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CaretListener;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.ScrollBar;
+import org.eclipse.swt.widgets.Scrollable;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
@@ -71,6 +76,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 import com.google.inject.Inject;
@@ -142,6 +148,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		grid.setAutoHeight(true);
 		grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.NORMAL));
 		grid.setHeaderVisible(true);
+		grid.setSelectionEnabled(true);
 
 		GridColumn column = new GridColumn(grid, SWT.NONE | SWT.TOGGLE);
 		column.setText("N°");
@@ -180,7 +187,14 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 				String fileName = xtextEditor.getResource().getFullPath().toOSString();
 				AssemblerEngine engine = AssemblerManager.getInstance().getRegistredAssemblyEngine(fileName);
 				if (engine != null) {
-	//				ManageUpdateDisplay(engine);
+					try {
+						IXtextDocument document = xtextEditor.getDocument();
+						int line = document.getLineOfOffset(event.caretOffset);
+						int maxLine = document.getNumberOfLines();
+						manageUpdateDisplay(engine, line, maxLine);
+					} catch (BadLocationException e) {
+						logger.log(Level.SEVERE, e.getMessage());
+					}
 				}
 			}
 		};
@@ -189,22 +203,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 
 			@Override
 			public void partOpened(IWorkbenchPart part) {
-				
-				IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				if ((currentEditor != null) && (currentEditor instanceof XtextEditor xtextEditor)) {
-					Control control = currentEditor.getAdapter(Control.class);
-					if (control instanceof StyledText text) {
-						text.addCaretListener(caretListener);
-					}
-					
-					String fileName = xtextEditor.getResource().getFullPath().toOSString();
-					AssemblerEngine engine = AssemblerManager.getInstance().getRegistredAssemblyEngine(fileName);
-					if (engine != null) {
-						ManageUpdateDisplay(engine);
-					} else {
-					}
-				}
-				
+				managePartEvent(part);
 			}
 
 			@Override
@@ -229,21 +228,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 
 			@Override
 			public void partBroughtToTop(IWorkbenchPart part) {
-				IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				if ((currentEditor != null) && (currentEditor instanceof XtextEditor xtextEditor)) {
-					Control control = currentEditor.getAdapter(Control.class);
-					if (control instanceof StyledText text) {
-						text.addCaretListener(caretListener);
-						setCursorPosition(text.getCaretOffset());
-					}
-					
-					String fileName = xtextEditor.getResource().getFullPath().toOSString();
-					AssemblerEngine engine = AssemblerManager.getInstance().getRegistredAssemblyEngine(fileName);
-					if (engine != null) {
-						ManageUpdateDisplay(engine);
-
-					}
-				}
+				managePartEvent(part);
 			}
 
 			@Override
@@ -252,14 +237,37 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		});
 	}
 
-	protected void setCursorPosition(int caretOffset) {
-		if (grid.getItemCount() >= 10) {
+	protected void managePartEvent(IWorkbenchPart part) {
+		IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if ((currentEditor != null) && (currentEditor instanceof XtextEditor xtextEditor)) {
+			Control control = currentEditor.getAdapter(Control.class);
+			if (control instanceof StyledText text) {
+				text.addCaretListener(caretListener);
+			}
 			
+			String fileName = xtextEditor.getResource().getFullPath().toOSString();
+			AssemblerEngine engine = AssemblerManager.getInstance().getRegistredAssemblyEngine(fileName);
+			if (engine != null) {
+				IXtextDocument document = xtextEditor.getDocument();
+				int line = getCursorPosition(xtextEditor);
+				int maxLine = document.getNumberOfLines();
+				manageUpdateDisplay(engine, line, maxLine);
+			} else {
+			}
 		}
-	
 	}
 
-	private void ManageUpdateDisplay(AssemblerEngine engine) {
+	protected int getCursorPosition(XtextEditor xtextEditor) {
+		Control control = xtextEditor.getAdapter(Control.class);
+		if (control instanceof StyledText text) {
+			text.addCaretListener(caretListener);
+			IXtextDocument document = xtextEditor.getDocument();
+			return document.getNumberOfLines();
+		}
+		return 0;
+	}
+
+	private void manageUpdateDisplay(AssemblerEngine engine, int line, int maxLine) {
 		if (timer != null) {
 			timer.cancel();
 		}
@@ -269,16 +277,38 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 			@Override
 			public void run() {
 				updateDisplay(engine);
+				setCursorPosition(line, maxLine);
 				timer.cancel();
 			}
-		}, 0, 5000);
+		}, 1000, 1000);
+	}
+
+	protected void setCursorPosition(int line, int maxLine) {
+
+		
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		 		int max = grid.getVerticalBar().getMaximum();
+				float ratio = (float)line/(float)maxLine;
+				
+				Rectangle rect = grid.getClientArea();
+				Rectangle rectLine = grid.getItem(0).getBounds(0);
+				int nbLinesDisplayed = rect.height/rectLine.height;
+				
+				int position = (int)(max*ratio)+nbLinesDisplayed/2;
+				position = (position > max-1 ? max-1 : position);
+				grid.setCellSelectionEnabled(true);
+				grid.setSelection(position);
+		 		grid.showSelection();
+				grid.setCellSelectionEnabled(false);
+		    }
+		});
 	}
 
 	/**
 	 * Update the display when the content editor change.
 	 */
 	private void updateDisplay(AssemblerEngine engine) {
-		System.out.println("BPY:Update display");
 		Display.getDefault().asyncExec(new Runnable() {
 		    public void run() {
 		 		while (grid.getItemCount() > 0) {
