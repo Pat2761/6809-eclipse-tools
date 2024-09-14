@@ -1,3 +1,21 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.rcp.handlers;
 
 import java.util.logging.Level;
@@ -17,6 +35,12 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
+/**
+ * Allow to comment / uncomment block of code
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class EditorCommentHandler implements IHandler {
 
 	/** Logger of the class */
@@ -24,14 +48,12 @@ public class EditorCommentHandler implements IHandler {
 	
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
-		// TODO Auto-generated method stub
-
+		// Nothing to do
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
+		// Nothing to do
 	}
 
 	@Override
@@ -62,7 +84,6 @@ public class EditorCommentHandler implements IHandler {
 				} catch (BadLocationException e) {
 					logger.log(Level.SEVERE, e.getMessage());
 				}
-				System.out.println(("BPY: Startline=" + startLine + "  End line = " + lastLine));
 			}
 		}	
 		return null;
@@ -70,20 +91,17 @@ public class EditorCommentHandler implements IHandler {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isHandled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public void removeHandlerListener(IHandlerListener handlerListener) {
-		// TODO Auto-generated method stub
-
+		// Nothing to do
 	}
 
 }

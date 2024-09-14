@@ -33,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
@@ -106,10 +107,36 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 			return getExpressionInformation(expression);
 		} else if (o.eContainer() instanceof  RelativeMode relativeMode) {
 			return getRelativeModeInformation(relativeMode);
+		} else if (o.eContainer() instanceof  Label label) {
+			return getInformation(label);
 		} else if (o.eContainer() instanceof OtherKindOfInstructions otherKindOfInstructions) {
 			return getMacroDescription(otherKindOfInstructions); 
 		}
 		return o.eContainer().getClass().getSimpleName();
+	}
+
+	/**
+	 * Provide information on a label.
+	 * 
+	 * @param label reference on the label
+	 * @return String which describe the label value, <b>null</b> if cannot be resolved
+	 */
+	String getInformation(Label label) {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("<b>Label " + label.getName().getValue() + "</b><br>");
+		
+		assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)EcoreUtil.getRootContainer(label));
+		Integer equValue = assemblerEngine.getEquSetLabelValue(label.getName().getValue());
+		if (equValue != null) {
+			strBuilder.append("Value = " + equValue);
+			return strBuilder.toString();
+		} 
+		AbstractAssemblyLine assemblyLine = assemblerEngine.getLabelsPositionObject().get(label.getName().getValue());
+		if (assemblyLine != null) {
+			strBuilder.append("Address = " + String.format("%04X", assemblyLine.getPcAddress()));
+			return strBuilder.toString();
+		}
+		return null;
 	}
 
 	/**
@@ -266,6 +293,8 @@ public class AssemblerHoverProvider extends DefaultEObjectHoverProvider {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<b>Expression</b><br>\n");
 		try {
+			assemblerEngine = AssemblerManager.getInstance().getAssemblyModel((Model)EcoreUtil.getRootContainer(expression));
+
 			int value = ExpressionParser.resolveExpression(assemblerEngine, expression);
 			if (isContainedBy(expression, JsrInstruction.class)) {
 				builder.append("Call sub routine at address = " + value);
