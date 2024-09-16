@@ -65,15 +65,13 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.ScrollBar;
-import org.eclipse.swt.widgets.Scrollable;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.xtext.formatting2.regionaccess.internal.TextRegionAccessBuildingSequencer;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -89,7 +87,8 @@ import org.eclipse.swt.layout.GridData;
  * @author Patrick BRIAND
  *
  */
-public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener*/ {
+@SuppressWarnings("restriction")
+public class AssemblyView extends ViewPart /* implements IAssemblerChangeListener */ {
 
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblyView.class.getName());
@@ -203,7 +202,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 
 			@Override
 			public void partOpened(IWorkbenchPart part) {
-				managePartEvent(part);
+				managePartEvent();
 			}
 
 			@Override
@@ -220,7 +219,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 						text.removeCaretListener(caretListener);
 					}
 				}
-		 		while (grid.getItemCount() > 0) {
+				while (grid.getItemCount() > 0) {
 					grid.getItems()[0].dispose();
 				}
 				grid.clearAll(true);
@@ -228,23 +227,28 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 
 			@Override
 			public void partBroughtToTop(IWorkbenchPart part) {
-				managePartEvent(part);
+				managePartEvent();
 			}
 
 			@Override
 			public void partActivated(IWorkbenchPart part) {
+				// nothing to do
 			}
 		});
 	}
 
-	protected void managePartEvent(IWorkbenchPart part) {
+	/**
+	 * Manage event on the part object.
+	 * 
+	 */
+	protected void managePartEvent() {
 		IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if ((currentEditor != null) && (currentEditor instanceof XtextEditor xtextEditor)) {
 			Control control = currentEditor.getAdapter(Control.class);
 			if (control instanceof StyledText text) {
 				text.addCaretListener(caretListener);
 			}
-			
+
 			String fileName = xtextEditor.getResource().getFullPath().toOSString();
 			AssemblerEngine engine = AssemblerManager.getInstance().getRegistredAssemblyEngine(fileName);
 			if (engine != null) {
@@ -252,11 +256,16 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 				int line = getCursorPosition(xtextEditor);
 				int maxLine = document.getNumberOfLines();
 				manageUpdateDisplay(engine, line, maxLine);
-			} else {
 			}
 		}
 	}
 
+	/**
+	 * Get cursor position in the editor.
+	 * 
+	 * @param xtextEditor reference on the editor
+	 * @return position of the cursor
+	 */
 	protected int getCursorPosition(XtextEditor xtextEditor) {
 		Control control = xtextEditor.getAdapter(Control.class);
 		if (control instanceof StyledText text) {
@@ -267,6 +276,13 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		return 0;
 	}
 
+	/**
+	 * Update display when the editor change.
+	 * 
+	 * @param engine  reference on the assembly result of the editor content
+	 * @param line    cursor position
+	 * @param maxLine maximum number of lines
+	 */
 	private void manageUpdateDisplay(AssemblerEngine engine, int line, int maxLine) {
 		if (timer != null) {
 			timer.cancel();
@@ -283,25 +299,30 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		}, 1000, 1000);
 	}
 
+	/**
+	 * Set position corresponding to the cursor position.
+	 * 
+	 * @param line    cursor position
+	 * @param maxLine maximum number of lines
+	 */
 	protected void setCursorPosition(int line, int maxLine) {
 
-		
-		Display.getDefault().syncExec(new Runnable() {
-		    public void run() {
-		 		int max = grid.getVerticalBar().getMaximum();
-				float ratio = (float)line/(float)maxLine;
-				
-				Rectangle rect = grid.getClientArea();
+		Display.getDefault().syncExec(() -> {
+			int max = grid.getVerticalBar().getMaximum();
+			float ratio = (float) line / (float) maxLine;
+
+			Rectangle rect = grid.getClientArea();
+			if (grid.getItemCount() > 0) {
 				Rectangle rectLine = grid.getItem(0).getBounds(0);
-				int nbLinesDisplayed = rect.height/rectLine.height;
-				
-				int position = (int)(max*ratio)+nbLinesDisplayed/2;
-				position = (position > max-1 ? max-1 : position);
+				int nbLinesDisplayed = rect.height / rectLine.height;
+
+				int position = (int) (max * ratio) + nbLinesDisplayed / 2;
+				position = (position > max - 1 ? max - 1 : position);
 				grid.setCellSelectionEnabled(true);
 				grid.setSelection(position);
-		 		grid.showSelection();
+				grid.showSelection();
 				grid.setCellSelectionEnabled(false);
-		    }
+			}
 		});
 	}
 
@@ -309,9 +330,8 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 	 * Update the display when the content editor change.
 	 */
 	private void updateDisplay(AssemblerEngine engine) {
-		Display.getDefault().asyncExec(new Runnable() {
-		    public void run() {
-		 		while (grid.getItemCount() > 0) {
+		Display.getDefault().asyncExec( () -> {
+				while (grid.getItemCount() > 0) {
 					grid.getItems()[0].dispose();
 				}
 				grid.clearAll(true);
@@ -344,9 +364,8 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 						logger.log(Level.SEVERE, "Unkonowned type {0}", assembledLine.getClass().getName());
 					}
 				}
-		    }
 		});
-		
+
 	}
 
 	/**
@@ -362,10 +381,9 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		if (macroAssembledElement.getLabel() != null) {
 			item.setText(LABEL_COLUMN, macroAssembledElement.getLabel());
 		} else {
-			item.setText(LABEL_COLUMN,"");
+			item.setText(LABEL_COLUMN, "");
 		}
-		
-		
+
 		item.setText(INSTRUCTION_COLUMN, macroAssembledElement.getMacroDefinition().getName().getValue());
 		item.setText(OPERAND_COLUMN, "");
 		if (macroAssembledElement.getComment() != null) {
@@ -414,13 +432,13 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 			} else {
 				subItem.setText(LABEL_COLUMN, "");
 			}
-			
+
 			CommandUtil.getInstructionName(internalInstruction);
 			subItem.setText(INSTRUCTION_COLUMN, CommandUtil.getInstructionName(internalInstruction.getInstruction()));
 			EObject operand = CommandUtil.getOperand(internalInstruction);
-			
+
 			if (operand != null) {
-				String operandRepresentation = serializer.serialize(operand).replace(" ", "");
+				String operandRepresentation = getSerializedString(operand,0);
 				subItem.setText(OPERAND_COLUMN, operandRepresentation);
 			} else {
 				subItem.setText(OPERAND_COLUMN, "");
@@ -431,7 +449,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 				subItem.setText(COMMENT_COLUMN, "");
 			}
 		}
-		
+
 		GridItem endItem = new GridItem(item, SWT.NONE);
 
 		endItem.setText(LINE_NUMBER_COLUMN, "");
@@ -513,7 +531,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");;
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			item.setText(OPERAND_COLUMN, expressionRepresentation);
 		}
 	}
@@ -542,7 +560,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "EQU");
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			if (directive.getDirective().isIsRelativeToPC()) {
 				item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
 			} else {
@@ -561,7 +579,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			item.setText(OPERAND_COLUMN, expressionRepresentation);
 		}
 
@@ -591,7 +609,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 
 		strBuister = new StringBuilder();
 		for (EObject parameter : directive.getDirective().getParameters()) {
-			String representation = serializer.serialize(parameter).replace(" ", "");
+			String representation = getSerializedString(parameter,directive.getLineNumber());
 			if (!strBuister.isEmpty()) {
 				strBuister.append(',');
 			}
@@ -610,7 +628,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			item.setText(OPERAND_COLUMN, expressionRepresentation);
 		}
 
@@ -631,10 +649,10 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "FILL");
 
 		StringBuilder strBuister = new StringBuilder();
-		String valueRepresentation = serializer.serialize(directive.getDirective().getValue()).replace(" ", "");
+		String valueRepresentation = getSerializedString(directive.getDirective().getValue(), directive.getLineNumber());
 		strBuister.append(valueRepresentation);
 		strBuister.append(',');
-		String numberRepresentation = serializer.serialize(directive.getDirective().getNumber()).replace(" ", "");
+		String numberRepresentation = getSerializedString(directive.getDirective().getNumber(), directive.getLineNumber());
 		strBuister.append(numberRepresentation);
 		item.setText(OPERAND_COLUMN, strBuister.toString());
 
@@ -684,7 +702,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 	private void display(GridItem item, AssembledPagDirectiveLine directive) {
 		item.setText(INSTRUCTION_COLUMN, "PAG");
 		if (directive.getDirective().getOperand() != null) {
-			item.setText(OPERAND_COLUMN, serializer.serialize(directive.getDirective().getOperand()).replace(" ", ""));
+			item.setText(OPERAND_COLUMN, getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber()));
 		}
 
 	}
@@ -718,7 +736,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "RMB");
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			if (directive.getDirective().isIsRelativeToPC()) {
 				item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
 			} else {
@@ -737,7 +755,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "SET");
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			if (directive.getDirective().isIsRelativeToPC()) {
 				item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
 			} else {
@@ -756,7 +774,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "SETDP");
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			item.setText(OPERAND_COLUMN, expressionRepresentation);
 		}
 	}
@@ -772,12 +790,12 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		StringBuilder strBuister = new StringBuilder();
 
 		if (directive.getDirective().getSpaceCount() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getSpaceCount()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getSpaceCount(), directive.getLineNumber());
 			strBuister.append(expressionRepresentation);
 		}
 
 		if (directive.getDirective().getKeepCount() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getKeepCount()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getKeepCount(), directive.getLineNumber());
 			strBuister.append(',');
 			strBuister.append(expressionRepresentation);
 		}
@@ -795,7 +813,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(INSTRUCTION_COLUMN, "ORG");
 
 		if (directive.getDirective().getOperand() != null) {
-			String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand()).replace(" ", "");
+			String expressionRepresentation = getSerializedString(directive.getDirective().getOperand(), directive.getLineNumber());
 			if (directive.getDirective().isIsRelativeToPC()) {
 				item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
 			} else {
@@ -817,7 +835,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		item.setText(LABEL_COLUMN, assembledLine.getLabel());
 		item.setText(INSTRUCTION_COLUMN, "");
 		item.setText(OPERAND_COLUMN, "");
-		
+
 		if (assembledLine.getComment() != null) {
 			item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		} else {
@@ -832,7 +850,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 	 */
 	private void displayBlankLine(AssembledBlankLine blankLine) {
 		GridItem item = new GridItem(grid, SWT.NONE);
-		item.setColumnSpan(ADDRESS_COLUMN, COMMENT_COLUMN-ADDRESS_COLUMN);
+		item.setColumnSpan(ADDRESS_COLUMN, COMMENT_COLUMN - ADDRESS_COLUMN);
 		item.setText("" + blankLine.getLineNumber());
 	}
 
@@ -847,7 +865,7 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		if (assembledLine.isSpaceBefore()) {
 			item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		} else {
-			item.setColumnSpan(LABEL_COLUMN, COMMENT_COLUMN-LABEL_COLUMN);
+			item.setColumnSpan(LABEL_COLUMN, COMMENT_COLUMN - LABEL_COLUMN);
 			item.setText(LABEL_COLUMN, assembledLine.getComment());
 		}
 	}
@@ -878,9 +896,9 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		}
 
 		item.setText(INSTRUCTION_COLUMN, assembledLine.getInstructionName());
-		
+
 		setOperand(item, assembledLine);
-	
+
 		if (assembledLine.getComment() != null) {
 			item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		} else {
@@ -898,12 +916,37 @@ public class AssemblyView extends ViewPart /*implements IAssemblerChangeListener
 		EObject operand = assembledLine.getInstructionOperand();
 
 		if (operand != null) {
-			String operandRepresentation = serializer.serialize(operand).replace(" ", "");
-			item.setText(OPERAND_COLUMN, operandRepresentation);
+			try {
+				String operandRepresentation = getSerializedString(operand, assembledLine.getLineNumber());
+				item.setText(OPERAND_COLUMN, operandRepresentation);
+			} catch (Exception e) {
+				item.setText(OPERAND_COLUMN, "");
+			}
 		} else {
 			item.setText(OPERAND_COLUMN, "");
 		}
 	}
+
+	/**
+	 * Serialize an object.
+	 * 
+	 * @param eObject reference to the object to serialize
+	 * @return String of serialized object
+	 */
+	private String getSerializedString(EObject eObject, int line) {
+		org.apache.log4j.Level apacheLoggerLevel = org.apache.log4j.Logger.getLogger(TextRegionAccessBuildingSequencer.class).getLevel();
+		org.apache.log4j.Logger.getLogger(TextRegionAccessBuildingSequencer.class).setLevel(org.apache.log4j.Level.OFF);
+		String formattedString = "";
+		try {
+			formattedString =  serializer.serialize(eObject).replace(" ", "");
+		} catch (Exception ex) {
+			// nothing to do
+		}
+		org.apache.log4j.Logger.getLogger(TextRegionAccessBuildingSequencer.class).setLevel(apacheLoggerLevel);
+		return formattedString;
+	}
+
+
 	@Override
 	public void setFocus() {
 		// Nothing to do here

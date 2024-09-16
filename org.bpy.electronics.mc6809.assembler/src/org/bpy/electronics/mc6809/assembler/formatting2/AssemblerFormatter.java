@@ -181,8 +181,10 @@ import org.bpy.electronics.mc6809.assembler.formatting2.instructions.TfrInstruct
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.TstInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.others.MacroDefinitionStart;
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.xtext.formatting2.AbstractJavaFormatter;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
@@ -232,19 +234,9 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		operandPosition = preferenceManager.getOperandPosition();
 		commentPosition = preferenceManager.getCommentPosition();
 
-//		logger.log(Level.INFO, "--------------------------------------------------------------");
-//		logger.log(Level.INFO, "Use formatter with following paramaters: ");
-//		logger.log(Level.INFO, "Tab policy = {0}", tabPolicy);
-//		logger.log(Level.INFO, ": Tab size = {0}", tabSize);
-//		logger.log(Level.INFO, ": Instruction position {0}", instructionPosition);
-//		logger.log(Level.INFO, ": Operand position{0}",operandPosition);
-//		logger.log(Level.INFO, ": Comment position {0}",commentPosition);
-//		logger.log(Level.INFO, ": Comment line at instruction level: {0}",preferenceManager.getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
-
 		for (SourceLine sourceLine : model.getSourceLines()) {
 			doc.format(sourceLine);
 		}
-//		logger.log(Level.INFO, "--------------------------------------------------------------");
 	}
 
 	/**

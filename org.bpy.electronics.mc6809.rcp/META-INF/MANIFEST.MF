@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors;bundle-version="3.14.400",
  org.eclipse.xtext.ui,
  org.bpy.electronics.mc6809.documents;bundle-version="1.0.0",
- org.bpy.electronics.mc6809.binaries;bundle-version="1.0.0"
+ org.bpy.electronics.mc6809.binaries;bundle-version="1.0.0",
+ org.apache.log4j;bundle-version="1.2.19"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.bpy.electronics.mc6809.rcp
 Import-Package: javax.inject,
