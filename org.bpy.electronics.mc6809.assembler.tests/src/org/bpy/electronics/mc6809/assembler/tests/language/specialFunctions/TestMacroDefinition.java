@@ -189,10 +189,11 @@ public class TestMacroDefinition {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationTestHelper.assertNoErrors(result);
 			
-			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result);;
+			AssemblerEngine engine = AssemblerManager.getInstance().getAssemblyModel(result,AssemblerManager.STUB_FILE_NAME);
 			Assert.assertEquals("4 NOP instructions", 0x8004, engine.getCurrentPcValue());
 
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			Assert.assertTrue("Exception", false);
 		}
 	}

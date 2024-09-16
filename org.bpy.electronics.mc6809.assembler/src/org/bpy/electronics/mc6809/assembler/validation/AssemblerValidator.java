@@ -49,7 +49,6 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 				break;
 			}
 		}
-		this.addIssue(strVal, binaryValue, strVal);
 	}
 
 	@Check
