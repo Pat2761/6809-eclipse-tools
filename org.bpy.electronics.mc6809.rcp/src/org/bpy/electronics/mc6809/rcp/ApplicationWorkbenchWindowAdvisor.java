@@ -38,13 +38,12 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	    for (IContributionItem item : items) {
 
 	      switch (item.getId()) {
-	        case "org.eclipse.search.menu": //$NON-NLS-1$
+	      	case "org.eclipse.ui.run", //$NON-NLS-1$
+	      	     "org.eclipse.search.menu": //$NON-NLS-1$
 	          item.setVisible(false);
 	          break;
 	        default:  
 	      }
 	    }
 	}
-	
-	
 }

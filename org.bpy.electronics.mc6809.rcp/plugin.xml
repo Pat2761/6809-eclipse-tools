@@ -284,6 +284,22 @@
             </command>
          </menu>
          <menu
+               label="Run">
+            <menu
+                  label="External tools">
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.calculator"
+                     label="Calculator"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.externaltool.configuration"
+                     label="External tool configurations"
+                     style="push">
+               </command>
+            </menu>
+         </menu>
+         <menu
                id="org.bpy.electronics.mc6809.rcp.menu.window"
                label="Window">
             <command
@@ -569,6 +585,15 @@
             id="org.bpy.electronics.mc6809.rcp.editor.comment"
             name="Comment">
       </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.calculator"
+            name="Calculator">
+      </command>
+      <command
+            categoryId="org.eclipse.debug.ui.category.run"
+            id="org.bpy.electronics.mc6809.rcp.externaltool.configuration"
+            name="External tool configurations">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -704,6 +729,14 @@
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.GenreateSRecordFileMenuHandler"
             commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.ShowCalculatorHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.calculator">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.ConfigureExternalTools"
+            commandId="org.bpy.electronics.mc6809.rcp.externaltool.configuration">
       </handler>
    </extension>
    <extension
@@ -1045,6 +1078,77 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+M2+;">
       </key>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            category="org.eclipse.ui.externaltools"
+            delegate="org.bpy.electronics.mc6809.rcp.launch.AssemblerLaunchConfigurationTypeDelegate"
+            id="org.bpy.electronics.mc6809.rcp.launchConfigurationType"
+            modes="run"
+            name="Assembler"
+            public="false">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         name="Assembler"
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.bpy.electronics.mc6809.rcp.launch.AssemblerLaunchConfigurationTabGroup"
+            description="Assembler"
+            id="org.bpy.electronics.mc6809.rcp.launch.comfigurationtabgroup1"
+            type="org.bpy.electronics.mc6809.rcp.launchConfigurationType">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabs">
+      <tab
+            class="org.bpy.electronics.mc6809.rcp.launch.AssemblerLaunchConfigurationTab"
+            group="org.eclipse.ui.externaltools.launchConfigurationTabGroup.program"
+            id="org.bpy.electronics.mc6809.rcp.launch.comfigurationtab"
+            name="Run assembler">
+      </tab>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.bpy.electronics.mc6809.rcp.launch.LaunchAssembler"
+            id="org.bpy.electronics.mc6809.rcp.shortcut1"
+            label="External assembler"
+            modes="run">
+         <contextualLaunch>
+            <contextLabel
+                  label="Run external assembler"
+                  mode="run">
+            </contextLabel>
+            <enablement>
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="true"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.core.resources.IResource">
+                     </instanceof>
+                     <test
+                           property="org.eclipse.core.resources.projectNature"
+                           value="org.bpy.electronics.mc6809.assemblerNature">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="org.bpy.electronics.mc6809.rcp.launch.AssemblerLaunchConfigurationDelegate"
+            id="org.bpy.electronics.mc6809.rcp.associatedDelegate1"
+            modes="Run"
+            name="Run assembler"
+            type="org.bpy.electronics.mc6809.rcp.launchConfigurationType">
+      </launchDelegate>
    </extension>
 
 </plugin>
