@@ -1,24 +1,36 @@
-package org.bpy.electronics.mc6809.rcp.launch;
+package org.bpy.electronics.mc6809.externaltools.ui.launch;
 
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.ILaunchConfigurationDialog;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 
-public class AssemblerLaunchConfigurationTab implements ILaunchConfigurationTab {
+public class LaunchConfigurationLwToolsParameters implements ILaunchConfigurationTab {
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public void createControl(Composite parent) {
-		// TODO Auto-generated method stub
-
+		Composite main = new Composite(parent, SWT.NONE);
+		
+		Label lblAQueCoucou = new Label(main, SWT.NONE);
+		lblAQueCoucou.setBounds(10, 23, 70, 20);
+		lblAQueCoucou.setText("A que coucou");
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public Control getControl() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -85,7 +97,7 @@ public class AssemblerLaunchConfigurationTab implements ILaunchConfigurationTab 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "BPY:AssemblerLaunchConfigurationTab";
+		return null;
 	}
 
 	@Override
@@ -105,5 +117,4 @@ public class AssemblerLaunchConfigurationTab implements ILaunchConfigurationTab 
 		// TODO Auto-generated method stub
 
 	}
-
 }

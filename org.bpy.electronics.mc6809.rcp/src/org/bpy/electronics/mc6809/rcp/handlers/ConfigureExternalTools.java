@@ -4,14 +4,8 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
-import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.internal.ui.DebugUIPlugin;
-import org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager;
-import org.eclipse.debug.internal.ui.launchConfigurations.LaunchHistory;
-import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ui.externaltools.internal.model.IExternalToolConstants;
 
 public class ConfigureExternalTools implements IHandler {
 
@@ -36,15 +30,15 @@ public class ConfigureExternalTools implements IHandler {
 		String fIdentifier = "org.bpy.electronics.mc6809.rcp.externalToolGroup";
 //		String fIdentifier = "org.eclipse.ui.externaltools";
 //		LaunchConfigurationManager toto = DebugUIPlugin.getDefault().getLaunchConfigurationManager();
-		LaunchHistory history = DebugUIPlugin.getDefault().getLaunchConfigurationManager().getLaunchHistory(fIdentifier );
-		ILaunchConfiguration configuration = history.getRecentLaunch();
+//		LaunchHistory history = DebugUIPlugin.getDefault().getLaunchConfigurationManager().getLaunchHistory(fIdentifier );
+//		ILaunchConfiguration configuration = history.getRecentLaunch();
 		IStructuredSelection selection = null;
-		if (configuration == null) {
-			selection = new StructuredSelection();
-		} else {
-			selection = new StructuredSelection(configuration);
-		}
-	   int result = DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUIPlugin.getShell(), selection, fIdentifier);
+//		if (configuration == null) {
+//			selection = new StructuredSelection();
+//		} else {
+//			selection = new StructuredSelection(configuration);
+//		}
+//	   int result = DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUIPlugin.getShell(), selection, fIdentifier);
 
 		return null;
 	}

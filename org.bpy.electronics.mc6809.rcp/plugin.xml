@@ -284,20 +284,8 @@
             </command>
          </menu>
          <menu
+               id="org.bpy.electronics.mc6809.menu.run"
                label="Run">
-            <menu
-                  label="External tools">
-               <command
-                     commandId="org.bpy.electronics.mc6809.rcp.calculator"
-                     label="Calculator"
-                     style="push">
-               </command>
-               <command
-                     commandId="org.bpy.electronics.mc6809.rcp.externaltool.configuration"
-                     label="External tool configurations"
-                     style="push">
-               </command>
-            </menu>
          </menu>
          <menu
                id="org.bpy.electronics.mc6809.rcp.menu.window"
@@ -585,15 +573,6 @@
             id="org.bpy.electronics.mc6809.rcp.editor.comment"
             name="Comment">
       </command>
-      <command
-            id="org.bpy.electronics.mc6809.rcp.calculator"
-            name="Calculator">
-      </command>
-      <command
-            categoryId="org.eclipse.debug.ui.category.run"
-            id="org.bpy.electronics.mc6809.rcp.externaltool.configuration"
-            name="External tool configurations">
-      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -729,14 +708,6 @@
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.GenreateSRecordFileMenuHandler"
             commandId="org.bpy.electronics.mc6809.rcp.binary.srecord.menu">
-      </handler>
-      <handler
-            class="org.bpy.electronics.mc6809.rcp.handlers.ShowCalculatorHandler"
-            commandId="org.bpy.electronics.mc6809.rcp.calculator">
-      </handler>
-      <handler
-            class="org.bpy.electronics.mc6809.rcp.handlers.ConfigureExternalTools"
-            commandId="org.bpy.electronics.mc6809.rcp.externaltool.configuration">
       </handler>
    </extension>
    <extension
