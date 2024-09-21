@@ -6,6 +6,7 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.internal.ui.DebugUIPlugin;
+import org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager;
 import org.eclipse.debug.internal.ui.launchConfigurations.LaunchHistory;
 import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -28,7 +29,13 @@ public class ConfigureExternalTools implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		String fIdentifier = IExternalToolConstants.ID_EXTERNAL_TOOLS_LAUNCH_GROUP;
+//		org.bpy.electronics.mc6809.rcp.externalToolGroup
+//		String fIdentifier = "org.bpy.electronics.mc6809.rcp.launchConfigurationType";
+//		String fIdentifier = "org.bpy.electronics.mc6809.rcp.launch.configurationtabgroup1";
+//		String fIdentifier = IExternalToolConstants.ID_EXTERNAL_TOOLS_LAUNCH_GROUP;
+		String fIdentifier = "org.bpy.electronics.mc6809.rcp.externalToolGroup";
+//		String fIdentifier = "org.eclipse.ui.externaltools";
+//		LaunchConfigurationManager toto = DebugUIPlugin.getDefault().getLaunchConfigurationManager();
 		LaunchHistory history = DebugUIPlugin.getDefault().getLaunchConfigurationManager().getLaunchHistory(fIdentifier );
 		ILaunchConfiguration configuration = history.getRecentLaunch();
 		IStructuredSelection selection = null;
@@ -37,7 +44,7 @@ public class ConfigureExternalTools implements IHandler {
 		} else {
 			selection = new StructuredSelection(configuration);
 		}
-	int result = DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUIPlugin.getShell(), selection, fIdentifier);
+	   int result = DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUIPlugin.getShell(), selection, fIdentifier);
 
 		return null;
 	}

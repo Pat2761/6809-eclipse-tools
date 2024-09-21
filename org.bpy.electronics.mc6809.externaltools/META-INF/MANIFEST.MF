@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Externaltools
+Bundle-SymbolicName: org.bpy.electronics.mc6809.externaltools
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.bpy.electronics.mc6809.externaltools
+Bundle-RequiredExecutionEnvironment: JavaSE-17

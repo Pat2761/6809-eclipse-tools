@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: org.bpy.electronics.mc6809.externaltools.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.debug.ui;bundle-version="3.17.0"
+Automatic-Module-Name: org.bpy.electronics.mc6809.externaltools.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-17

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchGroups">
+      <launchGroup
+            bannerImage="icons/ext_tools_wiz.png"
+            id="org.bpy.electronics.mc6809.rcp.externalToolGroup"
+            image="icons/external_tools.png"
+            label="Run"
+            mode="run">
+      </launchGroup>
+   </extension>
+
+</plugin>

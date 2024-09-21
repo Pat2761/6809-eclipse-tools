@@ -85,7 +85,7 @@ public class AssemblerLaunchConfigurationTab implements ILaunchConfigurationTab 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "BPY:AssemblerLaunchConfigurationTab";
 	}
 
 	@Override
