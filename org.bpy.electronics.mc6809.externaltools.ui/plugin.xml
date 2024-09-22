@@ -65,15 +65,6 @@
       </launchConfigurationTabGroup>
    </extension>
    <extension
-         point="org.eclipse.debug.ui.launchConfigurationTabs">
-      <tab
-            class="org.bpy.electronics.mc6809.externaltools.ui.launch.LaunchConfigurationLwToolsParameters"
-            group="org.bpy.electronics.mc6809.externaltools.ui.launchConfigurationTabGroupLwTools"
-            id="org.bpy.electronics.mc6809.externaltools.ui.LwToolsParametersTab"
-            name="Parameters">
-      </tab>
-   </extension>
-   <extension
          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
       <launchConfigurationTypeImage
             configTypeID="org.bpy.electronics.mc6809.externaltools.ui.launchConfigurationType"
