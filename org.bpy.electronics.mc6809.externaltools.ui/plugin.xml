@@ -10,6 +10,13 @@
                id="org.bpy.electronics.mc6809.menu.externaltools"
                label="External tools">
             <command
+                  commandId="org.bpy.electronics.mc6809.externaltools.ui.calculator"
+                  label="Calculator"
+                  style="push">
+               <visibleWhen>
+               </visibleWhen>
+            </command>
+            <command
                   commandId="org.bpy.electronics.mc6809.externaltools.ui.configure"
                   label="Configure External Tools"
                   style="push">
@@ -23,12 +30,20 @@
             id="org.bpy.electronics.mc6809.externaltools.ui.configure"
             name="External tool configurations">
       </command>
+      <command
+            id="org.bpy.electronics.mc6809.externaltools.ui.calculator"
+            name="Calculator">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="org.bpy.electronics.mc6809.externaltools.ui.handlers.ConfigureExternalToolHandler"
             commandId="org.bpy.electronics.mc6809.externaltools.ui.configure">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.externaltools.ui.handlers.ExecuteExternalCalculatorHandler"
+            commandId="org.bpy.electronics.mc6809.externaltools.ui.calculator">
       </handler>
    </extension>
    <extension
@@ -71,6 +86,27 @@
             icon="icons/AssemblerTool.png"
             id="org.bpy.electronics.mc6809.externaltools.ui.launchConfigurationTypeImage1">
       </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.externaltools.ui.preferences.ExternalToolPreferenceMainPage"
+            id="org.bpy.electronics.mc6809.externaltools.ui.externalToolPreference"
+            name="External tool">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.externaltools.ui.externalToolPreference"
+            class="org.bpy.electronics.mc6809.externaltools.ui.preferences.ExternalToolPreferencePage"
+            id="org.bpy.electronics.mc6809.externaltools.ui.page2"
+            name="Path of the calculator">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.externaltools.ui.externalToolPreference"
+            class="org.bpy.electronics.mc6809.externaltools.ui.preferences.LWToolPreferencePage"
+            id="org.bpy.electronics.mc6809.externaltools.ui.lwtools"
+            name="LWTools">
+      </page>
    </extension>
 
 </plugin>

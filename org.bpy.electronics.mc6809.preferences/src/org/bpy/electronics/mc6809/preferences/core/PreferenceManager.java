@@ -157,6 +157,15 @@ public class PreferenceManager {
 	/** define the default value for macro instructions */
 	public static final String DEFAULT_MACRO_INSTRUCTION = "";
 	
+	/** Define the default path for the caluclator location */
+	public static final String CALCULATOR_LOCATION = "calculatorLocation";
+	/** Define the default path for the caluclator location */
+	public static final String DEFAULT_CALCULATOR_LOCATION = "C:\\Windows\\System32\\calc.exe";
+	
+	/** Define the default path for the LWTool location */
+	public static final String LWTOOL_LOCATION = "lwToolLocation";
+	/** Define the default path for the LWTool location */
+	public static final String DEFAULT_LWTOOL_LOCATION = "";
 	
 	/** Instance of the preference manager singleton */ 
 	private static PreferenceManager eInstance;
@@ -200,6 +209,8 @@ public class PreferenceManager {
 		defaultsValues.put(LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES,""+DEFAULT_LISTING_OPERAND_INSTRUCTION_NUMBER_SPACES);
 		
 		defaultsValues.put(MACRO_INSTRUCTION_KEY, ""+DEFAULT_MACRO_INSTRUCTION);
+
+		defaultsValues.put(CALCULATOR_LOCATION, DEFAULT_CALCULATOR_LOCATION);
 
 		store = EditorsUI.getPreferenceStore();	
 	}
@@ -631,6 +642,45 @@ public class PreferenceManager {
 	}
 	
 	/**
+	 * Get the calculator location.
+	 * 
+	 * @return calculator location
+	 */
+	public String getCalculatorLocation() {
+		return preferences.get(CALCULATOR_LOCATION, DEFAULT_CALCULATOR_LOCATION);
+	}
+	
+	/**
+	 * Set the calculator location.
+	 * 
+	 * @param calculatorLocation calculator location
+	 */
+	public void setCalculatorLocation(String calculatorLocation) {
+		preferences.put(CALCULATOR_LOCATION, calculatorLocation);
+		savePreference();
+	}
+	
+	/**
+	 * Get the LWTool location.
+	 * 
+	 * @return LWTool location
+	 */
+	public String getLWToolLocation() {
+		return preferences.get(LWTOOL_LOCATION, DEFAULT_LWTOOL_LOCATION);
+	}
+	
+	/**
+	 * Set the LWTool location.
+	 * 
+	 * @param lwtoolLocation LWTool location
+	 */
+	public void setLWToolLocation(String lwtoolLocation) {
+		preferences.put(LWTOOL_LOCATION, lwtoolLocation);
+		savePreference();
+	}
+
+	/**
+	 * 
 	 * Reset the preference values
 	 */
 	public void resetPreferences() {
